@@ -1,0 +1,43 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Fabricas;
+
+import Expertos.Experto;
+import Expertos.ExpertoAntenderReclamoPorDesperfecto;
+
+/**
+ *
+ * @author LEIVA
+ */
+public class FabricaExpertos {
+
+    private static FabricaExpertos instance=null;
+
+
+    private FabricaExpertos(){
+
+    }
+
+    public static FabricaExpertos getInstance(){
+
+        if(instance==null)
+            instance = new FabricaExpertos();
+
+        return instance;
+
+    }
+
+
+    public Experto getExperto(String tipo){
+        Experto retorno=null;
+
+        if(tipo.equals("AtenderReclamoPorDesperfecto"))
+            retorno = new ExpertoAntenderReclamoPorDesperfecto();
+
+    return retorno;
+    }
+
+}
