@@ -30,8 +30,8 @@ public class FachadaExterna {
 
     }
 
-    public void guardar(String nombreClase, ObjetoPersistente obj){
-       FachadaInterna.getInstancia().guardar(nombreClase, obj);
+    public void guardar(String nombreClase, SuperDruperInterfaz obj){
+       FachadaInterna.getInstancia().guardar(nombreClase, (ObjetoPersistente)obj);
     }
 
     public SuperDruperInterfaz crearEntidad(String nombre){

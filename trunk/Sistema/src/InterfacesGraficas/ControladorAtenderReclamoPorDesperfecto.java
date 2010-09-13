@@ -14,15 +14,23 @@ import Fabricas.FabricaExpertos;
  */
 public class ControladorAtenderReclamoPorDesperfecto {
 
+    ExpertoAntenderReclamoPorDesperfecto earpd;
+
+
     public Denunciante buscarDenunciante(String dni){
 
 
 
-        ExpertoAntenderReclamoPorDesperfecto earpd = (ExpertoAntenderReclamoPorDesperfecto)FabricaExpertos.getInstance().getExperto("AtenderReclamoPorDesperfecto");
+         earpd = (ExpertoAntenderReclamoPorDesperfecto)FabricaExpertos.getInstance().getExperto("AtenderReclamoPorDesperfecto");
 
         
-
-
-        return null;
+        return earpd.buscarDenunciante(dni);
     }
+
+    public void guardarDenunciante(Denunciante denunciante){
+
+        earpd.guardarDenunciante(denunciante);
+
+    }
+
 }
