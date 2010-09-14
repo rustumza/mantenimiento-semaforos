@@ -33,4 +33,13 @@ public class ControladorAtenderReclamoPorDesperfecto {
 
     }
 
+
+    public DtoCalle buscarCalle(String calle1, String calle2){
+
+        earpd.buscarCalle(calle1, calle2);
+
+
+    }
+
+
 }

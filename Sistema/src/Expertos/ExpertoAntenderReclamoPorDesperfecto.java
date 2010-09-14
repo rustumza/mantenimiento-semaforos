@@ -6,6 +6,7 @@
 package Expertos;
 
 import ExpertosPersistencia.Criterio;
+import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denunciante;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
@@ -38,6 +39,18 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
 
     }
 
-    
+
+
+    public DtoCalle buscarCalle(String calle1, String calle2){
+        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Calle", "LIKE", calle1);
+        List<Criterio> listaDeCriterios = new ArrayList<Criterio>();
+        listaDeCriterios.add(criterio);
+        List<SuperDruperInterfaz> listaSuperDruperInterfaz = FachadaExterna.getInstancia().buscar("Calle", listaDeCriterios);
+        List<Calle> listaCalles = new ArrayList<Calle>();
+        for(SuperDruperInterfaz aux : listaSuperDruperInterfaz){
+            listaCalles.add((Calle) aux);
+        }
+
+    }
 
 }
