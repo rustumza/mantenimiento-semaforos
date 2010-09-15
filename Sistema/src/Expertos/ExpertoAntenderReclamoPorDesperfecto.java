@@ -41,8 +41,9 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
 
 
 
-    public DtoCalle buscarCalle(String calle1, String calle2){
-        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Calle", "LIKE", calle1);
+    public List<Calle> buscarCalle(String calle){
+
+        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Calle", "LIKE", calle);
         List<Criterio> listaDeCriterios = new ArrayList<Criterio>();
         listaDeCriterios.add(criterio);
         List<SuperDruperInterfaz> listaSuperDruperInterfaz = FachadaExterna.getInstancia().buscar("Calle", listaDeCriterios);
@@ -50,7 +51,20 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         for(SuperDruperInterfaz aux : listaSuperDruperInterfaz){
             listaCalles.add((Calle) aux);
         }
-
+        return listaCalles;
     }
+
+    public Interseccion buscarInterseccion(String oidCalle1, String oidCalle2){
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+        //fijarse como estan mapeadas las calles respecto de la interseccion en el mer para poder
+        //armar los criterios
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    List<Criterio> criterio = new ArrayList<Criterio>();
+    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle1", "=", oidCalle1));
+    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle2", "=", oidCalle2));
+    return FachadaExterna.getInstancia().buscar("Interseccion", criterio);
+    }
+
 
 }
