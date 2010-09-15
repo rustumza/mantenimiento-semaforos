@@ -19,8 +19,9 @@ public class DecoradorExpertoConsultarAvanceDeReclamo extends ExpertoConsultarAv
     public List<DTOEstadoDenuncia> ConsultarEstadoCaso(String numcaso) {
 
         IniciarTx();
+        List<DTOEstadoDenuncia> aux = super.ConsultarEstadoCaso(numcaso);
         confirmarTx();
-        return super.ConsultarEstadoCaso(numcaso);
+        return aux;
     }
 
     private  void IniciarTx() {

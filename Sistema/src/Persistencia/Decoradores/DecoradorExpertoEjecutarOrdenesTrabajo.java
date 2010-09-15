@@ -17,11 +17,13 @@ import java.util.List;
  */
 public class DecoradorExpertoEjecutarOrdenesTrabajo extends ExpertoEjecutarOrdenesTrabajo {
 
+    @Override
     public List<DTOOrdenesTrabajo> consultarOrdenesPendientes(Date fecha, String tipo){
 
         iniciarTx();
+        List<DTOOrdenesTrabajo> aux = super.consultarOrdenesPendientes(fecha, tipo);
         confirmarTx();
-        return null;
+        return aux;
     }
 
     private void iniciarTx(){
