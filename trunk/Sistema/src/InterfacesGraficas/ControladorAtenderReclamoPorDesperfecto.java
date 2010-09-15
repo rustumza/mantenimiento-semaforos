@@ -8,6 +8,10 @@ package InterfacesGraficas;
 import Persistencia.Entidades.Denunciante;
 import Expertos.ExpertoAntenderReclamoPorDesperfecto;
 import Fabricas.FabricaExpertos;
+import Persistencia.Entidades.Calle;
+import Persistencia.Entidades.Interseccion;
+import Persistencia.ExpertosPersistencia.Cache;
+import java.util.List;
 /**
  *
  * @author LEIVA
@@ -34,12 +38,15 @@ public class ControladorAtenderReclamoPorDesperfecto {
     }
 
 
-    public DtoCalle buscarCalle(String calle1, String calle2){
+    public Calle[] buscarCalle(String calle){
 
-        earpd.buscarCalle(calle1, calle2);
-
+        List<Calle> listaDeCalle = earpd.buscarCalle(calle);
+        return listaDeCalle.toArray(new Calle[listaDeCalle.size()]);
 
     }
 
+    public Interseccion buscarInterseccion(String OidCalle1, String OidCalle2){
 
+    return earpd.buscarInterseccion(OidCalle1, OidCalle2);
+    }
 }
