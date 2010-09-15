@@ -13,13 +13,14 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
-    private String oid;
+public class IntermediarioPersistenciaMarca extends IntermediarioRelacional{
+
+ private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
-        
-        return insert = "insert into denuncia (OIDCaso, CodigoDenuncia, Prioridad) values (OIDCaso, CodigoDenuncia, Prioridad)";
+
+        return insert = "insert into marca (OIDMarca, CodigoMarca, NombreMarca) values (OIDMarca, CodigoMarca, NombreMarca)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -28,7 +29,7 @@ public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
         String select;
         listaCriterios = criterios;
 
-        return select = "select * from denuncia where " ;//criterios
+        return select = "select * from marca where " ;//criterios
 
     }
 
@@ -36,15 +37,15 @@ public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
 
         String selectOid;
         this.oid =oid;
-        
-        return selectOid = "select * from denuncia where OIDCaso = " + oid;
+
+        return selectOid = "select * from marca where OIDMarca = " + oid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
-       
+
         String update;
 
-        return update = "update denuncia set OIDCaso =" + ",CodigoDenuncia = " + "Prioridad = " ;
+        return update = "update marca set OIDMarca =" + ",CodigoMarca = " + "NombreMarca = " ;
 
     }
 
@@ -52,8 +53,9 @@ public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
     }
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
-    
+
 
         return null;
     }
 }
+
