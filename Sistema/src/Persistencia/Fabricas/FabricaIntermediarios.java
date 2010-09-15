@@ -45,6 +45,9 @@ public class FabricaIntermediarios {
             intermediario = (new IntermediarioDetallePersona());
         }
 
+        if (nombre.equals("Interseccion")){
+            intermediario = (new IntermediarioInterseccion());
+        }
 
         return intermediario;
     }
