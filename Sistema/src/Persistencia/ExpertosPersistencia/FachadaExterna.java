@@ -44,6 +44,13 @@ public class FachadaExterna {
 
     }
 
+       public Criterio crearCriterio(String atributo, String operador, SuperDruperInterfaz valor){
+
+        return FachadaInterna.getInstancia().crearCriterio(atributo, operador, (ObjetoPersistente)valor);
+
+    }
+
+
     public List<SuperDruperInterfaz> buscar(String nombreEntidad, List<Criterio> listaCriterios) {
         return FachadaInterna.getInstancia().buscar(nombreEntidad, listaCriterios);
     }

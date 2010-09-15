@@ -7,7 +7,6 @@ package Persistencia.ExpertosPersistencia;
  * and open the template in the editor.
  */
 
-import ExpertosPersistencia.Conexion;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.Entidades.ObjetoPersistente;
 import ExpertosPersistencia.Criterio;
@@ -65,6 +64,12 @@ public class FachadaInterna {
     }
 
     public Criterio crearCriterio(String atributo, String operador, String valor){
+
+        return FabricaCriterios.getInstancia().crearCriterio(atributo, operador, valor);
+
+    }
+
+    public Criterio crearCriterio(String atributo, String operador, ObjetoPersistente valor){
 
         return FabricaCriterios.getInstancia().crearCriterio(atributo, operador, valor);
 
