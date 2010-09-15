@@ -8,8 +8,10 @@ package InterfacesGraficas;
 import Persistencia.Entidades.Denunciante;
 import Expertos.ExpertoAntenderReclamoPorDesperfecto;
 import Fabricas.FabricaExpertos;
+import Persistencia.Decoradores.DecoradorExpertoAntenderReclamoPorDesperfecto;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Interseccion;
+import Persistencia.Entidades.Semaforo;
 import Persistencia.ExpertosPersistencia.Cache;
 import java.util.List;
 /**
@@ -45,8 +47,15 @@ public class ControladorAtenderReclamoPorDesperfecto {
 
     }
 
-    public Interseccion buscarInterseccion(String OidCalle1, String OidCalle2){
+    public Interseccion buscarInterseccion(Calle calle1, Calle calle2){
 
-    return earpd.buscarInterseccion(OidCalle1, OidCalle2);
+        return earpd.buscarInterseccion(calle1, calle2);
     }
+
+    public Semaforo[] buscarSemaforo(Interseccion interseccion){
+        List<Semaforo> miListaDeSemaforos = earpd.buscarSemaforo(interseccion);
+        return miListaDeSemaforos.toArray(new Semaforo[miListaDeSemaforos.size()]);
+    }
+
+
 }

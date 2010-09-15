@@ -8,6 +8,9 @@ package Expertos;
 import ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denunciante;
+import Persistencia.Entidades.Interseccion;
+import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.Semaforo;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
 import java.util.ArrayList;
@@ -54,17 +57,23 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         return listaCalles;
     }
 
-    public Interseccion buscarInterseccion(String oidCalle1, String oidCalle2){
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-        //fijarse como estan mapeadas las calles respecto de la interseccion en el mer para poder
-        //armar los criterios
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public Interseccion buscarInterseccion(Calle calle1, Calle calle2){
 
     List<Criterio> criterio = new ArrayList<Criterio>();
-    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle1", "=", oidCalle1));
-    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle2", "=", oidCalle2));
-    return FachadaExterna.getInstancia().buscar("Interseccion", criterio);
+    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle1", "=", calle1));
+    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle2", "=", calle2));
+    List<SuperDruperInterfaz> listaSuperDruperInterfaz = FachadaExterna.getInstancia().buscar("Interseccion", criterio);
+    return (Interseccion)listaSuperDruperInterfaz.get(0);
     }
+
+    public List<Semaforo> buscarSemaforo(Interseccion interseccion) {
+        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Interseccion", "=", Interseccion);
+        List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
+        listaDeCriterio.add(criterio);
+        FachadaExterna.getInstancia().buscar("Semaforo", listaDeCriterio);
+        return null;
+    }
+
 
 
 }

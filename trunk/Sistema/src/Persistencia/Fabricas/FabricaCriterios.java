@@ -1,6 +1,7 @@
 package Persistencia.Fabricas;
 
 import ExpertosPersistencia.Criterio;
+import Persistencia.Entidades.ObjetoPersistente;
 
 /*
  * To change this template, choose Tools | Templates
@@ -32,5 +33,17 @@ public class FabricaCriterios {
 
         return nuevoCriterio;
     }
+
+
+    public Criterio crearCriterio(String atributo, String operador, ObjetoPersistente valor){
+
+        Criterio nuevoCriterio = new Criterio();
+        nuevoCriterio.setAtributo(atributo);
+        nuevoCriterio.setOperador(operador);
+        nuevoCriterio.setValor(valor.getOid());
+
+        return nuevoCriterio;
+    }
+
 
 }
