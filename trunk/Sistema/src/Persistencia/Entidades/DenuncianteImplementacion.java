@@ -5,65 +5,77 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:12 p.m.
  */
-public class DenuncianteImplementacion {
+public class DenuncianteImplementacion implements Denunciante{
 
-	private int celular;
-	private char domicilio;
-	private char email;
-	private int telefonofijo;
-	public PersonaPadron m_PersonaPadron;
+	private String celular;
+	private String domicilio;
+	private String email;
+	private String telefonofijo;
+	private PersonaPadron personaPadron;
 
 	public DenuncianteImplementacion(){
+    }
 
-	}
+    public String getcelular() {
+        return celular;
+    }
 
-	
-	public int getcelular(){
-		return celular;
-	}
+    public String getdomicilio() {
+        return domicilio;
+    }
 
-	public char getdomicilio(){
-		return domicilio;
-	}
+    public String getemail() {
+        return email;
+    }
 
-	public char getemail(){
-		return email;
-	}
+    public String gettelefonofijo() {
+        return telefonofijo;
+    }
 
-	public int gettelefonofijo(){
-		return telefonofijo;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void setcelular(String newVal) {
+        celular = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcelular(int newVal){
-		celular = newVal;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void setdomicilio(String newVal) {
+        domicilio = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setdomicilio(char newVal){
-		domicilio = newVal;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void setemail(String newVal) {
+        email = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setemail(char newVal){
-		email = newVal;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void settelefonofijo(String newVal) {
+        telefonofijo = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void settelefonofijo(int newVal){
-		telefonofijo = newVal;
-	}
+    /**
+     * @return the personaPadron
+     */
+    public PersonaPadron getPersonaPadron() {
+        return personaPadron;
+    }
+
+    /**
+     * @param personaPadron the personaPadron to set
+     */
+    public void setPersonaPadron(PersonaPadron personaPadron) {
+        this.personaPadron = personaPadron;
+    }
 
 }

@@ -5,7 +5,7 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:12 p.m.
  */
-public class CalleImplementacion {
+public class CalleImplementacion implements Calle{
 
 	private int codigoCalle;
 	private String nombrecalle;

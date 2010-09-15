@@ -7,7 +7,7 @@ import java.util.Date;
  * @version 1.0
  * @created 14-Sep-2010 06:52:12 p.m.
  */
-public class CasoImplementacion {
+public class CasoImplementacion implements Caso{
 
     private Date fechacaso;
     private int tipocaso;

@@ -9,7 +9,7 @@ public class DenunciaEstadoImplementacion {
 
 	private int fechacambioestado;
 	private boolean indicadorestadoactual;
-	public EstadoDenuncia m_EstadoDenuncia;
+	private EstadoDenuncia estadoDenuncia;
 
 	public DenunciaEstadoImplementacion(){
 
@@ -38,5 +38,19 @@ public class DenunciaEstadoImplementacion {
 	public void setindicadorestadoactual(boolean newVal){
 		indicadorestadoactual = newVal;
 	}
+
+    /**
+     * @return the estadoDenuncia
+     */
+    public EstadoDenuncia getEstadoDenuncia() {
+        return estadoDenuncia;
+    }
+
+    /**
+     * @param estadoDenuncia the estadoDenuncia to set
+     */
+    public void setEstadoDenuncia(EstadoDenuncia estadoDenuncia) {
+        this.estadoDenuncia = estadoDenuncia;
+    }
 
 }
