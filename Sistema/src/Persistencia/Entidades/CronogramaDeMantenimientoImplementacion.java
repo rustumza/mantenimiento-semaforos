@@ -7,14 +7,14 @@ import java.util.Date;
  * @version 1.0
  * @created 14-Sep-2010 06:52:12 p.m.
  */
-public class CronogramaDeMantenimientoImplementacion {
+public class CronogramaDeMantenimientoImplementacion implements CronogramaDeMantenimiento{
 
 	private int codigoCronograma;
 	private Date fechaDeCreacion;
 	private Date fechaFinCronograma;
 	private Date fechaInicioCronograma;
 	private String observacionesCronograma;
-	public FichaMantenimiento m_FichaMantenimiento;
+	private FichaMantenimiento fichaMantenimiento;
 
 	public CronogramaDeMantenimientoImplementacion(){
 
@@ -80,5 +80,19 @@ public class CronogramaDeMantenimientoImplementacion {
 	public void setobservacionesCronograma(String newVal){
 		observacionesCronograma = newVal;
 	}
+
+    /**
+     * @return the fichaMantenimiento
+     */
+    public FichaMantenimiento getFichaMantenimiento() {
+        return fichaMantenimiento;
+    }
+
+    /**
+     * @param fichaMantenimiento the fichaMantenimiento to set
+     */
+    public void setFichaMantenimiento(FichaMantenimiento fichaMantenimiento) {
+        this.fichaMantenimiento = fichaMantenimiento;
+    }
 
 }

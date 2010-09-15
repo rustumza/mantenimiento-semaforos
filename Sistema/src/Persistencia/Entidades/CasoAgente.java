@@ -2,22 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.Entidades;
 
 import Persistencia.ExpertosPersistencia.FachadaInterna;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class CasoAgente implements Caso{
+public class CasoAgente implements Caso {
 
     private CasoImplementacion implementacion;
     private String oidOperador;
+    private String oidSemaforo;
+    private String oidProblema;
+    private String oidDenunciante;
 
     public Date getfechacaso() {
         return implementacion.getfechacaso();
@@ -36,39 +36,48 @@ public class CasoAgente implements Caso{
     }
 
     public Operador getOperador() {
-
-        List<Operador> op = new ArrayList<Operador>();
-        op.add(implementacion.getOperador());
-        if (op.isEmpty())
-            FachadaInterna.getInstancia().buscar("Operador", oidOperador);
+        if (implementacion.getOperador() == null) {
+            implementacion.setOperador((Operador) FachadaInterna.getInstancia().buscar("Operador", oidOperador));
+        }
+        return implementacion.getOperador();
     }
 
     public void setOperador(Operador operador) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        implementacion.setOperador(operador);
     }
 
     public Semaforo getSemaforo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (implementacion.getSemaforo() == null) {
+            implementacion.setSemaforo((Semaforo) FachadaInterna.getInstancia().buscar("Semaforo", getOidSemaforo()));
+        }
+        return implementacion.getSemaforo();
     }
 
     public void setSemaforo(Semaforo semaforo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        implementacion.setSemaforo(semaforo);
+
     }
 
     public Problema getProblema() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (implementacion.getProblema() == null) {
+            implementacion.setProblema((Problema) FachadaInterna.getInstancia().buscar("Problema", oidProblema));
+        }
+        return implementacion.getProblema();
     }
 
     public void setProblema(Problema problema) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        implementacion.setProblema(problema);
     }
 
     public Denunciante getDenunciante() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (implementacion.getDenunciante() == null) {
+            implementacion.setDenunciante((Denunciante) FachadaInterna.getInstancia().buscar("Denunciante", getOidDenunciante()));
+        }
+        return implementacion.getDenunciante();
     }
 
     public void setDenunciante(Denunciante denunciante) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        implementacion.setDenunciante(denunciante);
     }
 
     /**
@@ -85,4 +94,45 @@ public class CasoAgente implements Caso{
         this.oidOperador = oidOperador;
     }
 
+    /**
+     * @return the oidSemaforo
+     */
+    public String getOidSemaforo() {
+        return oidSemaforo;
+    }
+
+    /**
+     * @param oidSemaforo the oidSemaforo to set
+     */
+    public void setOidSemaforo(String oidSemaforo) {
+        this.oidSemaforo = oidSemaforo;
+    }
+
+    /**
+     * @return the oidProblema
+     */
+    public String getOidProblema() {
+        return oidProblema;
+    }
+
+    /**
+     * @param oidProblema the oidProblema to set
+     */
+    public void setOidProblema(String oidProblema) {
+        this.oidProblema = oidProblema;
+    }
+
+    /**
+     * @return the oidDenunciante
+     */
+    public String getOidDenunciante() {
+        return oidDenunciante;
+    }
+
+    /**
+     * @param oidDenunciante the oidDenunciante to set
+     */
+    public void setOidDenunciante(String oidDenunciante) {
+        this.oidDenunciante = oidDenunciante;
+    }
 }
