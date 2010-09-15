@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -7,6 +7,9 @@ package Expertos;
 
 import DTO.DTOEstadoDenuncia;
 import ExpertosPersistencia.Criterio;
+import Persistencia.Entidades.Denuncia;
+import Persistencia.Entidades.DenunciaEstado;
+import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,16 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
         Criterio criterio=FachadaExterna.getInstancia().crearCriterio("CodigoDenuncia", "=", numcaso);
         List<Criterio> ListaDeCriterio = new ArrayList<Criterio>();
         ListaDeCriterio.add(criterio);
-        return null;
+        List<SuperDruperInterfaz> ListaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", ListaDeCriterio);
+        List<Denuncia> ListaDenuncia = new ArrayList<Denuncia>();
+        for (SuperDruperInterfaz aux: ListaDeInterfaces){
+        ListaDenuncia.add((Denuncia)aux);
+
+        }
+        return (List<DTOEstadoDenuncia>) ListaDenuncia.get(0);
     }
+
+    public List<DenunciaEstado> getEstados();
+
+
 }

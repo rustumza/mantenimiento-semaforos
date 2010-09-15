@@ -15,9 +15,11 @@ import java.util.List;
  */
 public class ControladorConsultarAvanceDeReclamo {
 
+   ExpertoConsultarAvanceDeReclamo ecadr;
+
     public List<DTOEstadoDenuncia> ConsultarEstadoCaso(String numcaso) {
 
-        ExpertoConsultarAvanceDeReclamo ecadr = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
+     ecadr = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
         
         
         return null;

@@ -18,6 +18,7 @@ public class DecoradorExpertoAntenderReclamoPorDesperfecto extends ExpertoAntend
     @Override
     public Denunciante buscarDenunciante(String dni){
         inicarTX();
+        confirmarTx();
         return super.buscarDenunciante(dni);
     }
 
@@ -26,5 +27,7 @@ public class DecoradorExpertoAntenderReclamoPorDesperfecto extends ExpertoAntend
         FachadaInterna.getInstancia().iniciarTransaccion();
 
     }
-
+    private void confirmarTx(){
+    FachadaInterna.getInstancia().confirmarTransaccion();
+    }
 }
