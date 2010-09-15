@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.Decoradores;
 
 import DTO.DTOEstadoDenuncia;
@@ -17,17 +16,20 @@ import java.util.List;
 public class DecoradorExpertoConsultarAvanceDeReclamo extends ExpertoConsultarAvanceDeReclamo {
 
     @Override
-    public List<DTOEstadoDenuncia>ConsultarEstadoCaso(String numcaso){
+    public List<DTOEstadoDenuncia> ConsultarEstadoCaso(String numcaso) {
 
-       IniciarTx();
-
-    return super.ConsultarEstadoCaso(numcaso);
+        IniciarTx();
+        confirmarTx();
+        return super.ConsultarEstadoCaso(numcaso);
     }
 
-    public void IniciarTx(){
+    private  void IniciarTx() {
 
-    FachadaInterna.getInstancia().iniciarTransaccion();
+        FachadaInterna.getInstancia().iniciarTransaccion();
 
     }
 
+    private  void confirmarTx() {
+        FachadaInterna.getInstancia().confirmarTransaccion();
+    }
 }
