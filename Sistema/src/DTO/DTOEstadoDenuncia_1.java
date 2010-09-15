@@ -9,7 +9,7 @@ package DTO;
  *
  * @author LEIVA
  */
-public class DTOEstadoDenuncia {
+public class DTOEstadoDenuncia_1 {
 
 
 
