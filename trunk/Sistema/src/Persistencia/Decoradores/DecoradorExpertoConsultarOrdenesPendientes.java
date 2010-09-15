@@ -17,11 +17,12 @@ import java.util.List;
  */
 public class DecoradorExpertoConsultarOrdenesPendientes extends ExpertoConsultarOrdenesPendientes {
 
-    public List<DTOOrdenes> buscarOrdenes(Date fecha){
+    public List<DTOOrdenes> buscarOrdenes(Date fecha){at
 
     iniciarTx();
-    confirmarTx();
-    return super.buscarOrdenes(fecha);
+    
+    List<DTOOrdenes> hh = super.buscarOrdenes(fecha);
+    return 
 
     }
 
