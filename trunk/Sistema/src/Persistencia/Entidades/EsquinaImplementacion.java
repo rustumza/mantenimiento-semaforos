@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:13 p.m.
  */
-public class EsquinaImplementacion {
+public class EsquinaImplementacion implements Esquina{
 
 	private int codigoEsquina;
 	private String descripcion;
 
-	public Esquina(){
+	public EsquinaImplementacion(){
 
 	}
 

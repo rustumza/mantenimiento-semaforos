@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:15 p.m.
  */
-public class OperadorImplementacion {
+public class OperadorImplementacion implements Operador{
 
 	private String legajo;
 	private String nombreOperador;
 
-	public Operador(){
+	public OperadorImplementacion(){
 
 	}
 

@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:14 p.m.
  */
-public class EstadoElementoTrabajoImplementacion {
+public class EstadoElementoTrabajoImplementacion implements EstadoElementoTrabajo{
 
 	private int codigoestadoelementotrabajo;
 	private String nombreEstado;
 
-	public EstadoElementoTrabajo(){
+	public EstadoElementoTrabajoImplementacion(){
 
 	}
 

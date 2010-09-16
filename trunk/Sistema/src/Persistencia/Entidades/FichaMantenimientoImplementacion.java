@@ -5,29 +5,82 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:14 p.m.
  */
-public class FichaMantenimientoImplementacion {
+public class FichaMantenimientoImplementacion implements FichaMantenimiento {
 
-	private int codigoFichaMantenimiento;
-	public Modelo m_Modelo;
-	public Periodicidad m_Periodicidad;
-	public RangoAnios m_RangoAnios;
-	public Tarea m_Tarea;
+    private int codigoFichaMantenimiento;
+    private Modelo modelo;
+    private Periodicidad periodicidad;
+    private RangoAnios rangoAnios;
+    private Tarea tarea;
 
-	public FichaMantenimiento(){
+    public FichaMantenimientoImplementacion() {
+    }
 
-	}
+    public int getcodigoFichaMantenimiento() {
+        return codigoFichaMantenimiento;
+    }
 
-	
-	public int getcodigoFichaMantenimiento(){
-		return codigoFichaMantenimiento;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void setcodigoFichaMantenimiento(int newVal) {
+        codigoFichaMantenimiento = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcodigoFichaMantenimiento(int newVal){
-		codigoFichaMantenimiento = newVal;
-	}
+    /**
+     * @return the modelo
+     */
+    public Modelo getModelo() {
+        return modelo;
+    }
 
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+
+    /**
+     * @return the periodicidad
+     */
+    public Periodicidad getPeriodicidad() {
+        return periodicidad;
+    }
+
+    /**
+     * @param periodicidad the periodicidad to set
+     */
+    public void setPeriodicidad(Periodicidad periodicidad) {
+        this.periodicidad = periodicidad;
+    }
+
+    /**
+     * @return the rangoAnios
+     */
+    public RangoAnios getRangoAnios() {
+        return rangoAnios;
+    }
+
+    /**
+     * @param rangoAnios the rangoAnios to set
+     */
+    public void setRangoAnios(RangoAnios rangoAnios) {
+        this.rangoAnios = rangoAnios;
+    }
+
+    /**
+     * @return the tarea
+     */
+    public Tarea getTarea() {
+        return tarea;
+    }
+
+    /**
+     * @param tarea the tarea to set
+     */
+    public void setTarea(Tarea tarea) {
+        this.tarea = tarea;
+    }
 }

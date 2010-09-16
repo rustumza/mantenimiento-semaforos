@@ -1,7 +1,4 @@
-package Entidades;
-
-import Persistencia.Entidades.ElementoTrabajoImplementacion;
-import Persistencia.Entidades.Equipamiento;
+package Persistencia.Entidades;
 
 /**
  * @author Bicentenario

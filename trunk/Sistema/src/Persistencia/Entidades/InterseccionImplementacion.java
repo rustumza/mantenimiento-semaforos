@@ -1,18 +1,16 @@
 package Persistencia.Entidades;
 
-import Entidades.UbicacionImplementacion;
-
 /**
  * @author Bicentenario
  * @version 1.0
  * @created 14-Sep-2010 06:52:15 p.m.
  */
-public class InterseccionImplementacion extends UbicacionImplementacion {
+public class InterseccionImplementacion extends UbicacionImplementacion implements Interseccion{
 
 	private int codigoInterseccion;
-	public Calle m_Calle;
+	private Calle calle;
 
-	public Interseccion(){
+	public InterseccionImplementacion(){
 
 	}
 
@@ -28,5 +26,19 @@ public class InterseccionImplementacion extends UbicacionImplementacion {
 	public void setcodigoInterseccion(int newVal){
 		codigoInterseccion = newVal;
 	}
+
+    /**
+     * @return the calle
+     */
+    public Calle getCalle() {
+        return calle;
+    }
+
+    /**
+     * @param calle the calle to set
+     */
+    public void setCalle(Calle calle) {
+        this.calle = calle;
+    }
 
 }

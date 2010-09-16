@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:13 p.m.
  */
-public class EstadoDenunciaImplementacion {
+public class EstadoDenunciaImplementacion implements EstadoDenuncia{
 
 	private int codigoestadodenuncia;
 	private String nombreestado;
 
-	public EstadoDenuncia(){
+	public EstadoDenunciaImplementacion(){
 
 	}
 

@@ -5,16 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:15 p.m.
  */
-public class MarcaImplementacion {
+public class MarcaImplementacion implements Marca{
 
 	private int codigomarca;
 	private String nombremarca;
 
-	public Marca(){
-
-	}
-
-	public void finalize() throws Throwable {
+	public MarcaImplementacion(){
 
 	}
 

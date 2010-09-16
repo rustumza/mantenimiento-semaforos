@@ -1,83 +1,31 @@
+
 package Persistencia.Entidades;
 
 import java.util.Date;
 
 /**
- * @author Bicentenario
- * @version 1.0
- * @created 14-Sep-2010 06:52:16 p.m.
+ *
+ * @author diego
  */
-public class PesoDeReclamoImplementacion {
+public interface PesoDeReclamo extends SuperDruperInterfaz {
 
-	private int cantidadReclamosDesde;
-	private int cantidadReclamosHasta;
-	private Date fechaDesde;
-	private Date fechaHasta;
-	private int peso;
+    public int getcantidadReclamosDesde();
 
-	public PesoDeReclamo(){
+    public int getcantidadReclamosHasta();
 
-	}
+    public Date getfechaDesde();
 
-	
-	public int getcantidadReclamosDesde(){
-		return cantidadReclamosDesde;
-	}
+    public Date getfechaHasta();
 
-	public int getcantidadReclamosHasta(){
-		return cantidadReclamosHasta;
-	}
+    public int getpeso();
 
-	public Date getfechaDesde(){
-		return fechaDesde;
-	}
+    public void setcantidadReclamosDesde(int newVal);
 
-	public Date getfechaHasta(){
-		return fechaHasta;
-	}
+    public void setcantidadReclamosHasta(int newVal);
 
-	public int getpeso(){
-		return peso;
-	}
+    public void setfechaDesde(Date newVal);
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcantidadReclamosDesde(int newVal){
-		cantidadReclamosDesde = newVal;
-	}
+    public void setfechaHasta(Date newVal);
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcantidadReclamosHasta(int newVal){
-		cantidadReclamosHasta = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setfechaDesde(Date newVal){
-		fechaDesde = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setfechaHasta(Date newVal){
-		fechaHasta = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setpeso(int newVal){
-		peso = newVal;
-	}
-
+    public void setpeso(int newVal);
 }

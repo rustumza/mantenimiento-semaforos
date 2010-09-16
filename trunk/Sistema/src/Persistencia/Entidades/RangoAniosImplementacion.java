@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:17 p.m.
  */
-public class RangoAniosImplementacion {
+public class RangoAniosImplementacion implements RangoAnios{
 
 	private int maxAnios;
 	private int minAnios;
 
-	public RangoAnios(){
+	public RangoAniosImplementacion(){
 
 	}
 

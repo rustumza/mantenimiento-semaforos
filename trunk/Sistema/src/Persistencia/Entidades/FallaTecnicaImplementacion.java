@@ -1,18 +1,16 @@
 package Persistencia.Entidades;
 
-import Entidades.TrabajoImplementacion;
-
 /**
  * @author Bicentenario
  * @version 1.0
  * @created 14-Sep-2010 06:52:14 p.m.
  */
-public class FallaTecnicaImplementacion extends TrabajoImplementacion {
+public class FallaTecnicaImplementacion extends TrabajoImplementacion implements FallaTecnica{
 
 	private int codigoFallaTecnica;
 	private String descripcionfalla;
 
-	public FallaTecnica(){
+	public FallaTecnicaImplementacion(){
 
 	}
 

@@ -1,18 +1,16 @@
 package Persistencia.Entidades;
 
-import Entidades.TrabajoImplementacion;
-
 /**
  * @author Bicentenario
  * @version 1.0
  * @created 14-Sep-2010 06:52:18 p.m.
  */
-public class TareaImplementacion extends TrabajoImplementacion {
+public class TareaImplementacion extends TrabajoImplementacion implements Tarea{
 
 	private int codigoTarea;
 	private String descripciontarea;
 
-	public Tarea(){
+	public TareaImplementacion(){
 
 	}
 

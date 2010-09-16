@@ -5,8 +5,6 @@
 
 package Persistencia.Entidades;
 
-import Entidades.EquipamientoImplementacion;
-
 /**
  *
  * @author diego
