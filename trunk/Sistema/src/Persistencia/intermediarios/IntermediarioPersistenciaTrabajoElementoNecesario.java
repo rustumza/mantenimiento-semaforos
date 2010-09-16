@@ -21,7 +21,7 @@ public class IntermediarioPersistenciaTrabajoElementoNecesario extends Intermedi
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into trabajoelementonecesario values (OIDTrabajoElementoNecesario, OIDTrabajo, OIDElementoTrabajo, CantidadNecesaria)";
+        return insert = "insert into trabajoelementonecesario (OIDTrabajoElementoNecesario, OIDTrabajo, OIDElementoTrabajo, CantidadNecesaria) values (OIDTrabajoElementoNecesario, OIDTrabajo, OIDElementoTrabajo, CantidadNecesaria)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -46,7 +46,7 @@ public class IntermediarioPersistenciaTrabajoElementoNecesario extends Intermedi
 
         String update;
 
-        return update = "insert into trabajoelementonecesario values (OIDTrabajoElementoNecesario, OIDTrabajo, OIDElementoTrabajo, CantidadNecesaria)";
+        return update = "update trabajoelementonecesario set OIDTrabajoElementoNecesario =" + ",OIDTrabajo = " + "OIDElementoTrabajo = " + "CantidadNecesaria =" ;
 
     }
 

@@ -21,7 +21,7 @@ public class IntermediarioPersistenciaTrabajadorRol extends IntermediarioRelacio
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into trabajadorrol values (OIDTrabajadorRol, OIDRol, OIDTrabajador, OIDEquipoDeTrabajo, FechaFinRol, FechaInicioRol)";
+        return insert = "insert into trabajadorrol (OIDTrabajadorRol, OIDRol, OIDTrabajador, OIDEquipoDeTrabajo, FechaFinRol, FechaInicioRol) values (OIDTrabajadorRol, OIDRol, OIDTrabajador, OIDEquipoDeTrabajo, FechaFinRol, FechaInicioRol)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -46,7 +46,7 @@ public class IntermediarioPersistenciaTrabajadorRol extends IntermediarioRelacio
 
         String update;
 
-        return update = "insert into trabajadorrol values (OIDTrabajadorRol, OIDRol, OIDTrabajador, OIDEquipoDeTrabajo, FechaFinRol, FechaInicioRol)";
+        return update = "update trabajadorrol set OIDTrabajodorRol =" + ",OIDRol = " + "OIDTrabajador = " + "OIDEquipoDeTrabajo =" + "FechaFinRol =" + "FechaInicioRol =";
 
     }
 

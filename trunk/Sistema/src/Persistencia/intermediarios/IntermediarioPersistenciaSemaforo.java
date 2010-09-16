@@ -14,14 +14,14 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
+public class IntermediarioPersistenciaSemaforo extends IntermediarioRelacional{
 
- private String oid;
+private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into rol (OIDRol, CodigoRol, NombreRol) values (OIDRol, CodigoRol, NombreRol)";
+        return insert = "insert into semaforo (OIDSemaforo, FechaInstalacion, NumeroSerie, OIDUbicacion, OIDTipoSemaforo, OIDEsquina, OIDOrientacion) values (OIDSemaforo, FechaInstalacion, NumeroSerie, OIDUbicacion, OIDTipoSemaforo, OIDEsquina, OIDOrientacion)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -30,7 +30,7 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         String select;
         listaCriterios = criterios;
 
-        return select = "select * from rol where " ;//criterios
+        return select = "select * from semaforo where " ;//criterios
 
     }
 
@@ -39,14 +39,14 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         String selectOid;
         this.oid =oid;
 
-        return selectOid = "select * from rol where OIDRol = " + oid;
+        return selectOid = "select * from semaforo where OIDSemaforo = " + oid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
         String update;
 
-        return update = "update rol set OIDRol =" + "CodigoRol =" + "NombreRol =";
+        return update = "update semaforo set OIDSemaforo =" + "FechaInstalacion =" + "NumeroSerie =" + "OIDUbicacion =" + "OIDTipoSemaforo =" + "OIDEsquina =" + "OIDOrientacion =";
 
     }
 
@@ -59,3 +59,4 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         return null;
     }
 }
+

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.intermediarios;
 
 import ExpertosPersistencia.Criterio;
@@ -14,14 +13,14 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
+public class IntermediarioPersistenciaPersonaPadron extends IntermediarioRelacional{
 
- private String oid;
+private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into rol (OIDRol, CodigoRol, NombreRol) values (OIDRol, CodigoRol, NombreRol)";
+        return insert = "insert into personapadron (OIDPersonaPadron, Apellido, Nombre, Domicilio, NroDocumento, TipoDocumento) values (OIDPersonaPadron, Apellido, Nombre, Domicilio, NroDocumento, TipoDocumento)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -30,7 +29,7 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         String select;
         listaCriterios = criterios;
 
-        return select = "select * from rol where " ;//criterios
+        return select = "select * from personapadron where " ;//criterios
 
     }
 
@@ -39,14 +38,14 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         String selectOid;
         this.oid =oid;
 
-        return selectOid = "select * from rol where OIDRol = " + oid;
+        return selectOid = "select * from personapadron where OIDPersonaPadron = " + oid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
         String update;
 
-        return update = "update rol set OIDRol =" + "CodigoRol =" + "NombreRol =";
+        return update = "update personapadron set OIDPersonaPadron =" + ",Apellido = " + "Nombre = " + "Nombre = " + "Domicilio =" + "NroDocumento =" + "TipoDocumento =";
 
     }
 
@@ -59,3 +58,4 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         return null;
     }
 }
+
