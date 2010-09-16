@@ -18,12 +18,14 @@ import java.util.List;
 public class ControladorConsultarOrdenesPendientes {
 ExpertoConsultarOrdenesPendientes ecop;
 
-public List<DTOOrdenes> buscarOrdenes(Date fecha){
+public List<DTOOrdenes> buscarOrdenes(String fechaString){
 
     ecop = (ExpertoConsultarOrdenesPendientes)FabricaExpertos.getInstance().getExperto("ExpertoConsultarOrdenesPendientes");
+    Date fechaDate = new Date(fechaString);
+
+
     
-    
-return ecop.buscarOrdenes(fecha);
+return ecop.buscarOrdenes(fechaDate);
 }
 
 

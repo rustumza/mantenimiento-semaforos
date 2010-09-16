@@ -22,6 +22,6 @@ public class ControladorConsultarAvanceDeReclamo {
      ecadr = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
         
         
-        return null;
+        return ecadr.ConsultarEstadoCaso(numcaso);
     }
 }
