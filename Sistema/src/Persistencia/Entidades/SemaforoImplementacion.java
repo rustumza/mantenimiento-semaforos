@@ -1,4 +1,6 @@
-package Entidades;
+package Persistencia.Entidades;
+
+import java.util.Date;
 
 /**
  * @author Bicentenario
@@ -9,7 +11,7 @@ public class SemaforoImplementacion {
 
 	private Date fechaInstalacion;
 	private int numeroSerie;
-	public Orientación m_Orientación;
+	public Orientaciï¿½n m_Orientaciï¿½n;
 	public Modelo m_Modelo;
 	public Esquina m_Esquina;
 	public TipoSemaforo m_TipoSemaforo;

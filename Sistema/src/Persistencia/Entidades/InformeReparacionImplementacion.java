@@ -1,4 +1,7 @@
-package Entidades;
+package Persistencia.Entidades;
+
+import java.sql.Time;
+import java.util.Date;
 
 /**
  * @author Bicentenario

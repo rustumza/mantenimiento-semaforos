@@ -1,4 +1,4 @@
-package Entidades;
+package Persistencia.Entidades;
 
 /**
  * @author Bicentenario

@@ -1,4 +1,6 @@
-package Entidades;
+package Persistencia.Entidades;
+
+import Entidades.TrabajoImplementacion;
 
 /**
  * @author Bicentenario
