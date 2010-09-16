@@ -11,6 +11,7 @@ import Fabricas.FabricaExpertos;
 import Persistencia.Decoradores.DecoradorExpertoAntenderReclamoPorDesperfecto;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Interseccion;
+import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Semaforo;
 import Persistencia.ExpertosPersistencia.Cache;
 import java.util.List;
@@ -57,5 +58,15 @@ public class ControladorAtenderReclamoPorDesperfecto {
         return miListaDeSemaforos.toArray(new Semaforo[miListaDeSemaforos.size()]);
     }
 
+    public Problema[] buscarProblema(){
+        List<Problema> listaDeProblemas = earpd.buscarProblemas();
+        return listaDeProblemas.toArray(new Problema[listaDeProblemas.size()]);
+    }
+
+    public void guardarDenuncia(List<Semaforo> listaSemaforo, List<Problema> listaProblema){
+        earpd.guardarDenuncia(listaSemaforo,listaProblema);
+
+
+    }
 
 }
