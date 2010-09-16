@@ -5,15 +5,15 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:18 p.m.
  */
-public class TrabajoImplementacion {
+public class TrabajoImplementacion implements Trabajo {
 
 	private int codigoTrabajo;
 	private int tiempoEstimadoTrabajo;
 	private int tipotrabajo;
-	public TrabajoElementoNecesario m_TrabajoElementoNecesario;
-	public OrdenTrabajo m_OrdenTrabajo;
+	private TrabajoElementoNecesario trabajoElementoNecesario;
+	private OrdenTrabajo ordenTrabajo;
 
-	public Trabajo(){
+	public TrabajoImplementacion(){
 
 	}
 
@@ -53,5 +53,33 @@ public class TrabajoImplementacion {
 	public void settipotrabajo(int newVal){
 		tipotrabajo = newVal;
 	}
+
+    /**
+     * @return the trabajoElementoNecesario
+     */
+    public TrabajoElementoNecesario getTrabajoElementoNecesario() {
+        return trabajoElementoNecesario;
+    }
+
+    /**
+     * @param trabajoElementoNecesario the trabajoElementoNecesario to set
+     */
+    public void setTrabajoElementoNecesario(TrabajoElementoNecesario trabajoElementoNecesario) {
+        this.trabajoElementoNecesario = trabajoElementoNecesario;
+    }
+
+    /**
+     * @return the ordenTrabajo
+     */
+    public OrdenTrabajo getOrdenTrabajo() {
+        return ordenTrabajo;
+    }
+
+    /**
+     * @param ordenTrabajo the ordenTrabajo to set
+     */
+    public void setOrdenTrabajo(OrdenTrabajo ordenTrabajo) {
+        this.ordenTrabajo = ordenTrabajo;
+    }
 
 }

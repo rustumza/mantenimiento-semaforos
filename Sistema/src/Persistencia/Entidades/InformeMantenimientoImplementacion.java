@@ -7,15 +7,15 @@ import java.util.Date;
  * @version 1.0
  * @created 14-Sep-2010 06:52:14 p.m.
  */
-public class InformeMantenimientoImplementacion {
+public class InformeMantenimientoImplementacion implements InformeMantenimiento{
 
 	private int codigoInformeMantenimiento;
 	private int duracionMantenimiento;
 	private Date fechaInforme;
 	private Date horainforme;
-	public DetalleInformeMantenimiento m_DetalleInformeMantenimiento;
+	private DetalleInformeMantenimiento detalleInformeMantenimiento;
 
-	public InformeMantenimiento(){
+	public InformeMantenimientoImplementacion(){
 
 	}
 
@@ -67,5 +67,19 @@ public class InformeMantenimientoImplementacion {
 	public void sethorainforme(Date newVal){
 		horainforme = newVal;
 	}
+
+    /**
+     * @return the detalleInformeMantenimiento
+     */
+    public DetalleInformeMantenimiento getDetalleInformeMantenimiento() {
+        return detalleInformeMantenimiento;
+    }
+
+    /**
+     * @param detalleInformeMantenimiento the detalleInformeMantenimiento to set
+     */
+    public void setDetalleInformeMantenimiento(DetalleInformeMantenimiento detalleInformeMantenimiento) {
+        this.detalleInformeMantenimiento = detalleInformeMantenimiento;
+    }
 
 }

@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:14 p.m.
  */
-public class EstadoPersonaPadronImplementacion {
+public class EstadoPersonaPadronImplementacion implements EstadoPersonaPadron{
 
 	private int codigoestadopersonapadron;
 	private String nombreestado;
 
-	public EstadoPersonaPadron(){
+	public EstadoPersonaPadronImplementacion(){
 
 	}
 

@@ -26,64 +26,64 @@ public class CasoAgente implements Caso {
     private boolean denuncianteBuscado;
 
     public Date getfechacaso() {
-        return implementacion.getfechacaso();
+        return getImplementacion().getfechacaso();
     }
 
     public int gettipocaso() {
-        return implementacion.gettipocaso();
+        return getImplementacion().gettipocaso();
     }
 
     public void setfechacaso(Date newVal) {
-        implementacion.setfechacaso(newVal);
+        getImplementacion().setfechacaso(newVal);
     }
 
     public void settipocaso(int newVal) {
-        implementacion.settipocaso(newVal);
+        getImplementacion().settipocaso(newVal);
     }
 
     public Operador getOperador() {
         if (isOperadorBuscado() == false) {
-            implementacion.setOperador((Operador) FachadaInterna.getInstancia().buscar("Operador", oidOperador));
+            getImplementacion().setOperador((Operador) FachadaInterna.getInstancia().buscar("Operador", oidOperador));
         }
-        return implementacion.getOperador();
+        return getImplementacion().getOperador();
     }
 
     public void setOperador(Operador operador) {
-        implementacion.setOperador(operador);
+        getImplementacion().setOperador(operador);
     }
 
     public Semaforo getSemaforo() {
         if (isSemaforoBuscado() == false) {
-            implementacion.setSemaforo((Semaforo) FachadaInterna.getInstancia().buscar("Semaforo", getOidSemaforo()));
+            getImplementacion().setSemaforo((Semaforo) FachadaInterna.getInstancia().buscar("Semaforo", getOidSemaforo()));
         }
-        return implementacion.getSemaforo();
+        return getImplementacion().getSemaforo();
     }
 
     public void setSemaforo(Semaforo semaforo) {
-        implementacion.setSemaforo(semaforo);
+        getImplementacion().setSemaforo(semaforo);
 
     }
 
     public Problema getProblema() {
         if (isProblemaBuscado() == false) {
-            implementacion.setProblema((Problema) FachadaInterna.getInstancia().buscar("Problema", oidProblema));
+            getImplementacion().setProblema((Problema) FachadaInterna.getInstancia().buscar("Problema", oidProblema));
         }
-        return implementacion.getProblema();
+        return getImplementacion().getProblema();
     }
 
     public void setProblema(Problema problema) {
-        implementacion.setProblema(problema);
+        getImplementacion().setProblema(problema);
     }
 
     public Denunciante getDenunciante() {
         if (isDenuncianteBuscado() == false) {
-            implementacion.setDenunciante((Denunciante) FachadaInterna.getInstancia().buscar("Denunciante", getOidDenunciante()));
+            getImplementacion().setDenunciante((Denunciante) FachadaInterna.getInstancia().buscar("Denunciante", getOidDenunciante()));
         }
-        return implementacion.getDenunciante();
+        return getImplementacion().getDenunciante();
     }
 
     public void setDenunciante(Denunciante denunciante) {
-        implementacion.setDenunciante(denunciante);
+        getImplementacion().setDenunciante(denunciante);
     }
 
     /**
@@ -196,5 +196,19 @@ public class CasoAgente implements Caso {
      */
     public void setDenuncianteBuscado(boolean denuncianteBuscado) {
         this.denuncianteBuscado = denuncianteBuscado;
+    }
+
+    /**
+     * @return the implementacion
+     */
+    public CasoImplementacion getImplementacion() {
+        return implementacion;
+    }
+
+    /**
+     * @param implementacion the implementacion to set
+     */
+    public void setImplementacion(CasoImplementacion implementacion) {
+        this.implementacion = implementacion;
     }
 }

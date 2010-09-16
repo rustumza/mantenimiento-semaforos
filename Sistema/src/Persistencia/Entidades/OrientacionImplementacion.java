@@ -5,16 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:16 p.m.
  */
-public class OrientacionImplementacion {
+public class OrientacionImplementacion implements Orientacion{
 
 	private int codigoOrientacion;
 	private String descripcion;
 
-	public Orientacion(){
-
-	}
-
-	public void finalize() throws Throwable {
+	public OrientacionImplementacion(){
 
 	}
 

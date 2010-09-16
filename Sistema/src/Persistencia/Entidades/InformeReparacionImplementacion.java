@@ -8,14 +8,14 @@ import java.util.Date;
  * @version 1.0
  * @created 14-Sep-2010 06:52:14 p.m.
  */
-public class InformeReparacionImplementacion {
+public class InformeReparacionImplementacion implements InformeReparacion{
 
 	private int duracionReparacion;
 	private Date fechainforme;
 	private Time horainforme;
-	public DetalleInformeReparacion m_DetalleInformeReparacion;
+	private DetalleInformeReparacion detalleInformeReparacion;
 
-	public InformeReparacion(){
+	public InformeReparacionImplementacion(){
 
 	}
 
@@ -55,5 +55,19 @@ public class InformeReparacionImplementacion {
 	public void sethorainforme(Time newVal){
 		horainforme = newVal;
 	}
+
+    /**
+     * @return the detalleInformeReparacion
+     */
+    public DetalleInformeReparacion getDetalleInformeReparacion() {
+        return detalleInformeReparacion;
+    }
+
+    /**
+     * @param detalleInformeReparacion the detalleInformeReparacion to set
+     */
+    public void setDetalleInformeReparacion(DetalleInformeReparacion detalleInformeReparacion) {
+        this.detalleInformeReparacion = detalleInformeReparacion;
+    }
 
 }

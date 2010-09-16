@@ -5,14 +5,14 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:13 p.m.
  */
-public class EquipoDeTrabajoImplementacion {
+public class EquipoDeTrabajoImplementacion implements EquipoDeTrabajo{
 
 	private int cargaHorariaMaxPorDia;
 	private int codigoEquipo;
 	private String nombreEquipo;
-	public TrabajadorRol m_TrabajadorRol;
+	private TrabajadorRol trabajadorRol;
 
-	public EquipoDeTrabajo(){
+	public EquipoDeTrabajoImplementacion(){
 
 	}
 
@@ -52,5 +52,19 @@ public class EquipoDeTrabajoImplementacion {
 	public void setnombreEquipo(String newVal){
 		nombreEquipo = newVal;
 	}
+
+    /**
+     * @return the trabajadorRol
+     */
+    public TrabajadorRol getTrabajadorRol() {
+        return trabajadorRol;
+    }
+
+    /**
+     * @param trabajadorRol the trabajadorRol to set
+     */
+    public void setTrabajadorRol(TrabajadorRol trabajadorRol) {
+        this.trabajadorRol = trabajadorRol;
+    }
 
 }

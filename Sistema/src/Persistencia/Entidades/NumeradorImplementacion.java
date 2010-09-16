@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:15 p.m.
  */
-public class NumeradorImplementacion {
+public class NumeradorImplementacion implements Numerador {
 
 	private String tipodocumentacion;
 	private int ultimonumeroregistrado;
 
-	public Numerador(){
+	public NumeradorImplementacion(){
 
 	}
 

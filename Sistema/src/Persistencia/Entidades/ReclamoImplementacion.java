@@ -5,11 +5,11 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:17 p.m.
  */
-public class ReclamoImplementacion extends CasoImplementacion {
+public class ReclamoImplementacion extends CasoImplementacion implements Reclamo{
 
 	private int codigoreclamo;
 
-	public Reclamo(){
+	public ReclamoImplementacion(){
 
 	}
 

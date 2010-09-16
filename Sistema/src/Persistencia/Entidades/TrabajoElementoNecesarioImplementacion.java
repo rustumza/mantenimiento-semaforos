@@ -5,26 +5,37 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:18 p.m.
  */
-public class TrabajoElementoNecesarioImplementacion {
+public class TrabajoElementoNecesarioImplementacion implements TrabajoElementoNecesario {
 
-	private int cantidadNecesaria;
-	public ElementoTrabajo m_ElementoTrabajo;
+    private int cantidadNecesaria;
+    private ElementoTrabajo elementoTrabajo;
 
-	public TrabajoElementoNecesarioImplementacion(){
+    public TrabajoElementoNecesarioImplementacion() {
+    }
 
-	}
+    public int getcantidadNecesaria() {
+        return cantidadNecesaria;
+    }
 
-	
-	public int getcantidadNecesaria(){
-		return cantidadNecesaria;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void setcantidadNecesaria(int newVal) {
+        cantidadNecesaria = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcantidadNecesaria(int newVal){
-		cantidadNecesaria = newVal;
-	}
+    /**
+     * @return the elementoTrabajo
+     */
+    public ElementoTrabajo getElementoTrabajo() {
+        return elementoTrabajo;
+    }
 
+    /**
+     * @param elementoTrabajo the elementoTrabajo to set
+     */
+    public void setElementoTrabajo(ElementoTrabajo elementoTrabajo) {
+        this.elementoTrabajo = elementoTrabajo;
+    }
 }

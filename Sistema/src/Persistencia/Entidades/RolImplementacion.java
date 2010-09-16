@@ -5,12 +5,12 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:17 p.m.
  */
-public class RolImplementacion {
+public class RolImplementacion implements Rol{
 
 	private int codigoRol;
 	private String nombreRol;
 
-	public Rol(){
+	public RolImplementacion(){
 
 	}
 
