@@ -10,10 +10,12 @@ import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denunciante;
 import Persistencia.Entidades.Interseccion;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Semaforo;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,6 +76,25 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         return null;
     }
 
+    public List<Problema> buscarProblemas() {
+        List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("Problema", null);
+        List<Problema> listaDeProblema = new ArrayList<Problema>();
+        for(SuperDruperInterfaz aux : listaDeInterfaces){
+            listaDeProblema.add((Problema) aux);
+        }
+        return listaDeProblema;
+    }
+
+    public void guardarDenuncia(List<Semaforo> listaSemaforo, List<Problema> listaProblema){
+
+        for(Semaforo aux:listaSemaforo)
+            aux.
+        FachadaExterna.getInstancia().
+           
+
+
+
+    }
 
 
 }
