@@ -15,6 +15,8 @@ public class DenunciaEstadoAgente implements DenunciaEstado {
     private DenunciaEstadoImplementacion implementacion;
     private String oidEstadoDenuncia;
 
+    private boolean estadoDenunciaBuscadoscado;
+
     public int getfechacambioestado() {
         return implementacion.getfechacambioestado();
     }
@@ -32,7 +34,7 @@ public class DenunciaEstadoAgente implements DenunciaEstado {
     }
 
     public EstadoDenuncia getEstadoDenuncia() {
-        if (implementacion.getEstadoDenuncia() == null) {
+        if (isEstadoDenunciaBuscadoscado() == false) {
             implementacion.setEstadoDenuncia((EstadoDenuncia) FachadaInterna.getInstancia().buscar("EstadoDenuncia", oidEstadoDenuncia));
         }
         return implementacion.getEstadoDenuncia();
@@ -54,5 +56,19 @@ public class DenunciaEstadoAgente implements DenunciaEstado {
      */
     public void setImplementacion(DenunciaEstadoImplementacion implementacion) {
         this.implementacion = implementacion;
+    }
+
+    /**
+     * @return the estadoDenunciaBuscadoscado
+     */
+    public boolean isEstadoDenunciaBuscadoscado() {
+        return estadoDenunciaBuscadoscado;
+    }
+
+    /**
+     * @param estadoDenunciaBuscadoscado the estadoDenunciaBuscadoscado to set
+     */
+    public void setEstadoDenunciaBuscadoscado(boolean estadoDenunciaBuscadoscado) {
+        this.estadoDenunciaBuscadoscado = estadoDenunciaBuscadoscado;
     }
 }

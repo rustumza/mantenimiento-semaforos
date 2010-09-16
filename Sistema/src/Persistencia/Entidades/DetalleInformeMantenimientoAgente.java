@@ -16,6 +16,8 @@ public class DetalleInformeMantenimientoAgente implements DetalleInformeMantenim
     private DetalleInformeMantenimientoImplementacion implementacion;
     private String oidTarea;
     private String oidElementoTrabajoMantenimiento;
+    private boolean elementoTrabajoMantenimientoBuscado;
+    private boolean tareaBuscado;
 
     public String getcomentario() {
         return implementacion.getcomentario();
@@ -58,11 +60,10 @@ public class DetalleInformeMantenimientoAgente implements DetalleInformeMantenim
     }
 
     public Tarea getTarea() {
-        if (implementacion.getTarea() == null) {
-            return (Tarea) FachadaInterna.getInstancia().buscar("Tarea", oidTarea);
-        } else {
-            return implementacion.getTarea();
+        if (isTareaBuscado() == false) {
+            implementacion.setTarea((Tarea) FachadaInterna.getInstancia().buscar("Tarea", oidTarea));
         }
+        return implementacion.getTarea();
     }
 
     public void setTarea(Tarea tarea) {
@@ -70,7 +71,7 @@ public class DetalleInformeMantenimientoAgente implements DetalleInformeMantenim
     }
 
     public ElementoTrabajoMantenimiento getElementoTrabajoMantenimiento() {
-        if (implementacion.getElementoTrabajoMantenimiento() == null) {
+        if (isElementoTrabajoMantenimientoBuscado() == false) {
             implementacion.setElementoTrabajoMantenimiento((ElementoTrabajoMantenimiento) FachadaInterna.getInstancia().buscar("ElementoTrabajoMantenimiento", oidElementoTrabajoMantenimiento));
         }
         return implementacion.getElementoTrabajoMantenimiento();
@@ -120,5 +121,33 @@ public class DetalleInformeMantenimientoAgente implements DetalleInformeMantenim
      */
     public void setOidElementoTrabajoMantenimiento(String oidElementoTrabajoMantenimiento) {
         this.oidElementoTrabajoMantenimiento = oidElementoTrabajoMantenimiento;
+    }
+
+    /**
+     * @return the elementoTrabajoMantenimientoBuscado
+     */
+    public boolean isElementoTrabajoMantenimientoBuscado() {
+        return elementoTrabajoMantenimientoBuscado;
+    }
+
+    /**
+     * @param elementoTrabajoMantenimientoBuscado the elementoTrabajoMantenimientoBuscado to set
+     */
+    public void setElementoTrabajoMantenimientoBuscado(boolean elementoTrabajoMantenimientoBuscado) {
+        this.elementoTrabajoMantenimientoBuscado = elementoTrabajoMantenimientoBuscado;
+    }
+
+    /**
+     * @return the tareaBuscado
+     */
+    public boolean isTareaBuscado() {
+        return tareaBuscado;
+    }
+
+    /**
+     * @param tareaBuscado the tareaBuscado to set
+     */
+    public void setTareaBuscado(boolean tareaBuscado) {
+        this.tareaBuscado = tareaBuscado;
     }
 }

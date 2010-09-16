@@ -13,6 +13,8 @@ public class DenuncianteImplementacion implements Denunciante{
 	private String telefonofijo;
 	private PersonaPadron personaPadron;
 
+        
+
 	public DenuncianteImplementacion(){
     }
 

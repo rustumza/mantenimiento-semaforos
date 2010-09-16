@@ -16,6 +16,8 @@ public class CronogramaDeMantenimientoAgente implements CronogramaDeMantenimient
     private CronogramaDeMantenimientoImplementacion implementacion;
     private String oidFichaMantenimiento;
 
+    private boolean fichaMantenimientoBuscado;
+
     public int getcodigoCronograma() {
         return implementacion.getcodigoCronograma();
     }
@@ -57,7 +59,7 @@ public class CronogramaDeMantenimientoAgente implements CronogramaDeMantenimient
     }
 
     public FichaMantenimiento getFichaMantenimiento() {
-        if (implementacion.getFichaMantenimiento() == null) {
+        if (isFichaMantenimientoBuscado() == false) {
             implementacion.setFichaMantenimiento((FichaMantenimiento) FachadaInterna.getInstancia().buscar("FichaMantenimiento", oidFichaMantenimiento));
         }
         return implementacion.getFichaMantenimiento();
@@ -93,5 +95,19 @@ public class CronogramaDeMantenimientoAgente implements CronogramaDeMantenimient
      */
     public void setOidFichaMantenimiento(String oidFichaMantenimiento) {
         this.oidFichaMantenimiento = oidFichaMantenimiento;
+    }
+
+    /**
+     * @return the fichaMantenimientoBuscadoBuscado
+     */
+    public boolean isFichaMantenimientoBuscado() {
+        return fichaMantenimientoBuscado;
+    }
+
+    /**
+     * @param fichaMantenimientoBuscadoBuscado the fichaMantenimientoBuscadoBuscado to set
+     */
+    public void setFichaMantenimientoBuscado(boolean fichaMantenimientoBuscadoBuscado) {
+        this.fichaMantenimientoBuscado = fichaMantenimientoBuscadoBuscado;
     }
 }

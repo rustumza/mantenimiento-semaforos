@@ -12,6 +12,8 @@ public class DetalleInformeReparacionImplementacion implements DetalleInformeRep
 	private FallaTecnica fallaTecnica;
 	private EstadoFallaTecnica estadoFallaTecnica;
 
+        
+
 	public DetalleInformeReparacionImplementacion(){
 
 	}
@@ -70,5 +72,4 @@ public class DetalleInformeReparacionImplementacion implements DetalleInformeRep
     public void setEstadoFallaTecnica(EstadoFallaTecnica estadoFallaTecnica) {
         this.estadoFallaTecnica = estadoFallaTecnica;
     }
-
 }

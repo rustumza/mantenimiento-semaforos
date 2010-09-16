@@ -19,6 +19,12 @@ public class CasoAgente implements Caso {
     private String oidProblema;
     private String oidDenunciante;
 
+    /*variables para saber si los atributos han sido buscado en la BD*/
+    private boolean operadorBuscado;
+    private boolean semaforoBuscado;
+    private boolean problemaBuscado;
+    private boolean denuncianteBuscado;
+
     public Date getfechacaso() {
         return implementacion.getfechacaso();
     }
@@ -36,7 +42,7 @@ public class CasoAgente implements Caso {
     }
 
     public Operador getOperador() {
-        if (implementacion.getOperador() == null) {
+        if (isOperadorBuscado() == false) {
             implementacion.setOperador((Operador) FachadaInterna.getInstancia().buscar("Operador", oidOperador));
         }
         return implementacion.getOperador();
@@ -47,7 +53,7 @@ public class CasoAgente implements Caso {
     }
 
     public Semaforo getSemaforo() {
-        if (implementacion.getSemaforo() == null) {
+        if (isSemaforoBuscado() == false) {
             implementacion.setSemaforo((Semaforo) FachadaInterna.getInstancia().buscar("Semaforo", getOidSemaforo()));
         }
         return implementacion.getSemaforo();
@@ -59,7 +65,7 @@ public class CasoAgente implements Caso {
     }
 
     public Problema getProblema() {
-        if (implementacion.getProblema() == null) {
+        if (isProblemaBuscado() == false) {
             implementacion.setProblema((Problema) FachadaInterna.getInstancia().buscar("Problema", oidProblema));
         }
         return implementacion.getProblema();
@@ -70,7 +76,7 @@ public class CasoAgente implements Caso {
     }
 
     public Denunciante getDenunciante() {
-        if (implementacion.getDenunciante() == null) {
+        if (isDenuncianteBuscado() == false) {
             implementacion.setDenunciante((Denunciante) FachadaInterna.getInstancia().buscar("Denunciante", getOidDenunciante()));
         }
         return implementacion.getDenunciante();
@@ -134,5 +140,61 @@ public class CasoAgente implements Caso {
      */
     public void setOidDenunciante(String oidDenunciante) {
         this.oidDenunciante = oidDenunciante;
+    }
+
+    /**
+     * @return the operadorBuscado
+     */
+    public boolean isOperadorBuscado() {
+        return operadorBuscado;
+    }
+
+    /**
+     * @param operadorBuscado the operadorBuscado to set
+     */
+    public void setOperadorBuscado(boolean operadorBuscado) {
+        this.operadorBuscado = operadorBuscado;
+    }
+
+    /**
+     * @return the semaforoBuscado
+     */
+    public boolean isSemaforoBuscado() {
+        return semaforoBuscado;
+    }
+
+    /**
+     * @param semaforoBuscado the semaforoBuscado to set
+     */
+    public void setSemaforoBuscado(boolean semaforoBuscado) {
+        this.semaforoBuscado = semaforoBuscado;
+    }
+
+    /**
+     * @return the problemaBuscado
+     */
+    public boolean isProblemaBuscado() {
+        return problemaBuscado;
+    }
+
+    /**
+     * @param problemaBuscado the problemaBuscado to set
+     */
+    public void setProblemaBuscado(boolean problemaBuscado) {
+        this.problemaBuscado = problemaBuscado;
+    }
+
+    /**
+     * @return the denuncianteBuscado
+     */
+    public boolean isDenuncianteBuscado() {
+        return denuncianteBuscado;
+    }
+
+    /**
+     * @param denuncianteBuscado the denuncianteBuscado to set
+     */
+    public void setDenuncianteBuscado(boolean denuncianteBuscado) {
+        this.denuncianteBuscado = denuncianteBuscado;
     }
 }
