@@ -17,6 +17,11 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     private String oidDenunciaEstado;
     private String oidFallaTecnica;
 
+    //variables para saber si se han buscado los atributos en la BD
+    private boolean reclamoBuscado;
+    private boolean denunciaEstadoBuscado;
+    private boolean fallaTecnicaBuscado;
+
     public int getcodigoDenuncia() {
         return implementacion.getcodigoDenuncia();
     }
@@ -34,7 +39,7 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     }
 
     public Reclamo getReclamo() {
-        if (implementacion.getReclamo() == null) {
+        if (isReclamoBuscado() == false) {
             implementacion.setReclamo((Reclamo) FachadaInterna.getInstancia().buscar("Reclamo", oidReclamo));
         }
         return implementacion.getReclamo();
@@ -45,7 +50,7 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     }
 
     public DenunciaEstado getDenunciaEstado() {
-        if (implementacion.getDenunciaEstado() == null) {
+        if (isDenunciaEstadoBuscado() == false) {
             implementacion.setDenunciaEstado((DenunciaEstado) FachadaInterna.getInstancia().buscar("DenunciaEstado", oidDenunciaEstado));
         }
         return implementacion.getDenunciaEstado();
@@ -56,7 +61,7 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     }
 
     public FallaTecnica getFallaTecnica() {
-        if (implementacion.getFallaTecnica() == null) {
+        if (isFallaTecnicaBuscado() == false) {
             implementacion.setFallaTecnica((FallaTecnica) FachadaInterna.getInstancia().buscar("FallaTecnica", oidFallaTecnica));
         }
         return implementacion.getFallaTecnica();
@@ -120,5 +125,47 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
      */
     public void setOidFallaTecnica(String oidFallaTecnica) {
         this.oidFallaTecnica = oidFallaTecnica;
+    }
+
+    /**
+     * @return the reclamoBuscado
+     */
+    public boolean isReclamoBuscado() {
+        return reclamoBuscado;
+    }
+
+    /**
+     * @param reclamoBuscado the reclamoBuscado to set
+     */
+    public void setReclamoBuscado(boolean reclamoBuscado) {
+        this.reclamoBuscado = reclamoBuscado;
+    }
+
+    /**
+     * @return the denunciaEstadoBuscado
+     */
+    public boolean isDenunciaEstadoBuscado() {
+        return denunciaEstadoBuscado;
+    }
+
+    /**
+     * @param denunciaEstadoBuscado the denunciaEstadoBuscado to set
+     */
+    public void setDenunciaEstadoBuscado(boolean denunciaEstadoBuscado) {
+        this.denunciaEstadoBuscado = denunciaEstadoBuscado;
+    }
+
+    /**
+     * @return the fallaTecnicaBuscado
+     */
+    public boolean isFallaTecnicaBuscado() {
+        return fallaTecnicaBuscado;
+    }
+
+    /**
+     * @param fallaTecnicaBuscado the fallaTecnicaBuscado to set
+     */
+    public void setFallaTecnicaBuscado(boolean fallaTecnicaBuscado) {
+        this.fallaTecnicaBuscado = fallaTecnicaBuscado;
     }
 }

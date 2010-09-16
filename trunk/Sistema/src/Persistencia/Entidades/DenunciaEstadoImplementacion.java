@@ -11,6 +11,8 @@ public class DenunciaEstadoImplementacion {
 	private boolean indicadorestadoactual;
 	private EstadoDenuncia estadoDenuncia;
 
+        
+
 	public DenunciaEstadoImplementacion(){
 
 	}

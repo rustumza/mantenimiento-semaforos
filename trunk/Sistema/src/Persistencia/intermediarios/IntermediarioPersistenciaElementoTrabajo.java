@@ -5,6 +5,7 @@
 package Persistencia.intermediarios;
 
 import ExpertosPersistencia.Criterio;
+import Persistencia.Entidades.ElementoTrabajoMantenimiento;
 import Persistencia.Entidades.ObjetoPersistente;
 import java.sql.ResultSet;
 import java.util.List;
@@ -15,12 +16,12 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaElementoTrabajo extends IntermediarioRelacional{
 
-private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
+        ElementoTrabajoMantenimientoAgente = obj;
 
-        return insert = "insert into elementotrabajo values (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento)";
+        return insert = "insert into elementotrabajo (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento) values ('"+obj.getOid()+"',"+obj.+" CodigoSistemaExterno, TipoElemento)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -36,7 +37,6 @@ private String oid;
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
         return selectOid = "select * from elementotrabajo where OIDElementoTrabajo = " + oid;
     }

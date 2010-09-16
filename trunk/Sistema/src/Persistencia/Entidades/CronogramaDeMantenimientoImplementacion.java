@@ -16,6 +16,8 @@ public class CronogramaDeMantenimientoImplementacion implements CronogramaDeMant
 	private String observacionesCronograma;
 	private FichaMantenimiento fichaMantenimiento;
 
+        
+
 	public CronogramaDeMantenimientoImplementacion(){
 
 	}
@@ -94,5 +96,6 @@ public class CronogramaDeMantenimientoImplementacion implements CronogramaDeMant
     public void setFichaMantenimiento(FichaMantenimiento fichaMantenimiento) {
         this.fichaMantenimiento = fichaMantenimiento;
     }
+
 
 }

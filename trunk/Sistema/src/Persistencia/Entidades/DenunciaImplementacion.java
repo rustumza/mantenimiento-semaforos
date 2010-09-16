@@ -13,6 +13,9 @@ public class DenunciaImplementacion extends CasoImplementacion implements Denunc
     private DenunciaEstado denunciaEstado;
     private FallaTecnica fallaTecnica;
 
+
+    
+
     public DenunciaImplementacion() {
     }
 

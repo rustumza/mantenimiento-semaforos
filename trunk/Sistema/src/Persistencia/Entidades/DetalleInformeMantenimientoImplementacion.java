@@ -17,6 +17,8 @@ public class DetalleInformeMantenimientoImplementacion implements DetalleInforme
     private Tarea tarea;
     private ElementoTrabajoMantenimiento elementoTrabajoMantenimiento;
 
+    
+
     public DetalleInformeMantenimientoImplementacion() {
     }
 

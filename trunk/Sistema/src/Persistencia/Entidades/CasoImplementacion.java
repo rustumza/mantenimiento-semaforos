@@ -15,6 +15,7 @@ public class CasoImplementacion implements Caso{
     private Semaforo semaforo;
     private Problema problema;
     private Denunciante denunciante;
+    
 
     public CasoImplementacion() {
     }
@@ -98,4 +99,5 @@ public class CasoImplementacion implements Caso{
     public void setDenunciante(Denunciante denunciante) {
         this.denunciante = denunciante;
     }
+
 }

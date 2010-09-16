@@ -15,6 +15,8 @@ public class DenuncianteAgente implements Denunciante {
     private DenuncianteImplementacion implementacion;
     private String oidPersonaPadron;
 
+    private boolean personaPadronBuscado;
+
     public String getcelular() {
         return getImplementacion().getcelular();
     }
@@ -48,7 +50,7 @@ public class DenuncianteAgente implements Denunciante {
     }
 
     public PersonaPadron getPersonaPadron() {
-        if (getImplementacion().getPersonaPadron() == null) {
+        if (isPersonaPadronBuscado() == false) {
             implementacion.setPersonaPadron((PersonaPadron) FachadaInterna.getInstancia().buscar("PersonaPadron", oidPersonaPadron));
         }
         return getImplementacion().getPersonaPadron();
@@ -84,5 +86,19 @@ public class DenuncianteAgente implements Denunciante {
      */
     public void setImplementacion(DenuncianteImplementacion implementacion) {
         this.implementacion = implementacion;
+    }
+
+    /**
+     * @return the personaPadronBuscado
+     */
+    public boolean isPersonaPadronBuscado() {
+        return personaPadronBuscado;
+    }
+
+    /**
+     * @param personaPadronBuscado the personaPadronBuscado to set
+     */
+    public void setPersonaPadronBuscado(boolean personaPadronBuscado) {
+        this.personaPadronBuscado = personaPadronBuscado;
     }
 }

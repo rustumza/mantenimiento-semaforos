@@ -17,6 +17,11 @@ public class DetalleInformeReparacionAgente implements DetalleInformeReparacion 
     private String oidFallaTecnica;
     private String oidEstadoFallaTecnica;
 
+
+    private boolean reparacionTareaRealizadaBuscado;
+    private boolean fallaTecnicaBuscado;
+    private boolean estadoFallaTecnicaBuscado;
+
     public String getcomentario() {
         return implementacion.getcomentario();
     }
@@ -26,7 +31,7 @@ public class DetalleInformeReparacionAgente implements DetalleInformeReparacion 
     }
 
     public ReparacionTareaRealizada getReparacionTareaRealizada() {
-        if (implementacion.getReparacionTareaRealizada() == null) {
+        if (isReparacionTareaRealizadaBuscado() == false) {
             implementacion.setReparacionTareaRealizada((ReparacionTareaRealizada) FachadaInterna.getInstancia().buscar("ReparacionTareaRealizada", oidReparacionTareaRealizada));
         }
         return implementacion.getReparacionTareaRealizada();
@@ -37,8 +42,8 @@ public class DetalleInformeReparacionAgente implements DetalleInformeReparacion 
     }
 
     public FallaTecnica getFallaTecnica() {
-        if(implementacion.getFallaTecnica()==null){
-            implementacion.setFallaTecnica((FallaTecnica)FachadaInterna.getInstancia().buscar("FallaTecnica", oidFallaTecnica));
+        if (isFallaTecnicaBuscado() == false) {
+            implementacion.setFallaTecnica((FallaTecnica) FachadaInterna.getInstancia().buscar("FallaTecnica", oidFallaTecnica));
         }
         return implementacion.getFallaTecnica();
     }
@@ -48,8 +53,8 @@ public class DetalleInformeReparacionAgente implements DetalleInformeReparacion 
     }
 
     public EstadoFallaTecnica getEstadoFallaTecnica() {
-        if(implementacion.getEstadoFallaTecnica()==null){
-            implementacion.setEstadoFallaTecnica((EstadoFallaTecnica)FachadaInterna.getInstancia().buscar("EstadoFallaTecnica", oidEstadoFallaTecnica));
+        if (isEstadoFallaTecnicaBuscado() == false) {
+            implementacion.setEstadoFallaTecnica((EstadoFallaTecnica) FachadaInterna.getInstancia().buscar("EstadoFallaTecnica", oidEstadoFallaTecnica));
         }
         return implementacion.getEstadoFallaTecnica();
     }
@@ -98,5 +103,47 @@ public class DetalleInformeReparacionAgente implements DetalleInformeReparacion 
      */
     public void setOidEstadoFallaTecnica(String oidEstadoFallaTecnica) {
         this.oidEstadoFallaTecnica = oidEstadoFallaTecnica;
+    }
+
+    /**
+     * @return the reparacionTareaRealizadaBuscado
+     */
+    public boolean isReparacionTareaRealizadaBuscado() {
+        return reparacionTareaRealizadaBuscado;
+    }
+
+    /**
+     * @param reparacionTareaRealizadaBuscado the reparacionTareaRealizadaBuscado to set
+     */
+    public void setReparacionTareaRealizadaBuscado(boolean reparacionTareaRealizadaBuscado) {
+        this.reparacionTareaRealizadaBuscado = reparacionTareaRealizadaBuscado;
+    }
+
+    /**
+     * @return the fallaTecnicaBuscado
+     */
+    public boolean isFallaTecnicaBuscado() {
+        return fallaTecnicaBuscado;
+    }
+
+    /**
+     * @param fallaTecnicaBuscado the fallaTecnicaBuscado to set
+     */
+    public void setFallaTecnicaBuscado(boolean fallaTecnicaBuscado) {
+        this.fallaTecnicaBuscado = fallaTecnicaBuscado;
+    }
+
+    /**
+     * @return the estadoFallaTecnicaBuscado
+     */
+    public boolean isEstadoFallaTecnicaBuscado() {
+        return estadoFallaTecnicaBuscado;
+    }
+
+    /**
+     * @param estadoFallaTecnicaBuscado the estadoFallaTecnicaBuscado to set
+     */
+    public void setEstadoFallaTecnicaBuscado(boolean estadoFallaTecnicaBuscado) {
+        this.estadoFallaTecnicaBuscado = estadoFallaTecnicaBuscado;
     }
 }
