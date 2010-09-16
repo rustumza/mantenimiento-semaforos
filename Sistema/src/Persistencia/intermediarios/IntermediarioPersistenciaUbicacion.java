@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import//borrar el import
 
 package Persistencia.intermediarios;
 
@@ -14,14 +15,14 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
+public class IntermediarioPersistenciaUbicacion extends IntermediarioRelacional{
 
  private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into rol (OIDRol, CodigoRol, NombreRol) values (OIDRol, CodigoRol, NombreRol)";
+        return insert = "insert into ubicacion (OIDUbicacion, CodigoUbicacion, Prioridad, TipoUbicacion) values (OIDUbicacion, CodigoUbicacion, Prioridad, TipoUbicacion)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -30,7 +31,7 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         String select;
         listaCriterios = criterios;
 
-        return select = "select * from rol where " ;//criterios
+        return select = "select * from ubicacion where " ;//criterios
 
     }
 
@@ -39,14 +40,14 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         String selectOid;
         this.oid =oid;
 
-        return selectOid = "select * from rol where OIDRol = " + oid;
+        return selectOid = "select * from ubicacion where OIDUbicacion = " + oid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
         String update;
 
-        return update = "update rol set OIDRol =" + "CodigoRol =" + "NombreRol =";
+        return update = "update ubicacion set OIDUbicacion =" + ",CodigoUbicacion = " + "Prioridad = " + "TipoUbicacion =";
 
     }
 
@@ -59,3 +60,4 @@ public class IntermediarioPersistenciaRol extends IntermediarioRelacional{
         return null;
     }
 }
+

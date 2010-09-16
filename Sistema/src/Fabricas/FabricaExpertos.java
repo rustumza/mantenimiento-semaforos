@@ -7,6 +7,9 @@ package Fabricas;
 
 import Expertos.Experto;
 import Expertos.ExpertoAntenderReclamoPorDesperfecto;
+import Expertos.ExpertoConsultarAvanceDeReclamo;
+import Expertos.ExpertoConsultarOrdenesPendientes;
+import Expertos.ExpertoEjecutarOrdenesTrabajo;
 
 /**
  *
@@ -36,6 +39,12 @@ public class FabricaExpertos {
 
         if(tipo.equals("AtenderReclamoPorDesperfecto"))
             retorno = new ExpertoAntenderReclamoPorDesperfecto();
+        else if(tipo.equals("ConsultarAvanceDeReclamo"))
+            retorno = new ExpertoConsultarAvanceDeReclamo();
+        else if (tipo.equals("ConsultarOrdenesPendientes"))
+            retorno = new ExpertoConsultarOrdenesPendientes();
+        else if(tipo.equals("EjecutarOrdenesTrabajo"))
+                retorno = new ExpertoEjecutarOrdenesTrabajo();
 
     return retorno;
     }

@@ -2,10 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import//borrar el import
+
+
 package Persistencia.intermediarios;
 
 import ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ElementoTrabajoMantenimiento;
+import Persistencia.Entidades.ElementoTrabajoMantenimientoAgente;
 import Persistencia.Entidades.ObjetoPersistente;
 import java.sql.ResultSet;
 import java.util.List;
@@ -15,13 +19,12 @@ import java.util.List;
  * @author Eduardo
  */
 public class IntermediarioPersistenciaElementoTrabajo extends IntermediarioRelacional{
-
+private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
-        ElementoTrabajoMantenimientoAgente = obj;
 
-        return insert = "insert into elementotrabajo (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento) values ('"+obj.getOid()+"',"+obj.+" CodigoSistemaExterno, TipoElemento)";
+        return insert = "insert into elementotrabajo (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento) values (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento)";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -37,6 +40,7 @@ public class IntermediarioPersistenciaElementoTrabajo extends IntermediarioRelac
     public String armarSelectOid(String oid) {
 
         String selectOid;
+        this.oid =oid;
 
         return selectOid = "select * from elementotrabajo where OIDElementoTrabajo = " + oid;
     }
@@ -45,7 +49,7 @@ public class IntermediarioPersistenciaElementoTrabajo extends IntermediarioRelac
 
         String update;
 
-        return update = "insert into elementotrabajo values (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento)";
+        return update = "update elementotrabajo set OIDElementoTrabajo =" + ",CodigoSistemaExterno = " + "TipoElemento = " ;
 
     }
 

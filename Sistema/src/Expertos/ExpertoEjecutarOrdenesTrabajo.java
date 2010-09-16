@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author informatica
  */
-public class ExpertoEjecutarOrdenesTrabajo {
+public class ExpertoEjecutarOrdenesTrabajo implements Experto{
 
     public List<DTOOrdenesTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
         return null;

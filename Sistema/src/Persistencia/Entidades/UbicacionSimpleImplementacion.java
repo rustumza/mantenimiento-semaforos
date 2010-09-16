@@ -1,4 +1,7 @@
-package Entidades;
+package Persistencia.Entidades;
+
+import Entidades.UbicacionImplementacion;
+import Persistencia.Entidades.Calle;
 
 /**
  * @author Bicentenario
