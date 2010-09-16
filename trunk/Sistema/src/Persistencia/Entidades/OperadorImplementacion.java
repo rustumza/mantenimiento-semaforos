@@ -1,4 +1,4 @@
-package Entidades;
+package Persistencia.Entidades;
 
 /**
  * @author Bicentenario
@@ -15,7 +15,7 @@ public class OperadorImplementacion {
 	}
 
 	
-	public int getlegajo(){
+	public String getlegajo(){
 		return legajo;
 	}
 
@@ -27,7 +27,7 @@ public class OperadorImplementacion {
 	 * 
 	 * @param newVal
 	 */
-	public void setlegajo(int newVal){
+	public void setlegajo(String newVal){
 		legajo = newVal;
 	}
 

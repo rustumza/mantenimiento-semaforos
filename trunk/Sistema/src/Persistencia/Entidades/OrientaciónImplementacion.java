@@ -1,16 +1,16 @@
-package Entidades;
+package Persistencia.Entidades;
 
 /**
  * @author Bicentenario
  * @version 1.0
  * @created 14-Sep-2010 06:52:16 p.m.
  */
-public class OrientaciónImplementacion {
+public class OrientacionImplementacion {
 
 	private int codigoOrientacion;
 	private String descripcion;
 
-	public Orientación(){
+	public Orientacion(){
 
 	}
 
