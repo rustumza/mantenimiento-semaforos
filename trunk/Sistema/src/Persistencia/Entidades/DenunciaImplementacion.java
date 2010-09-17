@@ -1,5 +1,7 @@
 package Persistencia.Entidades;
 
+import java.util.List;
+
 /**
  * @author Bicentenario
  * @version 1.0
@@ -10,7 +12,7 @@ public class DenunciaImplementacion extends CasoImplementacion implements Denunc
     private int codigoDenuncia;
     private float prioridad;
     private Reclamo reclamo;
-    private DenunciaEstado denunciaEstado;
+    private List<DenunciaEstado> denunciaEstado;
     private FallaTecnica fallaTecnica;
 
 
@@ -60,14 +62,14 @@ public class DenunciaImplementacion extends CasoImplementacion implements Denunc
     /**
      * @return the denunciaEstado
      */
-    public DenunciaEstado getDenunciaEstado() {
+    public List<DenunciaEstado> getDenunciaEstado() {
         return denunciaEstado;
     }
 
     /**
      * @param denunciaEstado the denunciaEstado to set
      */
-    public void setDenunciaEstado(DenunciaEstado denunciaEstado) {
+    public void setDenunciaEstado(List<DenunciaEstado> denunciaEstado) {
         this.denunciaEstado = denunciaEstado;
     }
 

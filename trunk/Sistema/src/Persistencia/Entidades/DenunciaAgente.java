@@ -4,7 +4,10 @@
  */
 package Persistencia.Entidades;
 
+import ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -49,14 +52,21 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
         implementacion.setReclamo(reclamo);
     }
 
-    public DenunciaEstado getDenunciaEstado() {
+    public List<DenunciaEstado> getDenunciaEstado() {
         if (isDenunciaEstadoBuscado() == false) {
-            implementacion.setDenunciaEstado((DenunciaEstado) FachadaInterna.getInstancia().buscar("DenunciaEstado", oidDenunciaEstado));
+            List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
+            listaDeCriterio.add(FachadaInterna.getInstancia().crearCriterio("oidDenuncia", "=",super.getOid()));
+            List<SuperDruperInterfaz> listaDeInterfaces = FachadaInterna.getInstancia().buscar("DenunciaEstado", listaDeCriterio);
+            List<DenunciaEstado> listaDeDenunciaEstado = new ArrayList<DenunciaEstado>();
+            for(SuperDruperInterfaz aux : listaDeInterfaces)
+                listaDeDenunciaEstado.add((DenunciaEstado) aux);
+
+            implementacion.setDenunciaEstado(listaDeDenunciaEstado);
         }
         return implementacion.getDenunciaEstado();
     }
 
-    public void setDenunciaEstado(DenunciaEstado denunciaEstado) {
+    public void setDenunciaEstado(List<DenunciaEstado> denunciaEstado) {
         implementacion.setDenunciaEstado(denunciaEstado);
     }
 

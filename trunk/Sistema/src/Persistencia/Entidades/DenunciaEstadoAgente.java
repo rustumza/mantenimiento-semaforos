@@ -14,7 +14,7 @@ public class DenunciaEstadoAgente implements DenunciaEstado {
 
     private DenunciaEstadoImplementacion implementacion;
     private String oidEstadoDenuncia;
-
+    
     private boolean estadoDenunciaBuscadoscado;
 
     public int getfechacambioestado() {

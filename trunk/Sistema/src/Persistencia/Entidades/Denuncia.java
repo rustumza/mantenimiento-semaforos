@@ -4,6 +4,8 @@
  */
 package Persistencia.Entidades;
 
+import java.util.List;
+
 /**
  *
  * @author diego
@@ -22,9 +24,9 @@ public interface Denuncia extends Caso {
 
     public void setReclamo(Reclamo reclamo);
 
-    public DenunciaEstado getDenunciaEstado();
+    public List<DenunciaEstado> getDenunciaEstado();
 
-    public void setDenunciaEstado(DenunciaEstado denunciaEstado);
+    public void setDenunciaEstado(List<DenunciaEstado> denunciaEstado);
 
     public FallaTecnica getFallaTecnica();
 
