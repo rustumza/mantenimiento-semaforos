@@ -8,8 +8,15 @@
  *
  * Created on 16/09/2010, 18:41:23
  */
-
 package InterfacesGraficas;
+
+import InterfacesGraficas.ModelosTablas.ModeloTablaOrdenesTrabajo;
+import Persistencia.Entidades.EquipoDeTrabajo;
+import Persistencia.Entidades.EquipoDeTrabajoImplementacion;
+import Persistencia.Entidades.OrdenDeMantenimiento;
+import Persistencia.Entidades.OrdenDeMantenimientoImplementacion;
+import Persistencia.Entidades.OrdenTrabajo;
+import java.util.Date;
 
 /**
  *
@@ -17,9 +24,45 @@ package InterfacesGraficas;
  */
 public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
 
+    ControladorEjecutarOrdenesTrabajo controlador;
+    //Modelo de tabla Ordenes Trabajo
+    ModeloTablaOrdenesTrabajo modeloTablaOrdenTrabajo = new ModeloTablaOrdenesTrabajo();
+
     /** Creates new form PantallaEjecutarOrdenTrabajo */
     public PantallaEjecutarOrdenTrabajo() {
         initComponents();
+
+        OrdenDeMantenimiento orden = new OrdenDeMantenimientoImplementacion();
+        orden.setcodigoordenmantenimiento(12930129);
+        orden.settipoordentrabajo("verga");
+        orden.setfechainiciotrabajo(new Date("2220/09/05"));
+        orden.setfechafintrabajo(new Date("2220/09/06"));
+        EquipoDeTrabajo equipo = new EquipoDeTrabajoImplementacion();
+        equipo.setnombreEquipo("bicentenario");
+        orden.setEquipoDeTrabajo(equipo);
+        orden.setduracionprevistatrabajo(22);
+
+        OrdenDeMantenimiento orden2 = new OrdenDeMantenimientoImplementacion();
+        orden2.setcodigoordenmantenimiento(65656565);
+        orden2.settipoordentrabajo("caca");
+        orden2.setfechainiciotrabajo(new Date("2220/09/05"));
+        orden2.setfechafintrabajo(new Date("2220/09/06"));
+        EquipoDeTrabajo equipo2 = new EquipoDeTrabajoImplementacion();
+        equipo2.setnombreEquipo("sacala que me hago caca");
+        orden2.setEquipoDeTrabajo(equipo2);
+        orden2.setduracionprevistatrabajo(34);
+
+
+
+        modeloTablaOrdenTrabajo.addRow(orden);
+        modeloTablaOrdenTrabajo.addRow(orden2);
+
+    }
+
+    public PantallaEjecutarOrdenTrabajo(ControladorEjecutarOrdenesTrabajo control) {
+        controlador = control;
+        initComponents();
+
     }
 
     /** This method is called from within the constructor to
@@ -41,7 +84,7 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaOrdenTrabajo = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -88,18 +131,8 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Órdenes de Trabajo"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        tablaOrdenTrabajo.setModel(modeloTablaOrdenTrabajo);
+        jScrollPane1.setViewportView(tablaOrdenTrabajo);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,6 +230,11 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
         );
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jToggleButton1.setText("Confirmar órdenes");
 
@@ -246,17 +284,21 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new PantallaEjecutarOrdenTrabajo().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupoSeleccion;
     private javax.swing.JButton jButton1;
@@ -274,10 +316,9 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTable tablaOrdenTrabajo;
     // End of variables declaration//GEN-END:variables
-
 }

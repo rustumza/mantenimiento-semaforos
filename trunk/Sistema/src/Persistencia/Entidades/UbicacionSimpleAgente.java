@@ -22,16 +22,8 @@ public class UbicacionSimpleAgente implements UbicacionSimple{
         return implementacion.getaltura();
     }
 
-    public int getcodigoUbicacionSimple() {
-        return implementacion.getcodigoUbicacionSimple();
-    }
-
     public void setaltura(int newVal) {
         implementacion.setaltura(newVal);
-    }
-
-    public void setcodigoUbicacionSimple(int newVal) {
-        implementacion.setcodigoUbicacionSimple(newVal);
     }
 
     public Calle getCalle() {

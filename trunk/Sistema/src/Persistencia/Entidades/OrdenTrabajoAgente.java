@@ -32,7 +32,7 @@ public class OrdenTrabajoAgente implements OrdenTrabajo {
         return implementacion.getfechafintrabajo();
     }
 
-    public int getfechainicioplanificada() {
+    public Date getfechainicioplanificada() {
         return implementacion.getfechainicioplanificada();
     }
 
@@ -40,7 +40,7 @@ public class OrdenTrabajoAgente implements OrdenTrabajo {
         return implementacion.getfechainiciotrabajo();
     }
 
-    public int gettipoordentrabajo() {
+    public String gettipoordentrabajo() {
         return implementacion.gettipoordentrabajo();
     }
 
@@ -52,7 +52,7 @@ public class OrdenTrabajoAgente implements OrdenTrabajo {
         implementacion.setfechafintrabajo(newVal);
     }
 
-    public void setfechainicioplanificada(int newVal) {
+    public void setfechainicioplanificada(Date newVal) {
         implementacion.setfechainicioplanificada(newVal);
     }
 
@@ -60,7 +60,7 @@ public class OrdenTrabajoAgente implements OrdenTrabajo {
         implementacion.setfechainiciotrabajo(newVal);
     }
 
-    public void settipoordentrabajo(int newVal) {
+    public void settipoordentrabajo(String newVal) {
         implementacion.settipoordentrabajo(newVal);
     }
 

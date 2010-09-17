@@ -12,11 +12,8 @@ public interface UbicacionSimple extends SuperDruperInterfaz {
 
     public int getaltura();
 
-    public int getcodigoUbicacionSimple();
 
     public void setaltura(int newVal);
-
-    public void setcodigoUbicacionSimple(int newVal);
 
     public Calle getCalle();
 

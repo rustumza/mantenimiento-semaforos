@@ -16,21 +16,21 @@ public interface OrdenTrabajo extends SuperDruperInterfaz {
 
     public Date getfechafintrabajo();
 
-    public int getfechainicioplanificada();
+    public Date getfechainicioplanificada();
 
     public Date getfechainiciotrabajo();
 
-    public int gettipoordentrabajo();
+    public String gettipoordentrabajo();
 
     public void setduracionprevistatrabajo(int newVal);
 
     public void setfechafintrabajo(Date newVal);
 
-    public void setfechainicioplanificada(int newVal);
+    public void setfechainicioplanificada(Date newVal);
 
     public void setfechainiciotrabajo(Date newVal);
 
-    public void settipoordentrabajo(int newVal);
+    public void settipoordentrabajo(String newVal);
 
     public Reserva getReserva();
 
