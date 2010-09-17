@@ -7,22 +7,17 @@ package Persistencia.Entidades;
  */
 public class UbicacionImplementacion {
 
-	private int codigoUbicacion;
-	private int Prioridad;
+	private int prioridad;
 	private int tipoubicacion;
-	public Prioridad m_Prioridad;
 
 	public UbicacionImplementacion(){
 
 	}
 
 	
-	public int getcodigoUbicacion(){
-		return codigoUbicacion;
-	}
 
 	public int getPrioridad(){
-		return Prioridad;
+		return prioridad;
 	}
 
 	public int gettipoubicacion(){
@@ -33,16 +28,8 @@ public class UbicacionImplementacion {
 	 * 
 	 * @param newVal
 	 */
-	public void setcodigoUbicacion(int newVal){
-		codigoUbicacion = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setPrioridad(int newVal){
-		Prioridad = newVal;
+		prioridad = newVal;
 	}
 
 	/**

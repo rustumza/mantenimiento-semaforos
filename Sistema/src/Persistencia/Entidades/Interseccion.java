@@ -10,10 +10,6 @@ package Persistencia.Entidades;
  */
 public interface Interseccion extends SuperDruperInterfaz {
 
-    public int getcodigoInterseccion();
-
-    public void setcodigoInterseccion(int newVal);
-
     public Calle getCalle();
 
     public void setCalle(Calle calle);

@@ -4,7 +4,6 @@
  */
 package InterfacesGraficas;
 
-import DTO.DTOOrdenes;
 import DTO.DTOOrdenesTrabajo;
 import Expertos.ExpertoEjecutarOrdenesTrabajo;
 import Fabricas.FabricaExpertos;
@@ -17,19 +16,26 @@ import java.util.List;
  */
 public class ControladorEjecutarOrdenesTrabajo {
 
-        ControladorConsultarOrdenesPendientes ccop;
-        ExpertoEjecutarOrdenesTrabajo eeot;
+    ExpertoEjecutarOrdenesTrabajo experto;
+    PantallaEjecutarOrdenTrabajo pantalla;
 
-        public List<DTOOrdenesTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
-
-            eeot = (ExpertoEjecutarOrdenesTrabajo) FabricaExpertos.getInstance().getExperto("ExpertoEjecutarOrdenesTrabajo");
-
-           return eeot.consultarOrdenesPendientes (fecha, tipo);
-}
-
-    public void confirmarOrden(OrdenDeReparacion ordenes){
-
-       eeot.guardarOrdenes(ordenes);
-
+    public ControladorEjecutarOrdenesTrabajo() {
+        experto = (ExpertoEjecutarOrdenesTrabajo) FabricaExpertos.getInstance().getExperto("ExpertoEjecutarOrdenesTrabajo");
+        pantalla = new PantallaEjecutarOrdenTrabajo(this);
     }
+
+    public void inicar() {
+        pantalla.setVisible(true);
+    }
+
+//    public List<DTOOrdenesTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
+//
+//        /return experto.consultarOrdenesPendientes(fecha, tipo);
+//    }
+//
+//    public void confirmarOrden(OrdenDeReparacion ordenes) {
+//
+//        experto.guardarOrdenes(ordenes);
+//
+//    }
 }

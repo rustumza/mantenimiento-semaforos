@@ -11,9 +11,9 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
 
     private int duracionprevistatrabajo;
     private Date fechafintrabajo;
-    private int fechainicioplanificada;
+    private Date fechainicioplanificada;
     private Date fechainiciotrabajo;
-    private int tipoordentrabajo;
+    private String tipoordentrabajo;
     private Reserva reserva;
     private EquipoDeTrabajo equipoDeTrabajo;
     private Trabajo trabajo;
@@ -30,7 +30,7 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
         return fechafintrabajo;
     }
 
-    public int getfechainicioplanificada() {
+    public Date getfechainicioplanificada() {
         return fechainicioplanificada;
     }
 
@@ -38,7 +38,7 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
         return fechainiciotrabajo;
     }
 
-    public int gettipoordentrabajo() {
+    public String gettipoordentrabajo() {
         return tipoordentrabajo;
     }
 
@@ -62,7 +62,7 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
      *
      * @param newVal
      */
-    public void setfechainicioplanificada(int newVal) {
+    public void setfechainicioplanificada(Date newVal) {
         fechainicioplanificada = newVal;
     }
 
@@ -78,7 +78,7 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
      *
      * @param newVal
      */
-    public void settipoordentrabajo(int newVal) {
+    public void settipoordentrabajo(String newVal) {
         tipoordentrabajo = newVal;
     }
 

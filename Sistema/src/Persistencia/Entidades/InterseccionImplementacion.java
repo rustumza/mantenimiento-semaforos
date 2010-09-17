@@ -7,7 +7,6 @@ package Persistencia.Entidades;
  */
 public class InterseccionImplementacion extends UbicacionImplementacion implements Interseccion{
 
-	private int codigoInterseccion;
 	private Calle calle;
 
 	public InterseccionImplementacion(){
@@ -15,18 +14,6 @@ public class InterseccionImplementacion extends UbicacionImplementacion implemen
 	}
 
 	
-	public int getcodigoInterseccion(){
-		return codigoInterseccion;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcodigoInterseccion(int newVal){
-		codigoInterseccion = newVal;
-	}
-
     /**
      * @return the calle
      */

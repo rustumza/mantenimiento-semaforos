@@ -7,6 +7,7 @@ package Expertos;
 
 import DTO.DTOOrdenes;
 import ExpertosPersistencia.Criterio;
+import Persistencia.Entidades.OrdenDeMantenimiento;
 import Persistencia.Entidades.OrdenTrabajo;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
@@ -46,6 +47,11 @@ public List<OrdenTrabajo> buscarOrdenes(Date fecha){
 
     return listaOrdenTrabajo;
 
+}
+
+public List<OrdenDeMantenimiento> buscarOrdenesMantPendiente(Date fecha){
+
+    return null;
 }
 
 

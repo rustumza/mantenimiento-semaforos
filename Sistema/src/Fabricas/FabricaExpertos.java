@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Fabricas;
 
 import Expertos.Experto;
@@ -17,36 +16,34 @@ import Expertos.ExpertoEjecutarOrdenesTrabajo;
  */
 public class FabricaExpertos {
 
-    private static FabricaExpertos instance=null;
+    private static FabricaExpertos instance = null;
 
-
-    private FabricaExpertos(){
-
+    private FabricaExpertos() {
     }
 
-    public static FabricaExpertos getInstance(){
+    public static FabricaExpertos getInstance() {
 
-        if(instance==null)
+        if (instance == null) {
             instance = new FabricaExpertos();
+        }
 
         return instance;
 
     }
 
+    public Experto getExperto(String tipo) {
+        Experto retorno = null;
 
-    public Experto getExperto(String tipo){
-        Experto retorno=null;
-
-        if(tipo.equals("AtenderReclamoPorDesperfecto"))
+        if (tipo.equals("AtenderReclamoPorDesperfecto")) {
             retorno = new ExpertoAntenderReclamoPorDesperfecto();
-        else if(tipo.equals("ConsultarAvanceDeReclamo"))
+        } else if (tipo.equals("ConsultarAvanceDeReclamo")) {
             retorno = new ExpertoConsultarAvanceDeReclamo();
-        else if (tipo.equals("ConsultarOrdenesPendientes"))
+        } else if (tipo.equals("ConsultarOrdenesPendientes")) {
             retorno = new ExpertoConsultarOrdenesPendientes();
-        else if(tipo.equals("EjecutarOrdenesTrabajo"))
-                retorno = new ExpertoEjecutarOrdenesTrabajo();
+        } else if (tipo.equals("EjecutarOrdenesTrabajo")) {
+            retorno = new ExpertoEjecutarOrdenesTrabajo();
+        }
 
-    return retorno;
+        return retorno;
     }
-
 }

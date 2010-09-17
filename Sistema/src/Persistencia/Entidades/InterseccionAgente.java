@@ -17,14 +17,6 @@ public class InterseccionAgente implements Interseccion {
     //variable para saber si el objeto relacionado ya ha sido buscado en la BD
     private boolean calleBuscado;
 
-    public int getcodigoInterseccion() {
-        return implementacion.getcodigoInterseccion();
-    }
-
-    public void setcodigoInterseccion(int newVal) {
-        implementacion.setcodigoInterseccion(newVal);
-    }
-
     public Calle getCalle() {
         if (isCalleBuscado() == false) {
             implementacion.setCalle((Calle) FachadaInterna.getInstancia().buscar("Calle", oidCalle));
