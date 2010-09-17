@@ -5,8 +5,11 @@
 
 package Expertos;
 
+import DTO.DTOProblemasDelSemaforo;
 import ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.Calle;
+import Persistencia.Entidades.Denuncia;
+import Persistencia.Entidades.DenunciaEstado;
 import Persistencia.Entidades.Denunciante;
 import Persistencia.Entidades.Interseccion;
 import Persistencia.Entidades.ObjetoPersistente;
@@ -14,6 +17,7 @@ import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Semaforo;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -85,11 +89,29 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         return listaDeProblema;
     }
 
-    public void guardarDenuncia(List<Semaforo> listaSemaforo, List<Problema> listaProblema){
+    public void guardarDenuncia(List<DTOProblemasDelSemaforo> listaDeProblemasDelSemaforo){
 
-        for(Semaforo aux:listaSemaforo)
-            aux.
-        FachadaExterna.getInstancia().
+        List<Criterio> listaDeCriterios;
+        List<Denuncia> listaDeDenuncias;
+        List<SuperDruperInterfaz> listaDeInterfaces;
+        for(DTOProblemasDelSemaforo aux : listaDeProblemasDelSemaforo){
+            listaDeCriterios = new ArrayList<Criterio>();
+            listaDeDenuncias = new ArrayList<Denuncia>();
+            listaDeCriterios.add(FachadaExterna.getInstancia().crearCriterio("Semaforo", "=", aux.getSemaforo()));
+            listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", listaDeCriterios);
+            for(SuperDruperInterfaz aux1 : listaDeInterfaces)
+                listaDeDenuncias.add((Denuncia) aux1);
+
+            for(Denuncia denuncia : listaDeDenuncias){
+                for(DenunciaEstado denunciaEstado : denuncia.getDenunciaEstado())
+                    if(!denunciaEstado.getEstadoDenuncia().getnombreestado().equalsIgnoreCase("Final"));
+
+            }
+            listaDeCriterios.add(FachadaExterna.getInstancia().crearCriterio("DenunciaEstado", "", null));
+            FachadaExterna.getInstancia().buscaraux.getSemaforo()
+
+        }
+
            
 
 

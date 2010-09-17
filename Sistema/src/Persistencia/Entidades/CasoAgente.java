@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author diego
  */
-public class CasoAgente implements Caso {
+public class CasoAgente extends ObjetoPersistente implements Caso  {
 
     private CasoImplementacion implementacion;
     private String oidOperador;
