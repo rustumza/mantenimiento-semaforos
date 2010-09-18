@@ -1,6 +1,7 @@
 package Persistencia.Entidades;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Bicentenario
@@ -17,7 +18,7 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
     private Reserva reserva;
     private EquipoDeTrabajo equipoDeTrabajo;
     private Trabajo trabajo;
-    private OrdenTrabajoEstado ordenTrabajoEstado;
+    private List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo;
 
     public OrdenTrabajoImplementacion() {
     }
@@ -125,16 +126,17 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
     }
 
     /**
-     * @return the ordenTrabajoEstado
+     * @return the listaEstadosOrdenTrabajo
      */
-    public OrdenTrabajoEstado getOrdenTrabajoEstado() {
-        return ordenTrabajoEstado;
+    public List<OrdenTrabajoEstado> getListaEstadosOrdenTrabajo() {
+        return listaEstadosOrdenTrabajo;
     }
 
     /**
-     * @param ordenTrabajoEstado the ordenTrabajoEstado to set
+     * @param listaEstadosOrdenTrabajo the listaEstadosOrdenTrabajo to set
      */
-    public void setOrdenTrabajoEstado(OrdenTrabajoEstado ordenTrabajoEstado) {
-        this.ordenTrabajoEstado = ordenTrabajoEstado;
+    public void setListaEstadosOrdenTrabajo(List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo) {
+        this.listaEstadosOrdenTrabajo = listaEstadosOrdenTrabajo;
     }
+
 }
