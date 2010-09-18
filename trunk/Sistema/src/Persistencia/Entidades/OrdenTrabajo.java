@@ -5,6 +5,7 @@
 package Persistencia.Entidades;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -44,7 +45,7 @@ public interface OrdenTrabajo extends SuperDruperInterfaz {
 
     public void setTrabajo(Trabajo trabajo);
 
-    public OrdenTrabajoEstado getOrdenTrabajoEstado();
+    public List<OrdenTrabajoEstado> getListaEstadosOrdenTrabajo();
 
-    public void setOrdenTrabajoEstado(OrdenTrabajoEstado ordenTrabajoEstado);
+    public void setListaEstadosOrdenTrabajo(List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo);
 }

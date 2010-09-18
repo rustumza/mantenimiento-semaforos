@@ -4,25 +4,27 @@
  */
 package Persistencia.Entidades;
 
+import ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class OrdenTrabajoAgente implements OrdenTrabajo {
+public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabajo {
 
     private OrdenTrabajoImplementacion implementacion;
     private String oidReserva;
     private String oidEquipoDeTrabajo;
     private String oidTrabajo;
-    private String oidOrdenTrabajoEstado;
     //variable para saber si el objeto relacionado ha sido buscado en la BD
     private boolean reservaBuscado;
     private boolean equipoDeTrabajoBuscado;
     private boolean trabajoBuscado;
-    private boolean ordenTrabajoEstadoBuscado;
+    private boolean ordenTrabajoEstadosBuscado;
 
     public int getduracionprevistatrabajo() {
         return implementacion.getduracionprevistatrabajo();
@@ -96,17 +98,6 @@ public class OrdenTrabajoAgente implements OrdenTrabajo {
 
     public void setTrabajo(Trabajo trabajo) {
         implementacion.setTrabajo(trabajo);
-    }
-
-    public OrdenTrabajoEstado getOrdenTrabajoEstado() {
-        if (isOrdenTrabajoEstadoBuscado() == false) {
-            implementacion.setOrdenTrabajoEstado((OrdenTrabajoEstado) FachadaInterna.getInstancia().buscar("OrdenTrabajoEstado", oidOrdenTrabajoEstado));
-        }
-        return implementacion.getOrdenTrabajoEstado();
-    }
-
-    public void setOrdenTrabajoEstado(OrdenTrabajoEstado ordenTrabajoEstado) {
-        implementacion.setOrdenTrabajoEstado(ordenTrabajoEstado);
     }
 
     /**
@@ -207,31 +198,33 @@ public class OrdenTrabajoAgente implements OrdenTrabajo {
         this.trabajoBuscado = trabajoBuscado;
     }
 
-    /**
-     * @return the oidOrdenTrabajoEstado
-     */
-    public String getOidOrdenTrabajoEstado() {
-        return oidOrdenTrabajoEstado;
+    public List<OrdenTrabajoEstado> getListaEstadosOrdenTrabajo() {
+        if(isOrdenTrabajoEstadosBuscado()==false){
+            List<Criterio> listaCriterios = new ArrayList<Criterio>();
+            listaCriterios.add(FachadaInterna.getInstancia().crearCriterio("OIDOrdenDeTrabajo", "=", super.getOid()));
+
+            for (SuperDruperInterfaz estado : FachadaInterna.getInstancia().buscar("OrdenTrabajoEstado", listaCriterios)) {
+                implementacion.getListaEstadosOrdenTrabajo().add((OrdenTrabajoEstado)estado);
+            }
+        }
+        return implementacion.getListaEstadosOrdenTrabajo();
+    }
+
+    public void setListaEstadosOrdenTrabajo(List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo) {
+       implementacion.setListaEstadosOrdenTrabajo(listaEstadosOrdenTrabajo);
     }
 
     /**
-     * @param oidOrdenTrabajoEstado the oidOrdenTrabajoEstado to set
+     * @return the ordenTrabajoEstadosBuscado
      */
-    public void setOidOrdenTrabajoEstado(String oidOrdenTrabajoEstado) {
-        this.oidOrdenTrabajoEstado = oidOrdenTrabajoEstado;
+    public boolean isOrdenTrabajoEstadosBuscado() {
+        return ordenTrabajoEstadosBuscado;
     }
 
     /**
-     * @return the ordenTrabajoEstadoBuscado
+     * @param ordenTrabajoEstadosBuscado the ordenTrabajoEstadosBuscado to set
      */
-    public boolean isOrdenTrabajoEstadoBuscado() {
-        return ordenTrabajoEstadoBuscado;
-    }
-
-    /**
-     * @param ordenTrabajoEstadoBuscado the ordenTrabajoEstadoBuscado to set
-     */
-    public void setOrdenTrabajoEstadoBuscado(boolean ordenTrabajoEstadoBuscado) {
-        this.ordenTrabajoEstadoBuscado = ordenTrabajoEstadoBuscado;
+    public void setOrdenTrabajoEstadosBuscado(boolean ordenTrabajoEstadosBuscado) {
+        this.ordenTrabajoEstadosBuscado = ordenTrabajoEstadosBuscado;
     }
 }

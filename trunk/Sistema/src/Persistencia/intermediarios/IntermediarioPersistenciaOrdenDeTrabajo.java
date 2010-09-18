@@ -2,15 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import//borrar el import
 
 
 package Persistencia.intermediarios;
 
 import ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.OrdenTrabajo;
+import Persistencia.Entidades.OrdenTrabajoAgente;
+import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,12 +34,22 @@ private String oid;
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
 
-        return select = "select * from ordendetrabajo where " ;//criterios
+        select = "SELECT * FROM ordendetrabajo" ;//criterios
+        
+        if (!criterios.isEmpty()) {
+            select = select + " WHERE ";
+            for (int i = 0; i < criterios.size(); i++) {
+                if (i > 0) {
+                    select = select + criterios.get(i).getTipo();
+                }
 
+                select = select + "ordendetrabajo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor()+"'";
+            }
+        }
+
+        return select;
     }
 
     public String armarSelectOid(String oid) {
@@ -41,7 +57,7 @@ private String oid;
         String selectOid;
         this.oid =oid;
 
-        return selectOid = "select * from ordendetrabajo where OIDOrdenDeTrabajo = " + oid;
+        return selectOid = "SELECT * FROM ordendetrabajo WHERE OIDOrdenDeTrabajo = " + oid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
@@ -57,6 +73,22 @@ private String oid;
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
+        List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
+        try {
+            while (rs.next()) {
+                OrdenTrabajoAgente nuevaOrdenTrabajo = (OrdenTrabajoAgente) FabricaEntidades.getInstancia().crearEntidad("OrdenTrabajo");
+                nuevaOrdenTrabajo.setIsNuevo(false);
+                nuevaOrdenTrabajo.setOid(rs.getString("OIDOrdenDeTrabajo"));
+                nuevaOrdenTrabajo.setOidEquipoDeTrabajo(rs.getString("OIDEquipoDeTrabajo"));
+                nuevaOrdenTrabajo.setEquipoDeTrabajoBuscado(false);
+                nuevaOrdenTrabajo.setOrdenTrabajoEstadosBuscado(false);
+                nuevaOrdenTrabajo.setOidReserva(rs.getString(""));
+
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
 
         return null;
     }
