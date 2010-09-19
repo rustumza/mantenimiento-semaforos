@@ -9,7 +9,6 @@ package Persistencia.ExpertosPersistencia;
 
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.Entidades.ObjetoPersistente;
-import ExpertosPersistencia.Criterio;
 import java.util.List;
 
 /**

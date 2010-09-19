@@ -6,7 +6,7 @@
 package Expertos;
 
 import DTO.DTOEstadoDenuncia;
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.Denuncia;
 import Persistencia.Entidades.DenunciaEstado;
 import Persistencia.Entidades.SuperDruperInterfaz;
