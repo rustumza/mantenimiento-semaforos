@@ -10,13 +10,11 @@ package Persistencia.ExpertosPersistencia;
  */
 public class Criterio {
 
-    public static final int AND = 1;
-    public static final int OR = 2;
-    public static final int LIKE = 3;
+
     private String atributo;
     private String operador;
     private String valor;
-    private String tipo;
+   
 
     /**
      * @return the atributo
@@ -61,29 +59,5 @@ public class Criterio {
 
     }
 
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param selecTipo opcion para setear los distintos tipos
-     */
-    public void setTipo(int selecTipo) {
-        switch (selecTipo) {
-            case AND:
-                tipo = " AND ";
-                break;
-            case OR:
-                tipo = " OR ";
-                break;
-            case LIKE:
-                tipo = " LIKE ";
-                break;
-            default:
-                break;
-        }
-    }
+   
 }
