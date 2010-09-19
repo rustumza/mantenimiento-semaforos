@@ -6,7 +6,7 @@
 package Expertos;
 
 import DTO.DTOProblemasDelSemaforo;
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denuncia;
 import Persistencia.Entidades.DenunciaEstado;

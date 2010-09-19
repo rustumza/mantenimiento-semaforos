@@ -1,6 +1,6 @@
 package Persistencia.Fabricas;
 
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 
 /*

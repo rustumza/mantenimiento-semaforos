@@ -9,7 +9,7 @@ package Persistencia.intermediarios;
 
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.ExpertosPersistencia.Conexion;
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import ExpertosPersistencia.generadorOid;
 import java.sql.ResultSet;
 import java.util.ArrayList;

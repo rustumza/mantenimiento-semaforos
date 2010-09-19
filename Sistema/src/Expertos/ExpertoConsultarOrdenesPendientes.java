@@ -6,7 +6,7 @@
 package Expertos;
 
 import DTO.DTOOrdenes;
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.OrdenDeMantenimiento;
 import Persistencia.Entidades.OrdenTrabajo;
 import Persistencia.Entidades.SuperDruperInterfaz;

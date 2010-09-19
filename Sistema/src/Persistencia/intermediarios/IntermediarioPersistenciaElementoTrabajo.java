@@ -7,7 +7,7 @@ import//borrar el import
 
 package Persistencia.intermediarios;
 
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ElementoTrabajoMantenimiento;
 import Persistencia.Entidades.ElementoTrabajoMantenimientoAgente;
 import Persistencia.Entidades.ObjetoPersistente;

@@ -10,7 +10,7 @@ package Persistencia.intermediarios;
 
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.ExpertosPersistencia.Cache;
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import java.util.ArrayList;
 import java.util.List;
 

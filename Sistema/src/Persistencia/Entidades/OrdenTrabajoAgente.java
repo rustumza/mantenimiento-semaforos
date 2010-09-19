@@ -4,7 +4,7 @@
  */
 package Persistencia.Entidades;
 
-import ExpertosPersistencia.Criterio;
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
 import java.util.ArrayList;
 import java.util.Date;
