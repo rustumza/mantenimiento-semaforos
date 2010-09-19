@@ -73,7 +73,7 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
     }
 
     public List<Semaforo> buscarSemaforo(Interseccion interseccion) {
-        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Interseccion", "=", Interseccion);
+        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Interseccion", "=", interseccion);
         List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
         listaDeCriterio.add(criterio);
         FachadaExterna.getInstancia().buscar("Semaforo", listaDeCriterio);
@@ -93,6 +93,7 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
 
         List<Criterio> listaDeCriterios;
         List<Denuncia> listaDeDenuncias;
+        List<DTOProblemasDelSemaforo> listaDTOProblemasDelSemaforosParaHacerleDenuncia = new ArrayList<DTOProblemasDelSemaforo>();
         List<SuperDruperInterfaz> listaDeInterfaces;
         for(DTOProblemasDelSemaforo aux : listaDeProblemasDelSemaforo){
             listaDeCriterios = new ArrayList<Criterio>();
@@ -101,10 +102,25 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
             listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", listaDeCriterios);
             for(SuperDruperInterfaz aux1 : listaDeInterfaces)
                 listaDeDenuncias.add((Denuncia) aux1);
-
+            Denuncia denunciaAUtilizar = (Denuncia) FachadaExterna.getInstancia().crearEntidad("Denuncia");
             for(Denuncia denuncia : listaDeDenuncias){
+                boolean bandera = false;
                 for(DenunciaEstado denunciaEstado : denuncia.getDenunciaEstado())
-                    if(!denunciaEstado.getEstadoDenuncia().getnombreestado().equalsIgnoreCase("Final"));
+                    if(denunciaEstado.getEstadoDenuncia().getnombreestado().equalsIgnoreCase("Final"))
+                        bandera=true;
+                if(!bandera){
+                    //hacer un reclamo para esta denuncia
+                    break;
+                }
+                
+
+
+
+
+
+
+
+
 
             }
             listaDeCriterios.add(FachadaExterna.getInstancia().crearCriterio("DenunciaEstado", "", null));
