@@ -138,4 +138,9 @@ public class ReparacionTareaRealizadaAgente implements ReparacionTareaRealizada{
         this.tareaBuscado = tareaBuscado;
     }
 
+    public void setImplementacion(ReparacionTareaRealizadaImplementacion implementacion){
+        this.implementacion = implementacion;
+
+    }
+
 }

@@ -7,37 +7,57 @@ package Persistencia.Entidades;
  */
 public class UbicacionImplementacion {
 
-	private int prioridad;
-	private int tipoubicacion;
+    private int codigoubicacion;
+    private int prioridad;
+    private int tipoubicacion;
+    private Operador operador;
 
-	public UbicacionImplementacion(){
+    public UbicacionImplementacion() {
+    }
 
-	}
+    public int getcodigoubicacion(){
+        return codigoubicacion;
 
-	
+    }
+    public int getPrioridad() {
+        return prioridad;
+    }
 
-	public int getPrioridad(){
-		return prioridad;
-	}
+    public int gettipoubicacion() {
+        return tipoubicacion;
+    }
 
-	public int gettipoubicacion(){
-		return tipoubicacion;
-	}
+    /**
+     *
+     * @param newVal
+     */
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrioridad(int newVal){
-		prioridad = newVal;
-	}
+    public void setcodigoubicacion(int newVal){
+        codigoubicacion = newVal;
+    }
+    public void setPrioridad(int newVal) {
+        prioridad = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void settipoubicacion(int newVal){
-		tipoubicacion = newVal;
-	}
+    /**
+     *
+     * @param newVal
+     */
+    public void settipoubicacion(int newVal) {
+        tipoubicacion = newVal;
+    }
 
+    /**
+     * @return the operador
+     */
+    public Operador getOperador() {
+        return operador;
+    }
+
+    /**
+     * @param operador the operador to set
+     */
+    public void setOperador(Operador operador) {
+        this.operador = operador;
+    }
 }
