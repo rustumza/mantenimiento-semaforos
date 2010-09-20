@@ -31,6 +31,7 @@ import Persistencia.intermediarios.IntermediarioPersistenciaModelo;
 import Persistencia.intermediarios.IntermediarioPersistenciaNumerador;
 import Persistencia.intermediarios.IntermediarioPersistenciaOperador;
 import Persistencia.intermediarios.IntermediarioPersistenciaOrdenDeMantenimiento;
+import Persistencia.intermediarios.IntermediarioPersistenciaOrdenDeTrabajo;
 import Persistencia.intermediarios.IntermediarioPersistenciaOrdenReparacion;
 import Persistencia.intermediarios.IntermediarioPersistenciaOrdenTrabajoEstado;
 import Persistencia.intermediarios.IntermediarioPersistenciaOrientacion;
@@ -84,9 +85,10 @@ public class FabricaIntermediarios {
     public IntermediarioPersistencia crearIntermediario(String nombre) {
         IntermediarioPersistencia intermediario = null;
 
-        if (nombre.equals("Calle")) {
-            intermediario = (new IntermediarioPersistenciaCalle());
+        if(nombre.equals("Calle")){
+        intermediario = (new IntermediarioPersistenciaCalle());
         }
+
 
         if (nombre.equals("Caso")) {
             intermediario = (new IntermediarioPersistenciaCaso());
