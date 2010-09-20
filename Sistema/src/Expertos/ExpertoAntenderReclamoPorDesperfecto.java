@@ -95,6 +95,7 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         List<Denuncia> listaDeDenuncias;
         List<DTOProblemasDelSemaforo> listaDTOProblemasDelSemaforosParaHacerleDenuncia = new ArrayList<DTOProblemasDelSemaforo>();
         List<SuperDruperInterfaz> listaDeInterfaces;
+        boolean seNecesitaCrearDenunciaNueva=false;
         for(DTOProblemasDelSemaforo aux : listaDeProblemasDelSemaforo){
             listaDeCriterios = new ArrayList<Criterio>();
             listaDeDenuncias = new ArrayList<Denuncia>();
@@ -102,33 +103,54 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
             listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", listaDeCriterios);
             for(SuperDruperInterfaz aux1 : listaDeInterfaces)
                 listaDeDenuncias.add((Denuncia) aux1);
-            Denuncia denunciaAUtilizar = (Denuncia) FachadaExterna.getInstancia().crearEntidad("Denuncia");
+
+            Denuncia denunciaAUtilizar=null;
+            int bandera=0;
             for(Denuncia denuncia : listaDeDenuncias){
-                boolean bandera = false;
-                for(DenunciaEstado denunciaEstado : denuncia.getDenunciaEstado())
-                    if(denunciaEstado.getEstadoDenuncia().getnombreestado().equalsIgnoreCase("Final"))
-                        bandera=true;
-                if(!bandera){
-                    //hacer un reclamo para esta denuncia
-                    break;
+                for(DenunciaEstado denunciaEstado : denuncia.getDenunciaEstado()){
+                    if(denunciaEstado.getEstadoDenuncia().getnombreestado().equalsIgnoreCase("Pendiente de atención") & denunciaEstado.isindicadorestadoactual()){
+                        denunciaAUtilizar=denuncia;
+                        bandera=1;//avisa que se tiene que hacer un reclamo con la denuncia guradada en denuncia
+                        //GENERAR UN RECLAMO
+                    }
+                    else if(!denunciaEstado.getEstadoDenuncia().getnombreestado().equalsIgnoreCase("Final") & denunciaEstado.isindicadorestadoactual()){
+                        bandera=1;//tiene que avisar que no se puede generar un reclamo pero que la denuncia ya exite
+                            //AVISAR QUE NO SE PUEDE HACER UNA DENUNCIA
+                    }
+                     //sino tiene que generar una denuncia
                 }
-                
+                    
+                if(bandera == 1)
+                    break;
+            }
 
+            if(bandera==1 & denunciaAUtilizar==null ){
+            //avisar que tiene que esperar, que ya existe la denuncia
 
-
-
-
-
-
-
+            }else if(bandera==1 & denunciaAUtilizar!=null){
+            //GEnerar un reclamo
 
             }
-            listaDeCriterios.add(FachadaExterna.getInstancia().crearCriterio("DenunciaEstado", "", null));
-            FachadaExterna.getInstancia().buscaraux.getSemaforo()
+            else if (bandera == 0){
+                //generar denuncia
+                listaDTOProblemasDelSemaforosParaHacerleDenuncia.add(aux);
+                seNecesitaCrearDenunciaNueva=true;
 
+            }
         }
 
-           
+        if(seNecesitaCrearDenunciaNueva){
+            List<Semaforo> listSem = new ArrayList<Semaforo>();
+            List<Problema> listProb = new ArrayList<Problema>();
+            for(DTOProblemasDelSemaforo aux : listaDTOProblemasDelSemaforosParaHacerleDenuncia){
+                listSem.add(aux.getSemaforo());
+                for(Problema problem : aux.getListaDeProblemas())
+                    listProb.add(problem);
+            }
+            Denuncia den = (Denuncia)FachadaExterna.getInstancia().crearEntidad("Denuncia");
+            den.setSemaforo(listSem);
+            den.setProblema(listProb);
+        }
 
 
 

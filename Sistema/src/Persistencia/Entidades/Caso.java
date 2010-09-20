@@ -5,6 +5,7 @@
 package Persistencia.Entidades;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -24,13 +25,13 @@ public interface Caso extends SuperDruperInterfaz {
 
     public void setOperador(Operador operador);
 
-    public Semaforo getSemaforo();
+    public List<Semaforo> getSemaforo();
 
-    public void setSemaforo(Semaforo semaforo);
+    public void setSemaforo(List<Semaforo> semaforo);
 
-    public Problema getProblema();
+    public List<Problema> getProblema();
 
-    public void setProblema(Problema problema);
+    public void setProblema(List<Problema> problema);
 
     public Denunciante getDenunciante();
 

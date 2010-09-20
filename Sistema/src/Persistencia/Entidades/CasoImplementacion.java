@@ -1,6 +1,7 @@
 package Persistencia.Entidades;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Bicentenario
@@ -12,8 +13,8 @@ public class CasoImplementacion implements Caso{
     private Date fechacaso;
     private int tipocaso;
     private Operador operador;
-    private Semaforo semaforo;
-    private Problema problema;
+    private List<Semaforo> semaforo;
+    private List<Problema> problema;
     private Denunciante denunciante;
     
 
@@ -61,28 +62,28 @@ public class CasoImplementacion implements Caso{
     /**
      * @return the semaforo
      */
-    public Semaforo getSemaforo() {
+    public List<Semaforo> getSemaforo() {
         return semaforo;
     }
 
     /**
      * @param semaforo the semaforo to set
      */
-    public void setSemaforo(Semaforo semaforo) {
+    public void setSemaforo(List<Semaforo> semaforo) {
         this.semaforo = semaforo;
     }
 
     /**
      * @return the problema
      */
-    public Problema getProblema() {
+    public List<Problema> getProblema() {
         return problema;
     }
 
     /**
      * @param problema the problema to set
      */
-    public void setProblema(Problema problema) {
+    public void setProblema(List<Problema> problema) {
         this.problema = problema;
     }
 
