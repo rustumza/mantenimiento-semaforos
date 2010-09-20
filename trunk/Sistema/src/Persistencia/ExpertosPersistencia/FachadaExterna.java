@@ -7,6 +7,7 @@ package Persistencia.ExpertosPersistencia;
  * and open the template in the editor.
  */
 
+import Persistencia.Entidades.DenunciaEstado;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.Entidades.ObjetoPersistente;
 import java.util.List;
@@ -49,6 +50,12 @@ public class FachadaExterna {
 
     }
 
+       public List<DenunciaEstado> getEstados(){
+
+
+
+           return null;
+       }
 
     public List<SuperDruperInterfaz> buscar(String nombreEntidad, List<Criterio> listaCriterios) {
         return FachadaInterna.getInstancia().buscar(nombreEntidad, listaCriterios);
