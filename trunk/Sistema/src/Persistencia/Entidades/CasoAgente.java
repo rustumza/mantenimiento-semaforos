@@ -4,8 +4,11 @@
  */
 package Persistencia.Entidades;
 
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -52,26 +55,39 @@ public class CasoAgente extends ObjetoPersistente implements Caso  {
         getImplementacion().setOperador(operador);
     }
 
-    public Semaforo getSemaforo() {
+    public List<Semaforo> getSemaforo() {
+         
         if (isSemaforoBuscado() == false) {
-            getImplementacion().setSemaforo((Semaforo) FachadaInterna.getInstancia().buscar("Semaforo", getOidSemaforo()));
+            List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
+            listaDeCriterio.add(FachadaInterna.getInstancia().crearCriterio("Denuncia", "=", super.getOid()));
+            List<SuperDruperInterfaz> listaDeInterfaces = FachadaInterna.getInstancia().buscar("Semaforo", listaDeCriterio);
+            List<Semaforo> listaDeSemaforo=new ArrayList<Semaforo>();
+            for(SuperDruperInterfaz aux : listaDeInterfaces)
+                listaDeSemaforo.add((Semaforo) aux);
+            getImplementacion().setSemaforo(listaDeSemaforo);
         }
         return getImplementacion().getSemaforo();
     }
 
-    public void setSemaforo(Semaforo semaforo) {
+    public void setSemaforo(List<Semaforo> semaforo) {
         getImplementacion().setSemaforo(semaforo);
 
     }
 
-    public Problema getProblema() {
+    public List<Problema> getProblema() {
         if (isProblemaBuscado() == false) {
-            getImplementacion().setProblema((Problema) FachadaInterna.getInstancia().buscar("Problema", oidProblema));
+            List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
+            listaDeCriterio.add(FachadaInterna.getInstancia().crearCriterio("Denuncia", "=", super.getOid()));
+            List<SuperDruperInterfaz> listaDeInterfaces = FachadaInterna.getInstancia().buscar("Semaforo", listaDeCriterio);
+            List<Problema> listaDeProblema = new ArrayList<Problema>();
+            for(SuperDruperInterfaz aux : listaDeInterfaces)
+                listaDeProblema.add((Problema) aux);
+            getImplementacion().setProblema(listaDeProblema);
         }
         return getImplementacion().getProblema();
     }
 
-    public void setProblema(Problema problema) {
+    public void setProblema(List<Problema> problema) {
         getImplementacion().setProblema(problema);
     }
 
