@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Expertos;
 
 import DTO.DTOEstadoDenuncia;
@@ -20,21 +19,27 @@ import java.util.List;
  */
 public class ExpertoConsultarAvanceDeReclamo implements Experto {
 
-    public List<DTOEstadoDenuncia> ConsultarEstadoCaso(String numcaso){
+    public List<DTOEstadoDenuncia> ConsultarEstadoCaso(String numcaso) {
 
-        Criterio criterio=FachadaExterna.getInstancia().crearCriterio("CodigoDenuncia", "=", numcaso);
-        List<Criterio> ListaDeCriterio = new ArrayList<Criterio>();
-        ListaDeCriterio.add(criterio);
-        List<SuperDruperInterfaz> ListaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", ListaDeCriterio);
-        List<Denuncia> ListaDenuncia = new ArrayList<Denuncia>();
-        for (SuperDruperInterfaz aux: ListaDeInterfaces){
-        ListaDenuncia.add((Denuncia)aux);
-
+        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("CodigoDenuncia", "=", numcaso);
+        List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
+        listaDeCriterio.add(criterio);
+        List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", listaDeCriterio);
+        List<Denuncia> listaDenuncia = new ArrayList<Denuncia>();
+        for (SuperDruperInterfaz aux : listaDeInterfaces) {
+            listaDenuncia.add((Denuncia) aux);
         }
-        return (List<DTOEstadoDenuncia>) ListaDenuncia.get(0);
+
+        for(Denuncia denuncia : listaDenuncia){
+            for(DenunciaEstado denEstado: denuncia.getDenunciaEstado()){
+                DTOEstadoDenuncia estDenuncia = new DTOEstadoDenuncia();
+                estDenuncia.setFecha(denEstado.getfechacambioestado());
+                denEstado.setEstadoDenuncia(denEstado.getEstadoDenuncia());
+            }
+        }
+                 
+        return (List<DTOEstadoDenuncia>) listaDenuncia.get(0);
     }
 
-    public List<DenunciaEstado> getEstados();
-
-
+    
 }

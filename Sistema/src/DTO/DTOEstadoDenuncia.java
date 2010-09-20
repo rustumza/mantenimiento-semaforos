@@ -5,12 +5,17 @@
 
 package DTO;
 
+import java.util.Date;
+
 /**
  *
  * @author LEIVA
  */
 public class DTOEstadoDenuncia {
 
-
+       int fecha;
+public void setFecha(int fecha){
+    this.fecha = fecha;
+}
 
 }
