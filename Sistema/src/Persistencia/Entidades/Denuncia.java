@@ -20,9 +20,9 @@ public interface Denuncia extends Caso {
 
     public void setprioridad(float newVal);
 
-    public Reclamo getReclamo();
+    public List<Reclamo> getReclamo();
 
-    public void setReclamo(Reclamo reclamo);
+    public void setReclamo(List<Reclamo> reclamo);
 
     public List<DenunciaEstado> getDenunciaEstado();
 

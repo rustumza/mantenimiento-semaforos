@@ -6,14 +6,18 @@
 package Expertos;
 
 import DTO.DTOProblemasDelSemaforo;
+import DTO.DTOinfoParaCrearDenuncia;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denuncia;
 import Persistencia.Entidades.DenunciaEstado;
 import Persistencia.Entidades.Denunciante;
+import Persistencia.Entidades.EstadoDenuncia;
 import Persistencia.Entidades.Interseccion;
+import Persistencia.Entidades.Numerador;
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.Entidades.Problema;
+import Persistencia.Entidades.Reclamo;
 import Persistencia.Entidades.Semaforo;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
@@ -89,14 +93,14 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         return listaDeProblema;
     }
 
-    public void guardarDenuncia(List<DTOProblemasDelSemaforo> listaDeProblemasDelSemaforo){
+    public void guardarDenuncia(DTOinfoParaCrearDenuncia dtoInfoParaCrearDenuncia){
 
         List<Criterio> listaDeCriterios;
         List<Denuncia> listaDeDenuncias;
         List<DTOProblemasDelSemaforo> listaDTOProblemasDelSemaforosParaHacerleDenuncia = new ArrayList<DTOProblemasDelSemaforo>();
         List<SuperDruperInterfaz> listaDeInterfaces;
         boolean seNecesitaCrearDenunciaNueva=false;
-        for(DTOProblemasDelSemaforo aux : listaDeProblemasDelSemaforo){
+        for(DTOProblemasDelSemaforo aux : dtoInfoParaCrearDenuncia.getProblemasDelSemaforo()){
             listaDeCriterios = new ArrayList<Criterio>();
             listaDeDenuncias = new ArrayList<Denuncia>();
             listaDeCriterios.add(FachadaExterna.getInstancia().crearCriterio("Semaforo", "=", aux.getSemaforo()));
@@ -150,11 +154,56 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
             Denuncia den = (Denuncia)FachadaExterna.getInstancia().crearEntidad("Denuncia");
             den.setSemaforo(listSem);
             den.setProblema(listProb);
+            den.setDenunciante(dtoInfoParaCrearDenuncia.getDenunciante());
+            den.setOperador(dtoInfoParaCrearDenuncia.getOperador());
+            den.setfechacaso(new Date());
+            den.settipocaso(1);
+            List<Criterio> listCrit = new ArrayList<Criterio>();
+            listCrit.add(FachadaExterna.getInstancia().crearCriterio("TipoNumeracion", "=" , "Denuncia"));
+            List<SuperDruperInterfaz> listDeInterf = FachadaExterna.getInstancia().buscar("Numerador", listCrit);
+            Numerador numerador = (Numerador)listDeInterf.get(0);
+            den.setcodigoDenuncia(numerador.getultimonumeroregistrado()+1);
+            den.setReclamo(new ArrayList<Reclamo>());
+            den.setprioridad(calcularPrioridad(den.getReclamo(), den.getSemaforo().get(0)));
+            den.setDenunciaEstado(new ArrayList<DenunciaEstado>());
+            DenunciaEstado denEstado = (DenunciaEstado) FachadaExterna.getInstancia().crearEntidad("DenunciaEstado");
+            denEstado.setfechacambioestado(1);
+            denEstado.setindicadorestadoactual(true);
+            List<Criterio> listCriterioEstDen = new ArrayList<Criterio>();
+            listCriterioEstDen.add(FachadaExterna.getInstancia().crearCriterio("nombreEstado", "=", "Pendiente de atención"));
+            List<SuperDruperInterfaz> listaEstDen = FachadaExterna.getInstancia().buscar("EstadoDenuncia", listCriterioEstDen);
+            denEstado.setEstadoDenuncia((EstadoDenuncia)listaEstDen.get(0));
+            List<DenunciaEstado> listaDenEstado = new ArrayList<DenunciaEstado>();
+            listaDenEstado.add(denEstado);
+            den.setDenunciaEstado(listaDenEstado);
+            
+
+
         }
 
 
 
     }
 
+private float calcularPrioridad(List<Reclamo> listaReclamos, Semaforo semaforo){
 
+    float prioridadDenuncia = 0;
+    int cantReclamos = listaReclamos.size();
+    float pesoReclamos=0;
+    if(cantReclamos <= 2)
+	pesoReclamos=1;
+    else if(cantReclamos <=5)
+	pesoReclamos=2;
+    else if (cantReclamos <=7)
+	pesoReclamos=3;
+    else if (cantReclamos <=10)
+	pesoReclamos=4;
+    else
+	pesoReclamos=5;
+    
+    float prioridadInterseccion = semaforo.getUbicacion().getPrioridad();
+    prioridadDenuncia = (float) (0.75 * prioridadInterseccion + 0.25 * pesoReclamos);
+
+    return prioridadDenuncia;
+}
 }

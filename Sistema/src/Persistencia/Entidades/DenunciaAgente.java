@@ -41,14 +41,21 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
         implementacion.setprioridad(newVal);
     }
 
-    public Reclamo getReclamo() {
-        if (isReclamoBuscado() == false) {
-            implementacion.setReclamo((Reclamo) FachadaInterna.getInstancia().buscar("Reclamo", oidReclamo));
+    public List<Reclamo> getReclamo() {
+          if (isReclamoBuscado() == false) {
+            List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
+            listaDeCriterio.add(FachadaInterna.getInstancia().crearCriterio("oidDenuncia", "=",super.getOid()));
+            List<SuperDruperInterfaz> listaDeInterfaces = FachadaInterna.getInstancia().buscar("Reclamo", listaDeCriterio);
+            List<Reclamo> listaReclamo = new ArrayList<Reclamo>();
+            for(SuperDruperInterfaz aux : listaDeInterfaces)
+                listaReclamo.add((Reclamo) aux);
+
+            implementacion.setReclamo(listaReclamo);
         }
         return implementacion.getReclamo();
     }
 
-    public void setReclamo(Reclamo reclamo) {
+    public void setReclamo(List<Reclamo> reclamo) {
         implementacion.setReclamo(reclamo);
     }
 
@@ -84,6 +91,7 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     /**
      * @return the implementacion
      */
+    @Override
     public DenunciaImplementacion getImplementacion() {
         return implementacion;
     }

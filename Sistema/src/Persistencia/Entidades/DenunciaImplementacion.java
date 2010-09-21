@@ -11,7 +11,7 @@ public class DenunciaImplementacion extends CasoImplementacion implements Denunc
 
     private int codigoDenuncia;
     private float prioridad;
-    private Reclamo reclamo;
+    private List<Reclamo> reclamo;
     private List<DenunciaEstado> denunciaEstado;
     private FallaTecnica fallaTecnica;
 
@@ -48,14 +48,14 @@ public class DenunciaImplementacion extends CasoImplementacion implements Denunc
     /**
      * @return the reclamo
      */
-    public Reclamo getReclamo() {
+    public List<Reclamo> getReclamo() {
         return reclamo;
     }
 
     /**
      * @param reclamo the reclamo to set
      */
-    public void setReclamo(Reclamo reclamo) {
+    public void setReclamo(List<Reclamo> reclamo) {
         this.reclamo = reclamo;
     }
 
