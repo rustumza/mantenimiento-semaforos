@@ -7,6 +7,7 @@ package Persistencia.Decoradores;
 
 import DTO.DTOOrdenes;
 import Expertos.ExpertoConsultarOrdenesPendientes;
+import Persistencia.Entidades.OrdenTrabajo;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +18,10 @@ import java.util.List;
  */
 public class DecoradorExpertoConsultarOrdenesPendientes extends ExpertoConsultarOrdenesPendientes {
 
+    @Override
     public List<DTOOrdenes> buscarOrdenes(Date fecha){
     iniciarTx();
-    List<DTOOrdenes> aux = super.buscarOrdenes(fecha);
+    List<OrdenTrabajo> aux = super.buscarOrdenes(fecha);
     confirmarTx();
     return aux;
 
