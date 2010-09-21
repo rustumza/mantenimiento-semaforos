@@ -27,7 +27,7 @@ import java.util.List;
 public class ExpertoEjecutarOrdenesTrabajo implements Experto{
     private String ConsultarOrdenesPendientes;
 
-    public List<OrdenDeMantenimiento> consultarOrdenesMantenimientoPendientes(Date fecha, String tipo) {
+    public List<OrdenDeMantenimiento> consultarOrdenesMantenimientoPendientes(Date fecha) {
 
         List<OrdenDeMantenimiento>ordenesEncontradas = new ArrayList<OrdenDeMantenimiento>();
         
@@ -36,7 +36,7 @@ public class ExpertoEjecutarOrdenesTrabajo implements Experto{
         return ordenesEncontradas;
     }
 
-    public List<OrdenDeReparacion> consultarOrdenesReparacionPendientes(Date fecha, String tipo) {
+    public List<OrdenDeReparacion> consultarOrdenesReparacionPendientes(Date fecha) {
         List<OrdenDeReparacion>ordenesEncontradas = new ArrayList<OrdenDeReparacion>();
 
         ordenesEncontradas =((ExpertoConsultarOrdenesPendientes)(FabricaExpertos.getInstance().getExperto(ConsultarOrdenesPendientes))).buscarOrdenesReparacionPendiente(fecha);
@@ -45,7 +45,7 @@ public class ExpertoEjecutarOrdenesTrabajo implements Experto{
 
 
     }
- public List<OrdenTrabajo> consultarOrdenesTrabajoPendientes(Date fecha, String tipo) {
+ public List<OrdenTrabajo> consultarOrdenesTrabajoPendientes(Date fecha) {
         List<OrdenTrabajo>ordenesEncontradas = new ArrayList<OrdenTrabajo>();
 
         ordenesEncontradas =((ExpertoConsultarOrdenesPendientes)(FabricaExpertos.getInstance().getExperto(ConsultarOrdenesPendientes))).buscarOrdenes(fecha);
