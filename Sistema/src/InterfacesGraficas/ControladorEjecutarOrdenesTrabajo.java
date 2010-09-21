@@ -30,8 +30,14 @@ public class ControladorEjecutarOrdenesTrabajo {
     }
 
     public List<OrdenTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
-
-       return experto.consultarOrdenesTrabajoPendientes(fecha, tipo);
+        if(tipo.equals("Trabajo"))
+            return experto.consultarOrdenesTrabajoPendientes(fecha);
+        else if(tipo.equals("Reparacion"))
+            return experto.consultarOrdenesReparacionPendientes(fecha);
+        else if(tipo.equals("Mantenimiento"))
+            return experto.consultarOrdenesMantenimientoPendientes(fecha);
+        else 
+            return null;
     }
 
 //    public void confirmarOrden(OrdenDeReparacion ordenes) {
