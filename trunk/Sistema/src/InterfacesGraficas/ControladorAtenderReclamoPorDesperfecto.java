@@ -6,6 +6,7 @@
 package InterfacesGraficas;
 
 import DTO.DTOProblemasDelSemaforo;
+import DTO.DTOinfoParaCrearDenuncia;
 import Persistencia.Entidades.Denunciante;
 import Expertos.ExpertoAntenderReclamoPorDesperfecto;
 import Fabricas.FabricaExpertos;
@@ -64,8 +65,8 @@ public class ControladorAtenderReclamoPorDesperfecto {
         return listaDeProblemas.toArray(new Problema[listaDeProblemas.size()]);
     }
 
-    public void guardarDenuncia(List<DTOProblemasDelSemaforo> listaDeProblemasDelSemaforo){
-        earpd.guardarDenuncia(listaDeProblemasDelSemaforo);
+    public void guardarDenuncia(DTOinfoParaCrearDenuncia infoParaCrearDenuncia){
+        earpd.guardarDenuncia(infoParaCrearDenuncia);
 
 
     }
