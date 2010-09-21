@@ -2,19 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.Entidades;
 
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class OrdenDeMantenimientoAgente extends OrdenTrabajoAgente implements OrdenDeMantenimiento{
+public class OrdenDeMantenimientoAgente extends OrdenTrabajoAgente implements OrdenDeMantenimiento {
 
     private String oidSemaforo;
-    private String oidInformeMantenimiento;
     private String oidFichaMantenimiento;
     //variabale para saber si el objeto relacionado ha sido buscado en la BD
     private boolean semaforoBuscado;
@@ -22,42 +24,48 @@ public class OrdenDeMantenimientoAgente extends OrdenTrabajoAgente implements Or
     private boolean fichaMantenimientoBuscado;
 
     public int getcodigoordenmantenimiento() {
-        return ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).getcodigoordenmantenimiento();
+        return ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).getcodigoordenmantenimiento();
     }
 
     public void setcodigoordenmantenimiento(int newVal) {
-        ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setcodigoordenmantenimiento(newVal);
+        ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setcodigoordenmantenimiento(newVal);
     }
 
     public Semaforo getSemaforo() {
-        if(isSemaforoBuscado()==false)
-            ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setSemaforo((Semaforo)FachadaInterna.getInstancia().buscar("Semaforo", oidSemaforo));
-        return ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).getSemaforo();
+        if (isSemaforoBuscado() == false) {
+            ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setSemaforo((Semaforo) FachadaInterna.getInstancia().buscar("Semaforo", oidSemaforo));
+        }
+        return ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).getSemaforo();
 
     }
 
     public void setSemaforo(Semaforo semaforo) {
-        ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setSemaforo(semaforo);
+        ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setSemaforo(semaforo);
     }
 
     public InformeMantenimiento getInformeMantenimiento() {
-        if(isInformeMantenimientoBuscado()==false)
-            ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setInformeMantenimiento((InformeMantenimiento)FachadaInterna.getInstancia().buscar("InformeMantenimiento", oidInformeMantenimiento));
-        return ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).getInformeMantenimiento();
+        if (informeMantenimientoBuscado == false) {
+            List<Criterio> listaCriterio = new ArrayList<Criterio>();
+            listaCriterio.add(FabricaCriterios.getInstancia().crearCriterio("OIDOrdenDeTrabajo", "=", getOid()));
+            ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setInformeMantenimiento((InformeMantenimiento) FachadaInterna.getInstancia().buscar("InformeMantenimiento", listaCriterio).get(0));
+        }
+
+        return ((OrdenDeMantenimiento)super.getImplementacion()).getInformeMantenimiento();
     }
 
     public void setInformeMantenimiento(InformeMantenimiento informeMantenimiento) {
-        ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setInformeMantenimiento(informeMantenimiento);
+        ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setInformeMantenimiento(informeMantenimiento);
     }
 
     public FichaMantenimiento getFichaMantenimiento() {
-        if(isFichaMantenimientoBuscado()==false)
-            ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setFichaMantenimiento((FichaMantenimiento)FachadaInterna.getInstancia().buscar("FichaMantenimiento", oidFichaMantenimiento));
-        return ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).getFichaMantenimiento();
+        if (isFichaMantenimientoBuscado() == false) {
+            ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setFichaMantenimiento((FichaMantenimiento) FachadaInterna.getInstancia().buscar("FichaMantenimiento", oidFichaMantenimiento));
+        }
+        return ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).getFichaMantenimiento();
     }
 
     public void setFichaMantenimiento(FichaMantenimiento fichaMantenimiento) {
-        ((OrdenDeMantenimientoImplementacion)super.getImplementacion()).setFichaMantenimiento(fichaMantenimiento);
+        ((OrdenDeMantenimientoImplementacion) super.getImplementacion()).setFichaMantenimiento(fichaMantenimiento);
     }
 
     /**
@@ -86,20 +94,6 @@ public class OrdenDeMantenimientoAgente extends OrdenTrabajoAgente implements Or
      */
     public void setSemaforoBuscado(boolean semaforoBuscado) {
         this.semaforoBuscado = semaforoBuscado;
-    }
-
-    /**
-     * @return the oidInformeMantenimiento
-     */
-    public String getOidInformeMantenimiento() {
-        return oidInformeMantenimiento;
-    }
-
-    /**
-     * @param oidInformeMantenimiento the oidInformeMantenimiento to set
-     */
-    public void setOidInformeMantenimiento(String oidInformeMantenimiento) {
-        this.oidInformeMantenimiento = oidInformeMantenimiento;
     }
 
     /**

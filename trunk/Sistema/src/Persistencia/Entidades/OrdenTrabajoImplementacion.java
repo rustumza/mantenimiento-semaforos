@@ -1,5 +1,6 @@
 package Persistencia.Entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +16,9 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
     private Date fechainicioplanificada;
     private Date fechainiciotrabajo;
     private String tipoordentrabajo;
-    private Reserva reserva;
+    private List<Reserva> reservas;
     private EquipoDeTrabajo equipoDeTrabajo;
-    private Trabajo trabajo;
+    private List<Trabajo> trabajos;
     private List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo;
 
     public OrdenTrabajoImplementacion() {
@@ -86,15 +87,22 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
     /**
      * @return the reJserva
      */
-    public Reserva getReserva() {
-        return reserva;
+    public List<Reserva> getRervas() {
+        return reservas;
     }
 
     /**
      * @param reJserva the reJserva to set
      */
-    public void setReserva(Reserva reJserva) {
-        this.reserva = reJserva;
+    public void setReservas(List<Reserva> nuevasReservas) {
+        this.reservas = nuevasReservas;
+    }
+
+    public void addReserva(Reserva nuevaReserva){
+        if(reservas == null){
+            reservas = new ArrayList<Reserva>();
+        }
+        reservas.add(nuevaReserva);
     }
 
     /**
@@ -114,15 +122,21 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
     /**
      * @return the trabajo
      */
-    public Trabajo getTrabajo() {
-        return trabajo;
+    public List<Trabajo> getTrabajos() {
+        return trabajos;
     }
 
     /**
      * @param trabajo the trabajo to set
      */
-    public void setTrabajo(Trabajo trabajo) {
-        this.trabajo = trabajo;
+    public void setTrabajos(List<Trabajo> trabajo) {
+        this.trabajos = trabajo;
+    }
+
+    public void addTrabajo(Trabajo nuevoTrabajo){
+        if(trabajos == null)
+            trabajos = new ArrayList<Trabajo>();
+        trabajos.add(nuevoTrabajo);
     }
 
     /**
@@ -137,6 +151,13 @@ public class OrdenTrabajoImplementacion implements OrdenTrabajo {
      */
     public void setListaEstadosOrdenTrabajo(List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo) {
         this.listaEstadosOrdenTrabajo = listaEstadosOrdenTrabajo;
+    }
+
+    public void addEstado(OrdenTrabajoEstado nuevoEstado){
+        if(listaEstadosOrdenTrabajo == null){
+            listaEstadosOrdenTrabajo = new ArrayList<OrdenTrabajoEstado>();
+        }
+        listaEstadosOrdenTrabajo.add(nuevoEstado);
     }
 
 }

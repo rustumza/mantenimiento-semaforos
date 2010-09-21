@@ -2,20 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.Entidades;
 
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class ReservaAgente implements Reserva {
+public class ReservaAgente extends ObjetoPersistente implements Reserva {
 
     private ReservaImplementacion implementacion;
-    private String oidReservaElementoTrabajo;
     //variable para saber si el objeto relacionado ha sido buscado en la BD
     private boolean reservaElementoTrabajoBuscado;
 
@@ -35,13 +37,19 @@ public class ReservaAgente implements Reserva {
         implementacion.setfecha(newVal);
     }
 
-    public ReservaElementoTrabajo getReservaElementoTrabajo() {
-        if(isReservaElementoTrabajoBuscado()==false)
-            implementacion.setReservaElementoTrabajo((ReservaElementoTrabajo)FachadaInterna.getInstancia().buscar("ReservaElementoTrabajo", oidReservaElementoTrabajo));
+    public List<ReservaElementoTrabajo> getReservaElementoTrabajo() {
+        if (isReservaElementoTrabajoBuscado() == false) {
+            List<Criterio> listaCriterio = new ArrayList<Criterio>();
+            listaCriterio.add(FabricaCriterios.getInstancia().crearCriterio("OIDReserva", "=", super.getOid()));
+
+            for (SuperDruperInterfaz objEncontrado : FachadaInterna.getInstancia().buscar("ReservaElementoTrabajo", listaCriterio)) {
+                implementacion.addReservaElementoTrabajo((ReservaElementoTrabajo) objEncontrado);
+            }
+        }
         return implementacion.getReservaElementoTrabajo();
     }
 
-    public void setReservaElementoTrabajo(ReservaElementoTrabajo reservaElementoTrabajo) {
+    public void setReservaElementoTrabajo(List<ReservaElementoTrabajo> reservaElementoTrabajo) {
         implementacion.setReservaElementoTrabajo(reservaElementoTrabajo);
     }
 
@@ -60,20 +68,6 @@ public class ReservaAgente implements Reserva {
     }
 
     /**
-     * @return the oidReservaElementoTrabajo
-     */
-    public String getOidReservaElementoTrabajo() {
-        return oidReservaElementoTrabajo;
-    }
-
-    /**
-     * @param oidReservaElementoTrabajo the oidReservaElementoTrabajo to set
-     */
-    public void setOidReservaElementoTrabajo(String oidReservaElementoTrabajo) {
-        this.oidReservaElementoTrabajo = oidReservaElementoTrabajo;
-    }
-
-    /**
      * @return the reservaElementoTrabajoBuscado
      */
     public boolean isReservaElementoTrabajoBuscado() {
@@ -86,5 +80,4 @@ public class ReservaAgente implements Reserva {
     public void setReservaElementoTrabajoBuscado(boolean reservaElementoTrabajoBuscado) {
         this.reservaElementoTrabajoBuscado = reservaElementoTrabajoBuscado;
     }
-
 }

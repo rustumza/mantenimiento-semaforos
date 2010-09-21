@@ -6,7 +6,11 @@ package Persistencia.intermediarios;
 
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.ReservaElementoTrabajoAgente;
+import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +19,6 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaReservaElementoTrabajo extends IntermediarioRelacional{
 
-private String oid;
-
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
@@ -24,19 +26,28 @@ private String oid;
     }
 
     public String armarSelect(List<Criterio> criterios) {
-
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
 
-        return select = "select * from reservaelementotrabajo where " ;//criterios
+        select = "select * from reservaelementotrabajo";
+        
+        if (!criterios.isEmpty()) {
+            select = select + " WHERE ";
+            for (int i = 0; i < criterios.size(); i++) {
+                if (i > 0) {
+                    select = select + " AND ";
+                }
+
+                select = select + "reservaelementotrabajo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+            }
+        }
+
+        return select;
 
     }
 
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
         return selectOid = "select * from reservaelementotrabajo where OIDReservaElementoTrabajo = " + oid;
     }
@@ -54,8 +65,27 @@ private String oid;
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
+        List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
 
-        return null;
+        try {
+            while (rs.next()) {
+
+                ReservaElementoTrabajoAgente nuevaReservaElementoTrabajo = (ReservaElementoTrabajoAgente) FabricaEntidades.getInstancia().crearEntidad("ReservaElementoTrabajo");
+
+                nuevaReservaElementoTrabajo.setOid(rs.getString("OIDReservaElementoTrabajo"));
+                nuevaReservaElementoTrabajo.setIsNuevo(false);
+                nuevaReservaElementoTrabajo.setOidElementoTrabajo(rs.getString("OIDReservaElementoTrabajo"));
+                nuevaReservaElementoTrabajo.setElementoTrabajoBuscado(false);
+                nuevaReservaElementoTrabajo.setcantidadreservada(Integer.valueOf(rs.getString("CantidadReservada")));
+
+                nuevosObjetos.add(nuevaReservaElementoTrabajo);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return nuevosObjetos;
     }
 }
 

@@ -33,17 +33,17 @@ public interface OrdenTrabajo extends SuperDruperInterfaz {
 
     public void settipoordentrabajo(String newVal);
 
-    public Reserva getReserva();
+    public List<Reserva> getRervas();
 
-    public void setReserva(Reserva reJserva);
+    public void setReservas(List<Reserva> nuevasReservas);
 
     public EquipoDeTrabajo getEquipoDeTrabajo();
 
     public void setEquipoDeTrabajo(EquipoDeTrabajo equipoDeTrabajo);
 
-    public Trabajo getTrabajo();
+    public List<Trabajo> getTrabajos();
 
-    public void setTrabajo(Trabajo trabajo);
+    public void setTrabajos(List<Trabajo> trabajo);
 
     public List<OrdenTrabajoEstado> getListaEstadosOrdenTrabajo();
 

@@ -10,13 +10,16 @@ import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.Entidades.OrdenTrabajo;
 import Persistencia.Entidades.OrdenTrabajoAgente;
+import Persistencia.Entidades.Reserva;
+import Persistencia.Entidades.SuperDruperInterfaz;
+import Persistencia.Entidades.TrabajoAgente;
+import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
 import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,12 +27,13 @@ import java.util.logging.Logger;
  */
 public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelacional{
 
-private String oid;
-
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into ordendetrabajo (OIDOrdenDeTrabajo, FechaInicioTrabajo, FechaFinTrabajo, FechaInicioPlanificada, DuracionPrevistaTrabajo, Tipo, OIDEquipoDeTrabajo) values (OIDOrdenDeTrabajo, FechaInicioTrabajo, FechaFinTrabajo, FechaInicioPlanificada, DuracionPrevistaTrabajo, Tipo, OIDEquipoDeTrabajo)";
+        OrdenTrabajoAgente ordenTrabajo = (OrdenTrabajoAgente) obj;
+
+        return insert = "INSERT INTO ordendetrabajo (OIDOrdenDeTrabajo, FechaInicioTrabajo, FechaFinTrabajo, FechaInicioPlanificada, DuracionPrevistaTrabajo, Tipo, OIDEquipoDeTrabajo)"
+                + " VALUES ('"+ordenTrabajo.getOid()+"', '"+ordenTrabajo.getfechainiciotrabajo()+"', '"+ordenTrabajo.getfechafintrabajo()+"', '"+ordenTrabajo.getfechainicioplanificada()+"', "+ordenTrabajo.getduracionprevistatrabajo()+", '"+ordenTrabajo.gettipoordentrabajo()+"', '"+ordenTrabajo.getOidEquipoDeTrabajo()+"'d);";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -42,7 +46,7 @@ private String oid;
             select = select + " WHERE ";
             for (int i = 0; i < criterios.size(); i++) {
                 if (i > 0) {
-                    select = select + criterios.get(i).getTipo();
+                    select = select + " AND ";
                 }
 
                 select = select + "ordendetrabajo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor()+"'";
@@ -55,16 +59,25 @@ private String oid;
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
-        return selectOid = "SELECT * FROM ordendetrabajo WHERE OIDOrdenDeTrabajo = " + oid;
+        return selectOid = "SELECT * FROM ordendetrabajo WHERE OIDOrdenDeTrabajo = '" + oid+"'";
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
+        OrdenTrabajoAgente ordenTrabajo = (OrdenTrabajoAgente) obj;
         String update;
 
-        return update = "update ordendetrabajo set OIDOrdenDeTrabajo =" + ",FechaInicioTrabajo = " + "FechaFinTrabajo = " + "FechaInicioPlanificada =" + "DuracionPrevistaTrabajo =" + "Tipo = " + "OIDEquipoDeTrabajo =";
+        update = "UPDATE ordendetrabajo SET "
+                + "OIDOrdenDeTrabajo = '"+ ordenTrabajo.getOid()+ ","
+                + "FechaInicioTrabajo = '"+ordenTrabajo.getfechainiciotrabajo() + "', "
+                + "FechaFinTrabajo = '"+ ordenTrabajo.getfechafintrabajo()+"', "
+                + "FechaInicioPlanificada = '"+ordenTrabajo.getfechainicioplanificada() +"', "
+                + "DuracionPrevistaTrabajo = "+ordenTrabajo.getduracionprevistatrabajo()+ ", "
+                + "Tipo = '"+ordenTrabajo.gettipoordentrabajo()+ "', "
+                + "OIDEquipoDeTrabajo = '"+ordenTrabajo.getOidEquipoDeTrabajo()+"';";
+
+        return update;
 
     }
 
@@ -82,15 +95,39 @@ private String oid;
                 nuevaOrdenTrabajo.setOidEquipoDeTrabajo(rs.getString("OIDEquipoDeTrabajo"));
                 nuevaOrdenTrabajo.setEquipoDeTrabajoBuscado(false);
                 nuevaOrdenTrabajo.setOrdenTrabajoEstadosBuscado(false);
-                nuevaOrdenTrabajo.setOidReserva(rs.getString(""));
-
+                nuevaOrdenTrabajo.setReservaBuscado(false);
+                nuevaOrdenTrabajo.setTrabajoBuscado(false);
+                
+                nuevosObjetos.add(nuevaOrdenTrabajo);
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return null;
+        return nuevosObjetos;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+        for (Reserva reserva : ((OrdenTrabajo)obj).getRervas()) {
+            FachadaInterna.getInstancia().guardar("Reserva", (ObjetoPersistente) reserva);
+        }
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+        
+        List<Criterio> listaCriterios = new ArrayList<Criterio>();
+        listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OrdenTrabajo", "=", obj.getOid()));
+        
+        List<SuperDruperInterfaz> listaTrabajos = FachadaInterna.getInstancia().buscar("Trabajo", listaCriterios);
+
+        for (SuperDruperInterfaz trabajo : listaTrabajos) {
+
+            ((OrdenTrabajoAgente)obj).addOidTrabajo(((TrabajoAgente)trabajo).getOid());
+
+        }
     }
 }
 

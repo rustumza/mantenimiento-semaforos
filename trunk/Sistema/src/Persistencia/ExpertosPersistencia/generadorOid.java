@@ -1,4 +1,4 @@
-package ExpertosPersistencia;
+package Persistencia.ExpertosPersistencia;
 
 /*
  * To change this template, choose Tools | Templates

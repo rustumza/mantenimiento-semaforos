@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  */
 public class FormateadorFechas {
 
-    public static FormateadorFechas instancia;
+    private static FormateadorFechas instancia;
     private SimpleDateFormat format_dd_MM_yyyy = new SimpleDateFormat("dd/MM/yyyy");
     private SimpleDateFormat format_yyyy_MM_dd = new SimpleDateFormat("yyyy/MM/dd");
 

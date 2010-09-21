@@ -10,7 +10,7 @@ package Persistencia.intermediarios;
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.ExpertosPersistencia.Conexion;
 import Persistencia.ExpertosPersistencia.Criterio;
-import ExpertosPersistencia.generadorOid;
+import Persistencia.ExpertosPersistencia.generadorOid;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +23,11 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
 
     @Override
     public void desmaterializar(ObjetoPersistente obj) {
+
         String consulta = null;
         if(obj.isIsNuevo()){
             obj.setOid((generadorOid.getInstance().generarOid()));
+            guardarObjetosRelacionados(obj);
             consulta = armarInsert(obj);
 
         }else{
@@ -50,6 +52,10 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
 
         objetosEncontrados = convertirRegistrosAObjetos(rs);
 
+        for (ObjetoPersistente objPer : objetosEncontrados) {
+            buscarObjRelacionados(objPer);
+        }
+
         return objetosEncontrados;
     }
 
@@ -59,14 +65,14 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
         List<ObjetoPersistente> objetoRetornado = new ArrayList<ObjetoPersistente>();
         String consulta = armarSelectOid(oid);
         ResultSet rs = Conexion.getInstance().select(consulta);
-        objetoRetornado = (ArrayList<ObjetoPersistente>) convertirRegistrosAObjetos(rs);
-        for(ObjetoPersistente op : objetoRetornado){
-            objetoEncontrado=op;
-        }
-        
+        objetoRetornado = convertirRegistrosAObjetos(rs);
+                
         return objetoEncontrado;
     }
 
+    public ResultSet ejecutarSelect(String consulta){
+        return Conexion.getInstance().select(consulta);
+    }
     public abstract String armarInsert(ObjetoPersistente obj);
     public abstract String armarSelect(List<Criterio> criterios);
     public abstract String armarSelectOid(String oid);
@@ -74,6 +80,8 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
     public abstract void guardarObjetoCompuesto(ObjetoPersistente obj);
     public abstract List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs);
 
+    public abstract void guardarObjetosRelacionados(ObjetoPersistente obj);
+    public abstract void buscarObjRelacionados(ObjetoPersistente obj);
 
    
 

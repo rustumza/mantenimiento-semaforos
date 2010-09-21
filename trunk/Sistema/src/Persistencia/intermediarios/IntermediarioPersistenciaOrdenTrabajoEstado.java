@@ -6,16 +6,22 @@ package Persistencia.intermediarios;
 
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.OrdenTrabajoEstadoAgente;
+import Persistencia.Fabricas.FabricaEntidades;
+import Utilidades.FormateadorFechas;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Eduardo
  */
 public class IntermediarioPersistenciaOrdenTrabajoEstado extends IntermediarioRelacional{
-
-private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
@@ -25,18 +31,28 @@ private String oid;
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
 
-        return select = "select * from ordentrabajoestado where " ;//criterios
+        select = "select * from ordentrabajoestado";
+
+        if (!criterios.isEmpty()) {
+            select = select + " WHERE ";
+            for (int i = 0; i < criterios.size(); i++) {
+                if (i > 0) {
+                    select = select + " AND ";
+                }
+
+                select = select + "ordentrabajoestado." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+            }
+        }
+
+        return select;
 
     }
 
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
         return selectOid = "select * from ordentrabajoestado where OIDOrdenTrabajoEstado = " + oid;
     }
@@ -54,8 +70,31 @@ private String oid;
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
+        List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
+        try {
+            while (rs.next()) {
+                
+                OrdenTrabajoEstadoAgente nuevoEstado = (OrdenTrabajoEstadoAgente) FabricaEntidades.getInstancia().crearEntidad("OrdenTrabajoEstado");
+                
+                nuevoEstado.setOid(rs.getString("OIDOrdenTrabajoEstado"));
+                nuevoEstado.setIsNuevo(false);
+                nuevoEstado.setOidEstadoOrdenTrabajo(rs.getString("OIDEstadoOrdenTrabajo"));
+                nuevoEstado.setEstadoOrdenTrabajoBuscado(false);
+                try {
+                    nuevoEstado.setfechacambioestado(FormateadorFechas.getInstancia().getFormat_dd_MM_yyyy().parse(rs.getString("FechaCambioEstado")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(IntermediarioPersistenciaOrdenTrabajoEstado.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                nuevoEstado.setindicadorestadoactual(Boolean.valueOf(rs.getString("IndicadoresEstadoActual")));
 
-        return null;
+                nuevosObjetos.add(nuevoEstado);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nuevosObjetos;
+
     }
 }
 

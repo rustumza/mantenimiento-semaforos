@@ -4,11 +4,8 @@
  */
 package InterfacesGraficas;
 
-import DTO.DTOOrdenesTrabajo;
 import Expertos.ExpertoEjecutarOrdenesTrabajo;
 import Fabricas.FabricaExpertos;
-import java.util.Date;
-import java.util.List;
 
 /**
  *

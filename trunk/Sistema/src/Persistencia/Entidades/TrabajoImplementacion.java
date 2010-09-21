@@ -7,9 +7,9 @@ package Persistencia.Entidades;
  */
 public class TrabajoImplementacion implements Trabajo {
 
-	private int codigoTrabajo;
+	private String nombreTrabajo;
 	private int tiempoEstimadoTrabajo;
-	private int tipotrabajo;
+	private String tipotrabajo;
 	private TrabajoElementoNecesario trabajoElementoNecesario;
 	private OrdenTrabajo ordenTrabajo;
 
@@ -18,24 +18,12 @@ public class TrabajoImplementacion implements Trabajo {
 	}
 
 	
-	public int getcodigoTrabajo(){
-		return codigoTrabajo;
-	}
-
 	public int gettiempoEstimadoTrabajo(){
 		return tiempoEstimadoTrabajo;
 	}
 
-	public int gettipotrabajo(){
+	public String gettipotrabajo(){
 		return tipotrabajo;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setcodigoTrabajo(int newVal){
-		codigoTrabajo = newVal;
 	}
 
 	/**
@@ -50,7 +38,7 @@ public class TrabajoImplementacion implements Trabajo {
 	 * 
 	 * @param newVal
 	 */
-	public void settipotrabajo(int newVal){
+	public void settipotrabajo(String newVal){
 		tipotrabajo = newVal;
 	}
 
@@ -80,6 +68,20 @@ public class TrabajoImplementacion implements Trabajo {
      */
     public void setOrdenTrabajo(OrdenTrabajo ordenTrabajo) {
         this.ordenTrabajo = ordenTrabajo;
+    }
+
+    /**
+     * @return the nombreTrabajo
+     */
+    public String getNombreTrabajo() {
+        return nombreTrabajo;
+    }
+
+    /**
+     * @param nombreTrabajo the nombreTrabajo to set
+     */
+    public void setNombreTrabajo(String nombreTrabajo) {
+        this.nombreTrabajo = nombreTrabajo;
     }
 
 }

@@ -10,17 +10,13 @@ package Persistencia.Entidades;
  */
 public interface Trabajo extends SuperDruperInterfaz {
 
-    public int getcodigoTrabajo();
-
     public int gettiempoEstimadoTrabajo();
 
-    public int gettipotrabajo();
-
-    public void setcodigoTrabajo(int newVal);
+    public String gettipotrabajo();
 
     public void settiempoEstimadoTrabajo(int newVal);
 
-    public void settipotrabajo(int newVal);
+    public void settipotrabajo(String newVal);
 
     public TrabajoElementoNecesario getTrabajoElementoNecesario();
 
@@ -29,4 +25,8 @@ public interface Trabajo extends SuperDruperInterfaz {
     public OrdenTrabajo getOrdenTrabajo();
 
     public void setOrdenTrabajo(OrdenTrabajo ordenTrabajo);
+
+    public String getNombreTrabajo();
+
+    public void setNombreTrabajo(String nombreTrabajo);
 }

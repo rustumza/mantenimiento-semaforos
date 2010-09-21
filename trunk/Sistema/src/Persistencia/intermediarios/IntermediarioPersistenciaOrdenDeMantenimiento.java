@@ -4,58 +4,130 @@
  */
 package Persistencia.intermediarios;
 
+import Persistencia.Entidades.OrdenTrabajoAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.OrdenDeMantenimientoAgente;
+import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaOrdenDeMantenimiento extends IntermediarioRelacional{
+public class IntermediarioPersistenciaOrdenDeMantenimiento extends IntermediarioPersistenciaOrdenDeTrabajo {
 
-private String oid;
-
+    @Override
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
 
-        return insert = "insert into ordendemantenimiento (OIDOrdenDeTrabajo, OIDSemaforo, CodigoOrdenMantenimiento, OIDFichaMantenimiento) values (OIDOrdenDeTrabajo, OIDSemaforo, CodigoOrdenMantenimiento, OIDFichaMantenimiento)";
+        OrdenDeMantenimientoAgente ordenMant = (OrdenDeMantenimientoAgente) obj;
+
+        String insertPadre = super.armarInsert(obj);
+
+        insert = "INSERT INTO ordendemantenimiento (OIDOrdenDeTrabajo, OIDSemaforo, CodigoOrdenMantenimiento, OIDFichaMantenimiento) "
+                + "VALUES ('"+ordenMant.getOid()+"', '"+ordenMant.getOidSemaforo()+"', "+ordenMant.getcodigoordenmantenimiento()+", '"+ordenMant.getOidFichaMantenimiento()+"')";
+        insert = insertPadre + insert;
+
+        return insert;
     }
 
+    @Override
     public String armarSelect(List<Criterio> criterios) {
-
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
+        select = "SELECT * "
+                + "FROM ordendemantenimiento";
 
-        return select = "select * from ordendemantenimiento where " ;//criterios
+        if (!criterios.isEmpty()) {
+            select = select + " WHERE ";
+            for (int i = 0; i < criterios.size(); i++) {
+                if (i > 0) {
+                    select = select + " AND ";
+                }
+
+                select = select + "ordendemantenimiento." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+            }
+        }
+
+        return select;
 
     }
 
+    @Override
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
-        return selectOid = "select * from ordendemantenimiento where OIDOrdenDeTrabajo = " + oid;
+        selectOid = "SELECT * "
+                + "FROM ordendemantenimiento "
+                + "WHERE OIDOrdenDeTrabajo = '"+oid+"'";
+
+        return selectOid;
     }
 
+    @Override
     public String armarUpdate(ObjetoPersistente obj) {
 
         String update;
+        OrdenDeMantenimientoAgente ordenMant = (OrdenDeMantenimientoAgente) obj;
 
-        return update = "update ordendemantenimiento set OIDOrdenDeTrabajo =" + ",OIDSemaforo = " + "CodigoOrdenMantenimiento = " + "OIDFichaMantenimiento =" ;
+        update = "UPDATE ordendemantenimiento "
+                + "SET OIDOrdenDeTrabajo = '"+ordenMant.getOid()+"', "
+                + "OIDSemaforo = '"+ordenMant.getOidSemaforo()+"', "
+                + "CodigoOrdenMantenimiento = "+ordenMant.getcodigoordenmantenimiento()+ ", "
+                + "OIDFichaMantenimiento = '"+ordenMant.getOidFichaMantenimiento()+"'";
+
+        String updatePadre = super.armarUpdate(obj);
+
+        update = updatePadre + update;
+
+        return update;
 
     }
 
+    @Override
     public void guardarObjetoCompuesto(ObjetoPersistente obj) {
     }
 
+    @Override
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
+        List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
+        List<ObjetoPersistente> listaPadres = super.convertirRegistrosAObjetos(rs);
 
-        return null;
+        int i = 0;
+        try {
+            while (rs.next()) {
+                OrdenDeMantenimientoAgente nuevaOrdenDeMantenimiento = (OrdenDeMantenimientoAgente) FabricaEntidades.getInstancia().crearEntidad("OrdenDeMantenimiento");
+
+                nuevaOrdenDeMantenimiento.setPadre((OrdenTrabajoAgente) listaPadres.get(i));
+
+                nuevaOrdenDeMantenimiento.setIsNuevo(false);
+                nuevaOrdenDeMantenimiento.setOid(rs.getString("OIDOrdenDeTrabajo"));
+                nuevaOrdenDeMantenimiento.setOidSemaforo(rs.getString("OIDSemaforo"));
+                nuevaOrdenDeMantenimiento.setSemaforoBuscado(false);
+                nuevaOrdenDeMantenimiento.setInformeMantenimientoBuscado(false);
+                nuevaOrdenDeMantenimiento.setOidFichaMantenimiento(rs.getString("OIDFichaMantenimiento"));
+                nuevaOrdenDeMantenimiento.setFichaMantenimientoBuscado(false);
+                
+                nuevosObjetos.add(nuevaOrdenDeMantenimiento);
+                i++;
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return nuevosObjetos;
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj){
+        super.buscarObjRelacionados(obj);
     }
 }
-
