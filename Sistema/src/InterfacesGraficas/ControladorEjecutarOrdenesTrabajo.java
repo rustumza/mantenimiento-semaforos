@@ -6,6 +6,10 @@ package InterfacesGraficas;
 
 import Expertos.ExpertoEjecutarOrdenesTrabajo;
 import Fabricas.FabricaExpertos;
+import Persistencia.Entidades.OrdenDeReparacion;
+import Persistencia.Entidades.OrdenTrabajo;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -21,18 +25,18 @@ public class ControladorEjecutarOrdenesTrabajo {
         pantalla = new PantallaEjecutarOrdenTrabajo(this);
     }
 
-    public void inicar() {
+    public void iniciar() {
         pantalla.setVisible(true);
     }
 
-//    public List<DTOOrdenesTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
-//
-//        /return experto.consultarOrdenesPendientes(fecha, tipo);
-//    }
-//
+    public List<OrdenTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
+
+       return experto.consultarOrdenesTrabajoPendientes(fecha, tipo);
+    }
+
 //    public void confirmarOrden(OrdenDeReparacion ordenes) {
 //
-//        experto.guardarOrdenes(ordenes);
+//        experto.guardarOrdenTrabajo((OrdenTrabajo)ordenes);
 //
 //    }
 }
