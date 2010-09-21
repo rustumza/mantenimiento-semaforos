@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author diego
  */
-public class OrdenTrabajoEstadoAgente implements OrdenTrabajoEstado{
+public class OrdenTrabajoEstadoAgente extends ObjetoPersistente implements OrdenTrabajoEstado{
 
     private OrdenTrabajoEstadoImplementacion implementacion;
     private String oidEstadoOrdenTrabajo;

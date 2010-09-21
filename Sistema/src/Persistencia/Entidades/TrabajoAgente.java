@@ -10,7 +10,7 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class TrabajoAgente implements Trabajo {
+public class TrabajoAgente extends ObjetoPersistente implements Trabajo {
 
     private TrabajoImplementacion implementacion;
     private String oidTrabajoElementoNecesario;
@@ -19,27 +19,21 @@ public class TrabajoAgente implements Trabajo {
     private boolean trabajoElementoNecesarioBuscado;
     private boolean ordenTrabajoBuscado;
 
-    public int getcodigoTrabajo() {
-        return getImplementacion().getcodigoTrabajo();
-    }
 
     public int gettiempoEstimadoTrabajo() {
         return getImplementacion().gettiempoEstimadoTrabajo();
     }
 
-    public int gettipotrabajo() {
+    public String gettipotrabajo() {
         return getImplementacion().gettipotrabajo();
     }
 
-    public void setcodigoTrabajo(int newVal) {
-        getImplementacion().setcodigoTrabajo(newVal);
-    }
 
     public void settiempoEstimadoTrabajo(int newVal) {
         getImplementacion().settiempoEstimadoTrabajo(newVal);
     }
 
-    public void settipotrabajo(int newVal) {
+    public void settipotrabajo(String newVal) {
         getImplementacion().settipotrabajo(newVal);
     }
 
@@ -133,5 +127,13 @@ public class TrabajoAgente implements Trabajo {
      */
     public void setImplementacion(TrabajoImplementacion implementacion) {
         this.implementacion = implementacion;
+    }
+
+    public String getNombreTrabajo() {
+        return implementacion.getNombreTrabajo();
+    }
+
+    public void setNombreTrabajo(String nombreTrabajo) {
+        implementacion.setNombreTrabajo(nombreTrabajo);
     }
 }

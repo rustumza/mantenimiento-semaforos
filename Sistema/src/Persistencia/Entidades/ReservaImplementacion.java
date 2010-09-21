@@ -1,6 +1,8 @@
 package Persistencia.Entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Bicentenario
@@ -11,7 +13,7 @@ public class ReservaImplementacion implements Reserva{
 
 	private int codigoreserva;
 	private Date fecha;
-	private ReservaElementoTrabajo reservaElementoTrabajo;
+	private List<ReservaElementoTrabajo> reservaElementoTrabajo;
 
 	public ReservaImplementacion(){
 
@@ -45,15 +47,21 @@ public class ReservaImplementacion implements Reserva{
     /**
      * @return the reservaElementoTrabajo
      */
-    public ReservaElementoTrabajo getReservaElementoTrabajo() {
+    public List<ReservaElementoTrabajo> getReservaElementoTrabajo() {
         return reservaElementoTrabajo;
     }
 
     /**
      * @param reservaElementoTrabajo the reservaElementoTrabajo to set
      */
-    public void setReservaElementoTrabajo(ReservaElementoTrabajo reservaElementoTrabajo) {
+    public void setReservaElementoTrabajo(List<ReservaElementoTrabajo> reservaElementoTrabajo) {
         this.reservaElementoTrabajo = reservaElementoTrabajo;
+    }
+
+    public void addReservaElementoTrabajo(ReservaElementoTrabajo nuevoElementoTrabajo){
+        if(reservaElementoTrabajo == null)
+            reservaElementoTrabajo = new ArrayList<ReservaElementoTrabajo>();
+        reservaElementoTrabajo.add(nuevoElementoTrabajo);
     }
 
 }

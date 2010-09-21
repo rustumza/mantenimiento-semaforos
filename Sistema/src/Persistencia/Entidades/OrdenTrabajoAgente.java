@@ -6,6 +6,7 @@ package Persistencia.Entidades;
 
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,11 +18,10 @@ import java.util.List;
 public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabajo {
 
     private OrdenTrabajoImplementacion implementacion;
-    private String oidReserva;
     private String oidEquipoDeTrabajo;
-    private String oidTrabajo;
+    private List<String> oidTrabajos;
     //variable para saber si el objeto relacionado ha sido buscado en la BD
-    private boolean reservaBuscado;
+    private boolean reservasBuscado;
     private boolean equipoDeTrabajoBuscado;
     private boolean trabajoBuscado;
     private boolean ordenTrabajoEstadosBuscado;
@@ -66,15 +66,19 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
         implementacion.settipoordentrabajo(newVal);
     }
 
-    public Reserva getReserva() {
+    public List<Reserva> getRervas() {
         if (isReservaBuscado() == false) {
-            implementacion.setReserva((Reserva) FachadaInterna.getInstancia().buscar("Reserva", oidReserva));
+            List<Criterio> listaCriterios = new ArrayList<Criterio>();
+            listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OIDOrdenDeTrabajo", "=", super.getOid()));
+            for (SuperDruperInterfaz nuevaReserva : FachadaInterna.getInstancia().buscar("Reserva", listaCriterios)) {
+                implementacion.addReserva((Reserva)nuevaReserva);
+            }
         }
-        return implementacion.getReserva();
+        return implementacion.getRervas();
     }
 
-    public void setReserva(Reserva reserva) {
-        implementacion.setReserva(reserva);
+    public void setReservas(List<Reserva> reservas) {
+        implementacion.setReservas(reservas);
     }
 
     public EquipoDeTrabajo getEquipoDeTrabajo() {
@@ -88,16 +92,18 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
         implementacion.setEquipoDeTrabajo(equipoDeTrabajo);
     }
 
-    public Trabajo getTrabajo() {
-        if (isTrabajoBuscado() == false) {
-            implementacion.setTrabajo((Trabajo) FachadaInterna.getInstancia().buscar("Trabajo", oidTrabajo));
+    public List<Trabajo> getTrabajos() {
+        if (isTrabajosBuscado() == false) {
+            for (String oidTrabBus : oidTrabajos) {
+                implementacion.addTrabajo((Trabajo)FachadaInterna.getInstancia().buscar("Trabajo", oidTrabBus));
+            }
         }
 
-        return implementacion.getTrabajo();
+        return implementacion.getTrabajos();
     }
 
-    public void setTrabajo(Trabajo trabajo) {
-        implementacion.setTrabajo(trabajo);
+    public void setTrabajos(List<Trabajo> trabajo) {
+        implementacion.setTrabajos(trabajo);
     }
 
     /**
@@ -115,31 +121,17 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
     }
 
     /**
-     * @return the oidReserva
-     */
-    public String getOidReserva() {
-        return oidReserva;
-    }
-
-    /**
-     * @param oidReserva the oidReserva to set
-     */
-    public void setOidReserva(String oidReserva) {
-        this.oidReserva = oidReserva;
-    }
-
-    /**
      * @return the reservaBuscado
      */
     public boolean isReservaBuscado() {
-        return reservaBuscado;
+        return reservasBuscado;
     }
 
     /**
      * @param reservaBuscado the reservaBuscado to set
      */
     public void setReservaBuscado(boolean reservaBuscado) {
-        this.reservaBuscado = reservaBuscado;
+        this.reservasBuscado = reservaBuscado;
     }
 
     /**
@@ -173,21 +165,27 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
     /**
      * @return the oidTrabajo
      */
-    public String getOidTrabajo() {
-        return oidTrabajo;
+    public List<String> getOidTrabajos() {
+        return oidTrabajos;
     }
 
     /**
      * @param oidTrabajo the oidTrabajo to set
      */
-    public void setOidTrabajo(String oidTrabajo) {
-        this.oidTrabajo = oidTrabajo;
+    public void setOidTrabajos(List<String> oidsTrabajo) {
+        this.oidTrabajos = oidsTrabajo;
+    }
+
+    public void addOidTrabajo(String nuevoOid){
+        if(oidTrabajos == null)
+            oidTrabajos = new ArrayList<String>();
+        this.oidTrabajos.add(nuevoOid);
     }
 
     /**
      * @return the trabajoBuscado
      */
-    public boolean isTrabajoBuscado() {
+    public boolean isTrabajosBuscado() {
         return trabajoBuscado;
     }
 
@@ -204,7 +202,7 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
             listaCriterios.add(FachadaInterna.getInstancia().crearCriterio("OIDOrdenDeTrabajo", "=", super.getOid()));
 
             for (SuperDruperInterfaz estado : FachadaInterna.getInstancia().buscar("OrdenTrabajoEstado", listaCriterios)) {
-                implementacion.getListaEstadosOrdenTrabajo().add((OrdenTrabajoEstado)estado);
+                implementacion.addEstado((OrdenTrabajoEstado)estado);
             }
         }
         return implementacion.getListaEstadosOrdenTrabajo();
@@ -227,4 +225,5 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
     public void setOrdenTrabajoEstadosBuscado(boolean ordenTrabajoEstadosBuscado) {
         this.ordenTrabajoEstadosBuscado = ordenTrabajoEstadosBuscado;
     }
+    
 }

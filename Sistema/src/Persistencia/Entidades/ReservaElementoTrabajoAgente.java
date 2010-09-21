@@ -10,7 +10,7 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class ReservaElementoTrabajoAgente implements ReservaElementoTrabajo {
+public class ReservaElementoTrabajoAgente extends ObjetoPersistente implements ReservaElementoTrabajo {
 
     private ReservaElementoTrabajoImplementacion implementacion;
     private String oidElementoTrabajo;

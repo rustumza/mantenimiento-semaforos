@@ -2,20 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.Entidades;
 
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class EquipoDeTrabajoAgente implements EquipoDeTrabajo{
+public class EquipoDeTrabajoAgente extends ObjetoPersistente implements EquipoDeTrabajo {
 
     private EquipoDeTrabajoImplementacion implementacion;
-    private String oidTrabajadorRol;
-
     private boolean trabajadorBuscado;
 
     public int getcargaHorariaMaxPorDia() {
@@ -42,13 +43,19 @@ public class EquipoDeTrabajoAgente implements EquipoDeTrabajo{
         implementacion.setnombreEquipo(newVal);
     }
 
-    public TrabajadorRol getTrabajadorRol() {
-        if(isTrabajadorBuscado()==false)
-            implementacion.setTrabajadorRol((TrabajadorRol)FachadaInterna.getInstancia().buscar("TrabajadorRol", oidTrabajadorRol));
+    public List<TrabajadorRol> getTrabajadorRol() {
+        if (isTrabajadorBuscado() == false) {
+            List<Criterio> listaCriterios = new ArrayList<Criterio>();
+            listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OIDEquipoDeTrabajo", "=", super.getOid()));
+
+            for (SuperDruperInterfaz rol : FachadaInterna.getInstancia().buscar("TrabajadorRol", listaCriterios)) {
+                implementacion.addRol((TrabajadorRol)rol);
+            }
+        }
         return implementacion.getTrabajadorRol();
     }
 
-    public void setTrabajadorRol(TrabajadorRol trabajadorRol) {
+    public void setTrabajadorRol(List<TrabajadorRol> trabajadorRol) {
         implementacion.setTrabajadorRol(trabajadorRol);
     }
 
@@ -67,20 +74,6 @@ public class EquipoDeTrabajoAgente implements EquipoDeTrabajo{
     }
 
     /**
-     * @return the oidTrabajadorRol
-     */
-    public String getOidTrabajadorRol() {
-        return oidTrabajadorRol;
-    }
-
-    /**
-     * @param oidTrabajadorRol the oidTrabajadorRol to set
-     */
-    public void setOidTrabajadorRol(String oidTrabajadorRol) {
-        this.oidTrabajadorRol = oidTrabajadorRol;
-    }
-
-    /**
      * @return the trabajadorBuscado
      */
     public boolean isTrabajadorBuscado() {
@@ -93,5 +86,4 @@ public class EquipoDeTrabajoAgente implements EquipoDeTrabajo{
     public void setTrabajadorBuscado(boolean trabajadorBuscado) {
         this.trabajadorBuscado = trabajadorBuscado;
     }
-
 }

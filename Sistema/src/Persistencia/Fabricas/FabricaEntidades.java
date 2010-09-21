@@ -124,13 +124,12 @@ import Persistencia.Entidades.UbicacionSimpleImplementacion;
  */
 public class FabricaEntidades {
 
-    public static FabricaEntidades _instancia = null;
+    private static FabricaEntidades instancia = null;
 
-    public static FabricaEntidades getInstancia() {
-        if (_instancia == null) {
-            _instancia = new FabricaEntidades();
-        }
-        return _instancia;
+    public static FabricaEntidades getInstancia(){
+        if(instancia == null)
+            instancia = new FabricaEntidades();
+        return instancia;
     }
 
     public SuperDruperInterfaz crearEntidad(String entidad) {

@@ -4,6 +4,8 @@
  */
 package Persistencia.Entidades;
 
+import java.util.List;
+
 /**
  *
  * @author diego
@@ -22,7 +24,7 @@ public interface EquipoDeTrabajo extends SuperDruperInterfaz {
 
     public void setnombreEquipo(String newVal);
 
-    public TrabajadorRol getTrabajadorRol();
+    public List<TrabajadorRol> getTrabajadorRol();
 
-    public void setTrabajadorRol(TrabajadorRol trabajadorRol);
+    public void setTrabajadorRol(List<TrabajadorRol> trabajadorRol);
 }

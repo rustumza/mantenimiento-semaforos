@@ -5,6 +5,7 @@
 package Persistencia.Entidades;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -20,7 +21,7 @@ public interface Reserva extends SuperDruperInterfaz {
 
     public void setfecha(Date newVal);
 
-    public ReservaElementoTrabajo getReservaElementoTrabajo();
+    public List<ReservaElementoTrabajo> getReservaElementoTrabajo();
 
-    public void setReservaElementoTrabajo(ReservaElementoTrabajo reservaElementoTrabajo);
+    public void setReservaElementoTrabajo(List<ReservaElementoTrabajo> reservaElementoTrabajo);
 }

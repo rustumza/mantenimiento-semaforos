@@ -4,7 +4,11 @@
  */
 package Persistencia.Entidades;
 
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +17,6 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
 public class OrdenDeReparacionAgente extends OrdenTrabajoAgente implements OrdenDeReparacion {
 
     private String oidDenuncia;
-    private String oidInformeReparacion;
     //variable para saber si el atributo relacionado ya fue buscado en la BD
     private boolean denunciaBuscado;
     private boolean informeReparacionBuscado;
@@ -40,7 +43,9 @@ public class OrdenDeReparacionAgente extends OrdenTrabajoAgente implements Orden
 
     public InformeReparacion getInformeReparacion() {
         if (isInformeReparacionBuscado() == false) {
-            ((OrdenDeReparacionImplementacion) super.getImplementacion()).setInformeReparacion((InformeReparacion) FachadaInterna.getInstancia().buscar("InformeReparacion", oidInformeReparacion));
+            List<Criterio> listaCriterios = new ArrayList<Criterio>();
+            listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OIDOrdenTrabajo", "=", getOid()));
+            ((OrdenDeReparacionImplementacion) super.getImplementacion()).setInformeReparacion((InformeReparacion) FachadaInterna.getInstancia().buscar("InformeReparacion", listaCriterios).get(0));
         }
         return ((OrdenDeReparacionImplementacion) super.getImplementacion()).getInformeReparacion();
     }
@@ -75,20 +80,6 @@ public class OrdenDeReparacionAgente extends OrdenTrabajoAgente implements Orden
      */
     public void setDenunciaBuscado(boolean denunciaBuscado) {
         this.denunciaBuscado = denunciaBuscado;
-    }
-
-    /**
-     * @return the oidInformeReparacion
-     */
-    public String getOidInformeReparacion() {
-        return oidInformeReparacion;
-    }
-
-    /**
-     * @param oidInformeReparacion the oidInformeReparacion to set
-     */
-    public void setOidInformeReparacion(String oidInformeReparacion) {
-        this.oidInformeReparacion = oidInformeReparacion;
     }
 
     /**

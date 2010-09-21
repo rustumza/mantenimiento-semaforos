@@ -1,5 +1,8 @@
 package Persistencia.Entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Bicentenario
  * @version 1.0
@@ -10,7 +13,7 @@ public class EquipoDeTrabajoImplementacion implements EquipoDeTrabajo{
 	private int cargaHorariaMaxPorDia;
 	private int codigoEquipo;
 	private String nombreEquipo;
-	private TrabajadorRol trabajadorRol;
+	private List<TrabajadorRol> roles;
 
 	public EquipoDeTrabajoImplementacion(){
 
@@ -56,15 +59,22 @@ public class EquipoDeTrabajoImplementacion implements EquipoDeTrabajo{
     /**
      * @return the trabajadorRol
      */
-    public TrabajadorRol getTrabajadorRol() {
-        return trabajadorRol;
+    public List<TrabajadorRol> getTrabajadorRol() {
+        return roles;
     }
 
     /**
      * @param trabajadorRol the trabajadorRol to set
      */
-    public void setTrabajadorRol(TrabajadorRol trabajadorRol) {
-        this.trabajadorRol = trabajadorRol;
+    public void setTrabajadorRol(List<TrabajadorRol> trabajadorRol) {
+        this.roles = trabajadorRol;
+    }
+
+    public void addRol(TrabajadorRol nuevoRol){
+        if(roles == null){
+            roles = new ArrayList<TrabajadorRol>();
+        }
+        roles.add(nuevoRol);
     }
 
 }
