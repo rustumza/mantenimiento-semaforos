@@ -176,7 +176,8 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
             List<DenunciaEstado> listaDenEstado = new ArrayList<DenunciaEstado>();
             listaDenEstado.add(denEstado);
             den.setDenunciaEstado(listaDenEstado);
-            
+
+            FachadaExterna.getInstancia().guardar("Denuncia", den);
 
 
         }
