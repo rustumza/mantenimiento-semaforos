@@ -48,4 +48,6 @@ public interface OrdenTrabajo extends SuperDruperInterfaz {
     public List<OrdenTrabajoEstado> getListaEstadosOrdenTrabajo();
 
     public void setListaEstadosOrdenTrabajo(List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo);
+
+     public void addEstado(OrdenTrabajoEstado nuevoEstado);
 }

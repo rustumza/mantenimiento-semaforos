@@ -71,7 +71,7 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
             List<Criterio> listaCriterios = new ArrayList<Criterio>();
             listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OIDOrdenDeTrabajo", "=", super.getOid()));
             for (SuperDruperInterfaz nuevaReserva : FachadaInterna.getInstancia().buscar("Reserva", listaCriterios)) {
-                implementacion.addReserva((Reserva)nuevaReserva);
+                implementacion.addReserva((Reserva) nuevaReserva);
             }
         }
         return implementacion.getRervas();
@@ -95,7 +95,7 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
     public List<Trabajo> getTrabajos() {
         if (isTrabajosBuscado() == false) {
             for (String oidTrabBus : oidTrabajos) {
-                implementacion.addTrabajo((Trabajo)FachadaInterna.getInstancia().buscar("Trabajo", oidTrabBus));
+                implementacion.addTrabajo((Trabajo) FachadaInterna.getInstancia().buscar("Trabajo", oidTrabBus));
             }
         }
 
@@ -176,9 +176,10 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
         this.oidTrabajos = oidsTrabajo;
     }
 
-    public void addOidTrabajo(String nuevoOid){
-        if(oidTrabajos == null)
+    public void addOidTrabajo(String nuevoOid) {
+        if (oidTrabajos == null) {
             oidTrabajos = new ArrayList<String>();
+        }
         this.oidTrabajos.add(nuevoOid);
     }
 
@@ -197,21 +198,22 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
     }
 
     public List<OrdenTrabajoEstado> getListaEstadosOrdenTrabajo() {
-        if(isOrdenTrabajoEstadosBuscado()==false){
+        if (isOrdenTrabajoEstadosBuscado() == false) {
             List<Criterio> listaCriterios = new ArrayList<Criterio>();
             listaCriterios.add(FachadaInterna.getInstancia().crearCriterio("OIDOrdenDeTrabajo", "=", super.getOid()));
 
             for (SuperDruperInterfaz estado : FachadaInterna.getInstancia().buscar("OrdenTrabajoEstado", listaCriterios)) {
-                implementacion.addEstado((OrdenTrabajoEstado)estado);
+                implementacion.addEstado((OrdenTrabajoEstado) estado);
             }
         }
         return implementacion.getListaEstadosOrdenTrabajo();
     }
 
     public void setListaEstadosOrdenTrabajo(List<OrdenTrabajoEstado> listaEstadosOrdenTrabajo) {
-       implementacion.setListaEstadosOrdenTrabajo(listaEstadosOrdenTrabajo);
+        implementacion.setListaEstadosOrdenTrabajo(listaEstadosOrdenTrabajo);
     }
 
+    
     /**
      * @return the ordenTrabajoEstadosBuscado
      */
@@ -225,5 +227,8 @@ public class OrdenTrabajoAgente extends ObjetoPersistente implements OrdenTrabaj
     public void setOrdenTrabajoEstadosBuscado(boolean ordenTrabajoEstadosBuscado) {
         this.ordenTrabajoEstadosBuscado = ordenTrabajoEstadosBuscado;
     }
-    
+
+    public void addEstado(OrdenTrabajoEstado nuevoEstado) {
+        implementacion.addEstado(nuevoEstado);
+    }
 }
