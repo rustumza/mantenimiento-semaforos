@@ -8,6 +8,7 @@ package InterfacesGraficas;
 import DTO.DTOOrdenes;
 import Expertos.ExpertoConsultarOrdenesPendientes;
 import Fabricas.FabricaExpertos;
+import Persistencia.Entidades.OrdenTrabajo;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class ControladorConsultarOrdenesPendientes {
 ExpertoConsultarOrdenesPendientes ecop;
 
-public List<DTOOrdenes> buscarOrdenes(String fechaString){
+public List<OrdenTrabajo> buscarOrdenes(String fechaString){
 
     ecop = (ExpertoConsultarOrdenesPendientes)FabricaExpertos.getInstance().getExperto("ExpertoConsultarOrdenesPendientes");
     Date fechaDate = new Date(fechaString);
