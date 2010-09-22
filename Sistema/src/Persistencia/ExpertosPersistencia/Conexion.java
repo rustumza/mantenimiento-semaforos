@@ -44,16 +44,30 @@ public class Conexion {
         if (conn != null) {
             return conn;
         }
-        try {
-            //Class.forName("org.postgresql.Driver");
-            String urlConexion = "jdbc:postgresql://localhost:5432/prueba_persistencia";
-            String usr = "postgres";
-            String pass = "postgres";
-            conn = DriverManager.getConnection(urlConexion, usr, pass);
+        conn=null;
+       try{
+            String userName = "root";
+            String password = "guillelandia";
+            String url = "jdbc:mysql://localhost:3306/genco";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection(url, userName, password);
+
+
+            return conn;
+         } catch (SQLException sqle){
+            System.out.println("SQL Exception, messege error:");
+            System.out.println(sqle.getMessage());
+            System.out.println("error code:"+sqle.getErrorCode());
+            return null;
+        } catch (ClassNotFoundException cnfe){
+            System.out.println("SQL Exception, messege error:");
+            System.out.println(cnfe.getMessage());
+            return null;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
-        return conn;
+ 
     }
 
     public int insert(String query) {
