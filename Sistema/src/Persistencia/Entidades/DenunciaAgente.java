@@ -25,6 +25,9 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     private boolean denunciaEstadoBuscado;
     private boolean fallaTecnicaBuscado;
 
+
+
+
     public int getcodigoDenuncia() {
         return implementacion.getcodigoDenuncia();
     }

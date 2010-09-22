@@ -11,12 +11,17 @@ public class ProblemaImplementacion implements Problema{
 	private String descripcionProblema;
 	private Caso caso;
 
-	public ProblemaImplementacion(){
+    @Override
+    public String toString(){
+        return getdescripcionProblema();
+    }
 
-	}
+    public ProblemaImplementacion(){
+
+    }
 
 	
-	   public int getcodigoProblema() {
+    public int getcodigoProblema() {
         return codigoProblema;
     }
 

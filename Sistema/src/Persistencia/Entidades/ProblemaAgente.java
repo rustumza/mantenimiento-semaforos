@@ -17,6 +17,11 @@ public class ProblemaAgente implements Problema {
     //variable para saber si el atributo relacionado ya ha sido buscado en la BD
     private boolean casoBuscado;
 
+    @Override
+    public String toString(){
+        return implementacion.getdescripcionProblema();
+    }
+
     public int getcodigoProblema() {
         return implementacion.getcodigoProblema();
     }
