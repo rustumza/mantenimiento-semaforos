@@ -65,21 +65,20 @@ public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
         return listaCalles;
     }
 
-    public Interseccion buscarInterseccion(Calle calle1, Calle calle2){
+    public List<Semaforo> buscarSemaforo(Calle calle1, Calle calle2){
 
-    List<Criterio> criterio = new ArrayList<Criterio>();
-    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle1", "=", calle1));
-    criterio.add(FachadaExterna.getInstancia().crearCriterio("Calle2", "=", calle2));
-    List<SuperDruperInterfaz> listaSuperDruperInterfaz = FachadaExterna.getInstancia().buscar("Interseccion", criterio);
-    return (Interseccion)listaSuperDruperInterfaz.get(0);
-    }
-
-    public List<Semaforo> buscarSemaforo(Interseccion interseccion) {
-        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("Interseccion", "=", interseccion);
+        List<Criterio> criterioBuscarInterseccion = new ArrayList<Criterio>();
+        criterioBuscarInterseccion.add(FachadaExterna.getInstancia().crearCriterio("Calle1", "=", calle1));
+        criterioBuscarInterseccion.add(FachadaExterna.getInstancia().crearCriterio("Calle2", "=", calle2));
+        List<SuperDruperInterfaz> listaSuperDruperInterfaz = FachadaExterna.getInstancia().buscar("Interseccion", criterioBuscarInterseccion);
+        Criterio criterioBuscarSemaforo = FachadaExterna.getInstancia().crearCriterio("Interseccion", "=", (Interseccion)listaSuperDruperInterfaz.get(0));
         List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
-        listaDeCriterio.add(criterio);
-        FachadaExterna.getInstancia().buscar("Semaforo", listaDeCriterio);
-        return null;
+        listaDeCriterio.add(criterioBuscarSemaforo);
+        List<SuperDruperInterfaz> listaDeInterfaz = FachadaExterna.getInstancia().buscar("Semaforo", listaDeCriterio);
+        List<Semaforo> listaSemaforos = new ArrayList<Semaforo>();
+        for(SuperDruperInterfaz aux : listaDeInterfaz)
+            listaSemaforos.add((Semaforo) aux);
+        return listaSemaforos;
     }
 
     public List<Problema> buscarProblemas() {

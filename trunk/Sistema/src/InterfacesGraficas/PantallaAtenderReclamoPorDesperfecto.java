@@ -198,7 +198,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
         jButton4.setText("<<Quitar");
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 75, -1));
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 80, -1));
         jPanel3.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 142, 102));
 
         jLabel13.setText("Problemas a Cargar");
