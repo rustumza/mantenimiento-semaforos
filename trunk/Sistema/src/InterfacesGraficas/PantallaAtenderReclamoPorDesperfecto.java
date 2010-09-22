@@ -270,6 +270,11 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         });
 
         cancelarCaso.setText("Cancelar");
+        cancelarCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarCasoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -387,6 +392,11 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         denunciante.settelefonofijo(telefono.getText());
         controladorARPD.guardarDenunciante(denunciante);
     }//GEN-LAST:event_guardarInfoDenuncianteActionPerformed
+
+    private void cancelarCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCasoActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_cancelarCasoActionPerformed
 
     /**
     * @param args the command line arguments
