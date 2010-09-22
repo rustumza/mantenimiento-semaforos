@@ -54,13 +54,10 @@ public class ControladorAtenderReclamoPorDesperfecto {
 
     }
 
-    public Interseccion buscarInterseccion(Calle calle1, Calle calle2){
 
-        return earpd.buscarInterseccion(calle1, calle2);
-    }
-
-    public Semaforo[] buscarSemaforo(Interseccion interseccion){
-        List<Semaforo> miListaDeSemaforos = earpd.buscarSemaforo(interseccion);
+    public Semaforo[] buscarSemaforo(Calle calle1, Calle calle2){
+        
+        List<Semaforo> miListaDeSemaforos = earpd.buscarSemaforo(calle1, calle2);
         return miListaDeSemaforos.toArray(new Semaforo[miListaDeSemaforos.size()]);
     }
 
