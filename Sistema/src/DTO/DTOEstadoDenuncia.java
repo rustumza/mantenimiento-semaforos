@@ -14,8 +14,13 @@ import java.util.Date;
 public class DTOEstadoDenuncia {
 
        int fecha;
+       String nombreestado;
 public void setFecha(int fecha){
     this.fecha = fecha;
 }
+
+    public void setNombreEstadoDenuncia(String nombreestado) {
+      this.nombreestado=nombreestado;
+    }
 
 }

@@ -8,10 +8,12 @@ import DTO.DTOEstadoDenuncia;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.Denuncia;
 import Persistencia.Entidades.DenunciaEstado;
+import Persistencia.Entidades.EstadoDenuncia;
 import Persistencia.Entidades.SuperDruperInterfaz;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
 import java.util.ArrayList;
 import java.util.List;
+import sun.awt.geom.AreaOp.AddOp;
 
 /**
  *
@@ -25,7 +27,20 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
         List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
         listaDeCriterio.add(criterio);
         List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", listaDeCriterio);
-        List<Denuncia> listaDenuncia = new ArrayList<Denuncia>();
+        
+        Denuncia denunEncontrada = (Denuncia)listaDeInterfaces.get(0);
+        List<DTOEstadoDenuncia> dtoDetAvance = new ArrayList <DTOEstadoDenuncia>();
+        
+        for (DenunciaEstado aux: denunEncontrada.getDenunciaEstado()){
+            DTOEstadoDenuncia estDenuncia = new DTOEstadoDenuncia();
+            estDenuncia.setFecha(aux.getfechacambioestado());
+            estDenuncia.setNombreEstadoDenuncia(aux.getEstadoDenuncia().getnombreestado());
+            dtoDetAvance.add(estDenuncia);
+        }
+        return dtoDetAvance;
+        
+        
+       /* List<Denuncia> listaDenuncia = new ArrayList<Denuncia>();
         for (SuperDruperInterfaz aux : listaDeInterfaces) {
             listaDenuncia.add((Denuncia) aux);
         }
@@ -34,11 +49,11 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
             for(DenunciaEstado denEstado: denuncia.getDenunciaEstado()){
                 DTOEstadoDenuncia estDenuncia = new DTOEstadoDenuncia();
                 estDenuncia.setFecha(denEstado.getfechacambioestado());
-                denEstado.setEstadoDenuncia(denEstado.getEstadoDenuncia());
+                estDenuncia.setEstadoDenuncia(denEstado.getEstadoDenuncia());
             }
         }
                  
-        return (List<DTOEstadoDenuncia>) listaDenuncia.get(0);
+        return (List<DTOEstadoDenuncia>) listaDenuncia.get(0); */
     }
 
     
