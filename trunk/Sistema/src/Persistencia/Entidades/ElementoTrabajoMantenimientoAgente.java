@@ -11,11 +11,12 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class ElementoTrabajoMantenimientoAgente implements ElementoTrabajoMantenimiento{
+public class ElementoTrabajoMantenimientoAgente extends ObjetoPersistente implements ElementoTrabajoMantenimiento{
 
     private ElementoTrabajoMantenimientoImplementacion implementacion;
     private String oidElementoTrabajo;
     private String oidEstadoElementoTrabajo;
+    private String oidDetalleInformeMantenimiento;
 
     private boolean elementoTrabajoBuscado;
     private boolean estadoElementoTrabajoBuscado;
@@ -116,6 +117,20 @@ public class ElementoTrabajoMantenimientoAgente implements ElementoTrabajoManten
      */
     public void setEstadoElementoTrabajoBuscado(boolean estadoElementoTrabajoBuscado) {
         this.estadoElementoTrabajoBuscado = estadoElementoTrabajoBuscado;
+    }
+
+    /**
+     * @return the oidDetalleInformeMantenimiento
+     */
+    public String getOidDetalleInformeMantenimiento() {
+        return oidDetalleInformeMantenimiento;
+    }
+
+    /**
+     * @param oidDetalleInformeMantenimiento the oidDetalleInformeMantenimiento to set
+     */
+    public void setOidDetalleInformeMantenimiento(String oidDetalleInformeMantenimiento) {
+        this.oidDetalleInformeMantenimiento = oidDetalleInformeMantenimiento;
     }
 
 }

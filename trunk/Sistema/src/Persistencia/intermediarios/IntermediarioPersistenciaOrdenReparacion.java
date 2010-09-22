@@ -8,6 +8,7 @@ import Persistencia.Entidades.OrdenTrabajoAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.Entidades.OrdenDeReparacionAgente;
+import Persistencia.ExpertosPersistencia.FachadaInterna;
 import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioPersistenciaOrdenDeTrabajo{
+public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioRelacional{
 
     @Override
     public String armarInsert(ObjetoPersistente obj) {
@@ -30,9 +31,6 @@ public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioPersi
         insert = "INSERT INTO ordenreparacion (OIDOrdenTrabajo, OIDDenuncia) "
                 + "VALUES ('"+obj.getOid()+"', '"+ordenRep.getOidDenuncia()+"')";
         
-        String insertPadre = super.armarInsert(obj);
-        
-        insert = insertPadre + insert;
 
         return insert;
     }
@@ -79,10 +77,6 @@ public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioPersi
                 + "SET OIDOrdenTrabajo = '"+ordenRep.getOid()+"', "
                 + "OIDDenuncia = '"+ordenRep.getOidDenuncia()+"'";
 
-        String updatePadre = super.armarUpdate(obj);
-
-        update = updatePadre + update;
-
         return update;
 
     }
@@ -95,15 +89,11 @@ public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioPersi
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
         List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
-        List<ObjetoPersistente> listaPadres = super.convertirRegistrosAObjetos(rs);
 
-        int i = 0;
         try {
             while (rs.next()) {
 
                 OrdenDeReparacionAgente nuevaOrdenRep = (OrdenDeReparacionAgente) FabricaEntidades.getInstancia().crearEntidad("OrdenDeReparacion");
-
-                nuevaOrdenRep.setPadre((OrdenTrabajoAgente) listaPadres.get(i));
 
                 nuevaOrdenRep.setIsNuevo(false);
                 nuevaOrdenRep.setOid(rs.getString("OIDOrdenDeTrabajo"));
@@ -112,7 +102,6 @@ public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioPersi
                 nuevaOrdenRep.setInformeReparacionBuscado(false);
 
                 nuevosObjetos.add(nuevaOrdenRep);
-                i++;
 
             }
         } catch (SQLException ex) {
@@ -126,12 +115,28 @@ public class IntermediarioPersistenciaOrdenReparacion extends IntermediarioPersi
 
     @Override
     public void guardarObjetosRelacionados(ObjetoPersistente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void buscarObjRelacionados(ObjetoPersistente obj) {
-        super.buscarObjRelacionados(obj);
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        //busca el padre
+        OrdenTrabajoAgente padre = (OrdenTrabajoAgente) FachadaInterna.getInstancia().buscar("OrdenTrabajo", objPer.getOid());
+        //setea los datos del padre a la entidad
+        ((OrdenTrabajoAgente)objPer).setOidEquipoDeTrabajo(padre.getOidEquipoDeTrabajo());
+        ((OrdenTrabajoAgente)objPer).setfechainiciotrabajo(padre.getfechainiciotrabajo());
+        ((OrdenTrabajoAgente)objPer).setfechafintrabajo(padre.getfechafintrabajo());
+        ((OrdenTrabajoAgente)objPer).setfechainicioplanificada(padre.getfechainicioplanificada());
+        ((OrdenTrabajoAgente)objPer).setduracionprevistatrabajo(padre.getduracionprevistatrabajo());
+        ((OrdenTrabajoAgente)objPer).settipoordentrabajo(padre.gettipoordentrabajo());
+        ((OrdenTrabajoAgente)objPer).setEquipoDeTrabajoBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setOrdenTrabajoEstadosBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setReservaBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setTrabajoBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setTrabajos(padre.getTrabajos());
     }
 }
 

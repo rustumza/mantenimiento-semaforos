@@ -2,8 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package Persistencia.intermediarios;
 
 import Persistencia.ExpertosPersistencia.Criterio;
@@ -16,16 +14,20 @@ import Persistencia.Entidades.TrabajoAgente;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
 import Persistencia.Fabricas.FabricaCriterios;
 import Persistencia.Fabricas.FabricaEntidades;
+import Utilidades.FormateadorFechas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelacional{
+public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelacional {
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
@@ -33,15 +35,15 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
         OrdenTrabajoAgente ordenTrabajo = (OrdenTrabajoAgente) obj;
 
         return insert = "INSERT INTO ordendetrabajo (OIDOrdenDeTrabajo, FechaInicioTrabajo, FechaFinTrabajo, FechaInicioPlanificada, DuracionPrevistaTrabajo, Tipo, OIDEquipoDeTrabajo)"
-                + " VALUES ('"+ordenTrabajo.getOid()+"', '"+ordenTrabajo.getfechainiciotrabajo()+"', '"+ordenTrabajo.getfechafintrabajo()+"', '"+ordenTrabajo.getfechainicioplanificada()+"', "+ordenTrabajo.getduracionprevistatrabajo()+", '"+ordenTrabajo.gettipoordentrabajo()+"', '"+ordenTrabajo.getOidEquipoDeTrabajo()+"'d);";
+                + " VALUES ('" + ordenTrabajo.getOid() + "', '" + ordenTrabajo.getfechainiciotrabajo() + "', '" + ordenTrabajo.getfechafintrabajo() + "', '" + ordenTrabajo.getfechainicioplanificada() + "', " + ordenTrabajo.getduracionprevistatrabajo() + ", '" + ordenTrabajo.gettipoordentrabajo() + "', '" + ordenTrabajo.getOidEquipoDeTrabajo() + "'d);";
     }
 
     public String armarSelect(List<Criterio> criterios) {
 
         String select;
 
-        select = "SELECT * FROM ordendetrabajo" ;
-        
+        select = "SELECT * FROM ordendetrabajo";
+
         if (!criterios.isEmpty()) {
             select = select + " WHERE ";
             for (int i = 0; i < criterios.size(); i++) {
@@ -49,7 +51,7 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
                     select = select + " AND ";
                 }
 
-                select = select + "ordendetrabajo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor()+"'";
+                select = select + "ordendetrabajo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
             }
         }
 
@@ -60,7 +62,7 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
 
         String selectOid;
 
-        return selectOid = "SELECT * FROM ordendetrabajo WHERE OIDOrdenDeTrabajo = '" + oid+"'";
+        return selectOid = "SELECT * FROM ordendetrabajo WHERE OIDOrdenDeTrabajo = '" + oid + "'";
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
@@ -68,14 +70,14 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
         OrdenTrabajoAgente ordenTrabajo = (OrdenTrabajoAgente) obj;
         String update;
 
-        update = "UPDATE ordendetrabajo SET "
-                + "OIDOrdenDeTrabajo = '"+ ordenTrabajo.getOid()+ ","
-                + "FechaInicioTrabajo = '"+ordenTrabajo.getfechainiciotrabajo() + "', "
-                + "FechaFinTrabajo = '"+ ordenTrabajo.getfechafintrabajo()+"', "
-                + "FechaInicioPlanificada = '"+ordenTrabajo.getfechainicioplanificada() +"', "
-                + "DuracionPrevistaTrabajo = "+ordenTrabajo.getduracionprevistatrabajo()+ ", "
-                + "Tipo = '"+ordenTrabajo.gettipoordentrabajo()+ "', "
-                + "OIDEquipoDeTrabajo = '"+ordenTrabajo.getOidEquipoDeTrabajo()+"';";
+        update = "UPDATE ordendetrabajo "
+                + "SET OIDOrdenDeTrabajo = '" + ordenTrabajo.getOid() + ","
+                + "FechaInicioTrabajo = '" + ordenTrabajo.getfechainiciotrabajo() + "', "
+                + "FechaFinTrabajo = '" + ordenTrabajo.getfechafintrabajo() + "', "
+                + "FechaInicioPlanificada = '" + ordenTrabajo.getfechainicioplanificada() + "', "
+                + "DuracionPrevistaTrabajo = " + ordenTrabajo.getduracionprevistatrabajo() + ", "
+                + "Tipo = '" + ordenTrabajo.gettipoordentrabajo() + "', "
+                + "OIDEquipoDeTrabajo = '" + ordenTrabajo.getOidEquipoDeTrabajo() + "';";
 
         return update;
 
@@ -93,11 +95,20 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
                 nuevaOrdenTrabajo.setIsNuevo(false);
                 nuevaOrdenTrabajo.setOid(rs.getString("OIDOrdenDeTrabajo"));
                 nuevaOrdenTrabajo.setOidEquipoDeTrabajo(rs.getString("OIDEquipoDeTrabajo"));
+                try {
+                    nuevaOrdenTrabajo.setfechainiciotrabajo(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaInicioTrabajo")));
+                    nuevaOrdenTrabajo.setfechafintrabajo(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaFinTrabajo")));
+                    nuevaOrdenTrabajo.setfechainicioplanificada(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaInicioPlanificada")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(IntermediarioPersistenciaOrdenDeTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                nuevaOrdenTrabajo.setduracionprevistatrabajo(Integer.valueOf(rs.getString("DuracionPrevistaTrabajo")));
+                nuevaOrdenTrabajo.settipoordentrabajo(rs.getString("Tipo"));
                 nuevaOrdenTrabajo.setEquipoDeTrabajoBuscado(false);
                 nuevaOrdenTrabajo.setOrdenTrabajoEstadosBuscado(false);
                 nuevaOrdenTrabajo.setReservaBuscado(false);
                 nuevaOrdenTrabajo.setTrabajoBuscado(false);
-                
+
                 nuevosObjetos.add(nuevaOrdenTrabajo);
 
             }
@@ -110,24 +121,31 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
 
     @Override
     public void guardarObjetosRelacionados(ObjetoPersistente obj) {
-        for (Reserva reserva : ((OrdenTrabajo)obj).getRervas()) {
+        for (Reserva reserva : ((OrdenTrabajo) obj).getRervas()) {
             FachadaInterna.getInstancia().guardar("Reserva", (ObjetoPersistente) reserva);
         }
     }
 
     @Override
+    /*
+     * Busqueda de la relacion N a N
+     */
     public void buscarObjRelacionados(ObjetoPersistente obj) {
-        
+
         List<Criterio> listaCriterios = new ArrayList<Criterio>();
         listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OrdenTrabajo", "=", obj.getOid()));
-        
+
         List<SuperDruperInterfaz> listaTrabajos = FachadaInterna.getInstancia().buscar("Trabajo", listaCriterios);
 
         for (SuperDruperInterfaz trabajo : listaTrabajos) {
 
-            ((OrdenTrabajoAgente)obj).addOidTrabajo(((TrabajoAgente)trabajo).getOid());
+            ((OrdenTrabajoAgente) obj).addOidTrabajo(((TrabajoAgente) trabajo).getOid());
 
         }
     }
-}
 
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        
+    }
+}

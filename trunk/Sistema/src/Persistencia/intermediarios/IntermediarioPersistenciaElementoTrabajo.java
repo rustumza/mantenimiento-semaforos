@@ -2,54 +2,77 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
 package Persistencia.intermediarios;
 
+import Persistencia.Entidades.ElementoTrabajoAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
-import Persistencia.Entidades.ElementoTrabajoMantenimiento;
-import Persistencia.Entidades.ElementoTrabajoMantenimientoAgente;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaElementoTrabajo extends IntermediarioRelacional{
-private String oid;
+public class IntermediarioPersistenciaElementoTrabajo extends IntermediarioRelacional {
 
     public String armarInsert(ObjetoPersistente obj) {
+
+        ElementoTrabajoAgente elemento = (ElementoTrabajoAgente) obj;
+
         String insert;
 
-        return insert = "insert into elementotrabajo (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento) values (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento)";
+        insert = "INSERT INTO elementotrabajo (OIDElementoTrabajo, CodigoSistemaExterno, TipoElemento) "
+                + "VALUES ('" + elemento.getOid() + "', " + Integer.valueOf(elemento.getcodigosistemaexterno()) + ", '" +elemento.gettipoelemento()+"')";
+
+        return insert;
     }
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
 
-        return select = "select * from elementotrabajo where " ;//criterios
+        select = "SELECT * FROM elementotrabajo";
+
+        if (!criterios.isEmpty()) {
+            select = select + " WHERE ";
+            for (int i = 0; i < criterios.size(); i++) {
+                if (i > 0) {
+                    select = select + " AND ";
+                }
+
+                select = select + "elementotrabajo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+            }
+        }
+
+        return select;
 
     }
 
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
-        return selectOid = "select * from elementotrabajo where OIDElementoTrabajo = " + oid;
+
+        selectOid = "SELECT * FROM elementotrabajo WHERE OIDElementoTrabajo = '" + oid + "'";
+
+        return selectOid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
+        ElementoTrabajoAgente elemento = (ElementoTrabajoAgente) obj;
         String update;
 
-        return update = "update elementotrabajo set OIDElementoTrabajo =" + ",CodigoSistemaExterno = " + "TipoElemento = " ;
+        update = "UPDATE elementotrabajo "
+                + "SET OIDElementoTrabajo = '" + elemento.getOid() + "', "
+                + "CodigoSistemaExterno = " + Integer.valueOf(elemento.getcodigosistemaexterno()) + ", "
+                + "TipoElemento = '" + elemento.gettipoelemento()+"'";
+
+        return update;
 
     }
 
@@ -58,7 +81,37 @@ private String oid;
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
+        List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
 
-        return null;
+        try {
+            while (rs.next()) {
+
+                ElementoTrabajoAgente nuevoElemento = (ElementoTrabajoAgente) FabricaEntidades.getInstancia().crearEntidad("ElementoTrabajo");
+
+                nuevoElemento.setOid(rs.getString("OIDElementoTrabajo"));
+                nuevoElemento.setIsNuevo(false);
+                nuevoElemento.setcodigosistemaexterno(Integer.valueOf(rs.getString("CodigoSistemaExterno")));
+                nuevoElemento.settipoelemento(rs.getString("TipoElemento"));
+
+                nuevosObjetos.add(nuevoElemento);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return nuevosObjetos;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
     }
 }

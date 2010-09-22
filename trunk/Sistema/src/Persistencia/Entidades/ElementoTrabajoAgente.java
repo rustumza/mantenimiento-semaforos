@@ -9,7 +9,7 @@ package Persistencia.Entidades;
  *
  * @author diego
  */
-public class ElementoTrabajoAgente implements ElementoTrabajo{
+public class ElementoTrabajoAgente extends ObjetoPersistente implements ElementoTrabajo{
 
     private ElementoTrabajoImplementacion implementacion;
 
@@ -17,7 +17,7 @@ public class ElementoTrabajoAgente implements ElementoTrabajo{
         return implementacion.getcodigosistemaexterno();
     }
 
-    public int gettipoelemento() {
+    public String gettipoelemento() {
        return implementacion.gettipoelemento();
     }
 
@@ -25,7 +25,7 @@ public class ElementoTrabajoAgente implements ElementoTrabajo{
         implementacion.setcodigosistemaexterno(newVal);
     }
 
-    public void settipoelemento(int newVal) {
+    public void settipoelemento(String newVal) {
         implementacion.settipoelemento(newVal);
     }
 

@@ -6,7 +6,10 @@ package Persistencia.intermediarios;
 
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.Reserva;
 import Persistencia.Entidades.ReservaAgente;
+import Persistencia.Entidades.ReservaElementoTrabajo;
+import Persistencia.ExpertosPersistencia.FachadaInterna;
 import Persistencia.Fabricas.FabricaEntidades;
 import Utilidades.FormateadorFechas;
 import java.sql.ResultSet;
@@ -24,15 +27,19 @@ import java.util.logging.Logger;
 public class IntermediarioPersistenciaReserva extends IntermediarioRelacional {
 
     public String armarInsert(ObjetoPersistente obj) {
+        ReservaAgente reserva = (ReservaAgente) obj;
         String insert;
 
-        return insert = "insert into reserva (OIDReserva, OIDOrdenDeTrabajo, FechaReserva, CodigoReserva) values (OIDReserva, OIDOrdenDeTrabajo, FechaReserva, CodigoReserva)";
+        insert = "INSERT INTO reserva (OIDReserva, OIDOrdenDeTrabajo, FechaReserva, CodigoReserva) "
+                + "VALUES ('" + reserva.getOid() + "', '" + reserva.getOidOrdenTrabajo() + "', '" + reserva.getfecha().toString() + "', " + Integer.valueOf(reserva.getcodigoreserva()) + ")";
+
+        return insert;
     }
 
     public String armarSelect(List<Criterio> criterios) {
         String select;
 
-        select = "select * from reserva";
+        select = "SELECT * FROM reserva";
 
         if (!criterios.isEmpty()) {
             select = select + " WHERE ";
@@ -44,8 +51,8 @@ public class IntermediarioPersistenciaReserva extends IntermediarioRelacional {
                 select = select + "reserva." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
             }
         }
-        
-        
+
+
         return select;
 
     }
@@ -54,14 +61,24 @@ public class IntermediarioPersistenciaReserva extends IntermediarioRelacional {
 
         String selectOid;
 
-        return selectOid = "select * from reserva where OIDReserva = " + oid;
+        selectOid = "SELECT * FROM reserva WHERE OIDReserva = '" + oid + "'";
+
+        return selectOid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
+        ReservaAgente reserva = (ReservaAgente) obj;
+
         String update;
 
-        return update = "update reserva set OIDReserva =" + ",OIDOrdenDeTrabajo = " + "FechaReserva = " + "CodigoReserva =";
+        update = "UPDATE reserva "
+                + "SET OIDReserva = '" + reserva.getOid() + "' ,"
+                + "OIDOrdenDeTrabajo = '" + reserva.getOidOrdenTrabajo() + "', "
+                + "FechaReserva = '" + reserva.getfecha().toString() + "' ,"
+                + "CodigoReserva = " + Integer.valueOf(reserva.getcodigoreserva());
+
+        return update;
 
     }
 
@@ -79,7 +96,7 @@ public class IntermediarioPersistenciaReserva extends IntermediarioRelacional {
                 nuevaReserva.setOid(rs.getString("OIDReserva"));
                 nuevaReserva.setcodigoreserva(Integer.valueOf(rs.getString("CodigoReserva")));
                 try {
-                    nuevaReserva.setfecha(FormateadorFechas.getInstancia().getFormat_dd_MM_yyyy().parse(rs.getString("FechaReserva")));
+                    nuevaReserva.setfecha(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaReserva")));
                 } catch (ParseException ex) {
                     Logger.getLogger(IntermediarioPersistenciaReserva.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -93,5 +110,22 @@ public class IntermediarioPersistenciaReserva extends IntermediarioRelacional {
         }
 
         return nuevosObjetos;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+
+        for (ReservaElementoTrabajo reservaElementoTrabajo : ((Reserva) obj).getReservaElementoTrabajo()) {
+            FachadaInterna.getInstancia().guardar("ReservaElementoTrabajo", (ObjetoPersistente) reservaElementoTrabajo);
+        }
+
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
     }
 }
