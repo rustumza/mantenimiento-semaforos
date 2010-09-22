@@ -24,6 +24,7 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
     private boolean reclamoBuscado;
     private boolean denunciaEstadoBuscado;
     private boolean fallaTecnicaBuscado;
+    private List<String> listaOidFallaTecnica;
 
 
 
@@ -155,6 +156,13 @@ public class DenunciaAgente extends CasoAgente implements Denuncia {
         return reclamoBuscado;
     }
 
+    public void addOidFallaTecnica(String oidFallaTecnica){
+        if(listaOidFallaTecnica == null){
+            listaOidFallaTecnica = new ArrayList<String>();
+        }
+
+        listaOidFallaTecnica.add(oidFallaTecnica);
+    }
     /**
      * @param reclamoBuscado the reclamoBuscado to set
      */

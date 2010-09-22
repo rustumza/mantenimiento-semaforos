@@ -61,7 +61,7 @@ public abstract class IntermediarioPersistenciaCaso extends IntermediarioRelacio
 
                 if (criterios.get(i).getAtributo().equals("Semaforo")) {
                     addjoin = true;
-                    condicion = condicion + "OIDSemaforo." + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+                    condicion = condicion + "semaforo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
                 } else {
                     condicion = condicion + "caso." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
                 }

@@ -9,7 +9,7 @@ package Persistencia.Entidades;
  *
  * @author diego
  */
-public class TipoSemaforoAgente implements TipoSemaforo{
+public class TipoSemaforoAgente extends ObjetoPersistente implements TipoSemaforo{
 
     private TipoSemaforoImplementacion  implementacion;
 
