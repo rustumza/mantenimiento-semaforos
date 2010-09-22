@@ -16,6 +16,8 @@ import DTO.DTOinfoParaCrearDenuncia;
 import InterfacesGraficas.ModelosTablas.ModeloTablaSemaforos;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denunciante;
+import Persistencia.Entidades.Operador;
+import Persistencia.Entidades.OperadorImplementacion;
 import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Semaforo;
 import java.awt.event.MouseAdapter;
@@ -37,6 +39,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     int filaSeleccionada = -1;
     DTOinfoParaCrearDenuncia dTOinfoParaCrearDenuncia;
     HashMap<String, DTOProblemasDelSemaforo> hashMapProblemasDelSemaforo;
+    Denunciante denunciante;
 
 
     /** Creates new form PantallaAtenderReclamoPorDesperfecto */
@@ -92,6 +95,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        guardarInfoDenunciante = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -116,8 +120,8 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         problemasDeCadaSemaforo = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        asentarCaso = new javax.swing.JButton();
+        cancelarCaso = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,6 +164,14 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
         jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 180, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 340, -1));
+
+        guardarInfoDenunciante.setText("Guardar");
+        guardarInfoDenunciante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarInfoDenuncianteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(guardarInfoDenunciante, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 110, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ubicación"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -250,9 +262,14 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 14));
         jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 430, 10));
 
-        jButton5.setText("Asentar Caso");
+        asentarCaso.setText("Asentar Caso");
+        asentarCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asentarCasoActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("Cancelar");
+        cancelarCaso.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,9 +283,9 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelarCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(asentarCaso, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -286,8 +303,8 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6))))
+                            .addComponent(asentarCaso)
+                            .addComponent(cancelarCaso))))
                 .addContainerGap())
         );
 
@@ -317,7 +334,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     }//GEN-LAST:event_dniActionPerformed
 
     private void buscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDNIActionPerformed
-        Denunciante denunciante = controladorARPD.buscarDenunciante(dni.getText());
+        denunciante = controladorARPD.buscarDenunciante(dni.getText());
         apellido.setText(denunciante.getPersonaPadron().getapellido());
         nombre.setText(denunciante.getPersonaPadron().getnombre());
         domicilio.setText(denunciante.getdomicilio());
@@ -357,6 +374,20 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         problemasDeCadaSemaforo.setModel(new SpinnerListModel((hashMapProblemasDelSemaforo.get(sem.getnumeroSerie())).getListaDeProblemas()));
     }//GEN-LAST:event_quitarProblemaActionPerformed
 
+    private void asentarCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asentarCasoActionPerformed
+        dTOinfoParaCrearDenuncia.setDenunciante(denunciante);
+        dTOinfoParaCrearDenuncia.setOperador(new OperadorImplementacion());
+        dTOinfoParaCrearDenuncia.getProblemasDelSemaforo().addAll(hashMapProblemasDelSemaforo.values());
+        controladorARPD.guardarDenuncia(dTOinfoParaCrearDenuncia);
+    }//GEN-LAST:event_asentarCasoActionPerformed
+
+    private void guardarInfoDenuncianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarInfoDenuncianteActionPerformed
+        denunciante.setdomicilio(domicilio.getText());
+        denunciante.setemail(email.getText());
+        denunciante.settelefonofijo(telefono.getText());
+        controladorARPD.guardarDenunciante(denunciante);
+    }//GEN-LAST:event_guardarInfoDenuncianteActionPerformed
+
     /**
     * @param args the command line arguments
     
@@ -371,18 +402,19 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarProblema;
     private javax.swing.JLabel apellido;
+    private javax.swing.JButton asentarCaso;
     private javax.swing.JButton buscarDNI;
     private javax.swing.JButton buscarInteseccion;
     private javax.swing.JTextField calle1;
     private javax.swing.JTextField calle2;
+    private javax.swing.JButton cancelarCaso;
     private javax.swing.JComboBox comboCalle1;
     private javax.swing.JComboBox comboCalle2;
     private javax.swing.JTextField dni;
     private javax.swing.JTextField domicilio;
     private javax.swing.JTextField email;
     private javax.swing.ButtonGroup grupoInterseccionCalle;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton guardarInfoDenunciante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
