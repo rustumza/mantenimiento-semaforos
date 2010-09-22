@@ -282,12 +282,18 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
 
     private void agregarProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProblemaActionPerformed
         
-        Problema problema = (Problema) todosLosProblemas.getValue();
+
         ModeloTablaSemaforos mod = (ModeloTablaSemaforos)tablaDeSemafor.getModel();
         Semaforo sem = (Semaforo) mod.getRow(filaSeleccionada);
         if(hashMapProblemasDelSemaforo.containsValue(sem.getnumeroSerie()))
-            hashMapProblemasDelSemaforo.get(sem.getnumeroSerie());
+            hashMapProblemasDelSemaforo.get(sem.getnumeroSerie()).getListaDeProblemas().add((Problema) todosLosProblemas.getValue());
+        else{
+            DTOProblemasDelSemaforo dtoprobDSem = new DTOProblemasDelSemaforo();
+            dtoprobDSem.setSemaforo(sem);
+            dtoprobDSem.setListaDeProblemas(new)
+            hashMapProblemasDelSemaforo.add
 
+        }
 }//GEN-LAST:event_agregarProblemaActionPerformed
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
