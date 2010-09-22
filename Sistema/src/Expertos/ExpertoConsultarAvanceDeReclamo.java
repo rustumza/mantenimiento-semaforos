@@ -39,21 +39,8 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
         }
         return dtoDetAvance;
         
-        
-       /* List<Denuncia> listaDenuncia = new ArrayList<Denuncia>();
-        for (SuperDruperInterfaz aux : listaDeInterfaces) {
-            listaDenuncia.add((Denuncia) aux);
-        }
+     
 
-        for(Denuncia denuncia : listaDenuncia){
-            for(DenunciaEstado denEstado: denuncia.getDenunciaEstado()){
-                DTOEstadoDenuncia estDenuncia = new DTOEstadoDenuncia();
-                estDenuncia.setFecha(denEstado.getfechacambioestado());
-                estDenuncia.setEstadoDenuncia(denEstado.getEstadoDenuncia());
-            }
-        }
-                 
-        return (List<DTOEstadoDenuncia>) listaDenuncia.get(0); */
     }
 
     
