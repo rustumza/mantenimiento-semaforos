@@ -10,6 +10,9 @@ package Persistencia.Entidades;
  */
 public interface Problema extends SuperDruperInterfaz {
 
+    @Override
+    public String toString();
+
     public int getcodigoProblema();
 
     public String getdescripcionProblema();

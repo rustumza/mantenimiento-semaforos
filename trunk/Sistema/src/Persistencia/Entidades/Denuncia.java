@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface Denuncia extends Caso {
 
+    
+
     public int getcodigoDenuncia();
 
     public float getprioridad();

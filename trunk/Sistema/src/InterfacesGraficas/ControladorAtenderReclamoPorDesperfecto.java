@@ -10,6 +10,7 @@ import DTO.DTOinfoParaCrearDenuncia;
 import Persistencia.Entidades.Denunciante;
 import Expertos.ExpertoAntenderReclamoPorDesperfecto;
 import Fabricas.FabricaExpertos;
+import InterfacesGraficas.ModelosTablas.ModeloTablaSemaforos;
 import Persistencia.Decoradores.DecoradorExpertoAntenderReclamoPorDesperfecto;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Interseccion;
@@ -17,6 +18,7 @@ import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Semaforo;
 import Persistencia.ExpertosPersistencia.Cache;
 import java.util.List;
+import javax.swing.SpinnerListModel;
 /**
  *
  * @author LEIVA
@@ -55,10 +57,12 @@ public class ControladorAtenderReclamoPorDesperfecto {
     }
 
 
-    public Semaforo[] buscarSemaforo(Calle calle1, Calle calle2){
-        
-        List<Semaforo> miListaDeSemaforos = earpd.buscarSemaforo(calle1, calle2);
-        return miListaDeSemaforos.toArray(new Semaforo[miListaDeSemaforos.size()]);
+    public void buscarSemaforo(Calle calle1, Calle calle2){
+
+        ModeloTablaSemaforos modTabSem = new ModeloTablaSemaforos();
+        modTabSem.addAllRow(earpd.buscarSemaforo(calle1, calle2));
+        pantallaARPD.getTablaDeSemafor().setModel(modTabSem);
+        pantallaARPD.getTodosLosProblemas().setModel(new SpinnerListModel(buscarProblema()));
     }
 
     public Problema[] buscarProblema(){

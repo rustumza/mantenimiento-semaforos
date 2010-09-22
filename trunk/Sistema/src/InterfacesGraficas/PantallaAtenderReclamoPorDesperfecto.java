@@ -11,9 +11,21 @@
 
 package InterfacesGraficas;
 
+import DTO.DTOProblemasDelSemaforo;
+import DTO.DTOinfoParaCrearDenuncia;
+import InterfacesGraficas.ModelosTablas.ModeloTablaSemaforos;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denunciante;
+import Persistencia.Entidades.Problema;
+import Persistencia.Entidades.Semaforo;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -21,11 +33,30 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     ControladorAtenderReclamoPorDesperfecto controladorARPD;
+    int filaSeleccionada = -1;
+    DTOinfoParaCrearDenuncia dTOinfoParaCrearDenuncia;
+    HashMap<String, DTOProblemasDelSemaforo> hashMapProblemasDelSemaforo;
+
 
     /** Creates new form PantallaAtenderReclamoPorDesperfecto */
     public PantallaAtenderReclamoPorDesperfecto(ControladorAtenderReclamoPorDesperfecto controladorARPD) {
         this.controladorARPD = controladorARPD;
+
         initComponents();
+        dTOinfoParaCrearDenuncia = new DTOinfoParaCrearDenuncia();
+        dTOinfoParaCrearDenuncia.setProblemasDelSemaforo(new ArrayList<DTOProblemasDelSemaforo>());
+        hashMapProblemasDelSemaforo = new HashMap<String, DTOProblemasDelSemaforo>();
+        
+        tablaDeSemafor.addMouseListener(new MouseAdapter()
+   {
+      public void mouseClicked(MouseEvent e) 
+      {
+         int fila = tablaDeSemafor.rowAtPoint(e.getPoint());
+         int columna = tablaDeSemafor.columnAtPoint(e.getPoint());
+         if ((fila > -1) && (columna > -1))
+            filaSeleccionada = fila;
+      }
+   });
 
     }
 
@@ -68,12 +99,12 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         comboCalle2 = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDeSemafor = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jSpinner2 = new javax.swing.JSpinner();
+        todosLosProblemas = new javax.swing.JSpinner();
+        agregarProblema = new javax.swing.JButton();
+        quitarProblema = new javax.swing.JButton();
+        problemasDeCadaSemaforo = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jButton5 = new javax.swing.JButton();
@@ -170,7 +201,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Semáforos"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDeSemafor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -181,25 +212,25 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaDeSemafor);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 33, -1, 174));
 
         jLabel12.setText("Problemas");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
-        jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 143, 102));
+        jPanel3.add(todosLosProblemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 143, 102));
 
-        jButton3.setText("Agregar>>");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        agregarProblema.setText("Agregar>>");
+        agregarProblema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                agregarProblemaActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
+        jPanel3.add(agregarProblema, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
-        jButton4.setText("<<Quitar");
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 80, -1));
-        jPanel3.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 142, 102));
+        quitarProblema.setText("<<Quitar");
+        jPanel3.add(quitarProblema, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 80, -1));
+        jPanel3.add(problemasDeCadaSemaforo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 142, 102));
 
         jLabel13.setText("Problemas a Cargar");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 14));
@@ -249,9 +280,15 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButton3ActionPerformed
+    private void agregarProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProblemaActionPerformed
+        
+        Problema problema = (Problema) todosLosProblemas.getValue();
+        ModeloTablaSemaforos mod = (ModeloTablaSemaforos)tablaDeSemafor.getModel();
+        Semaforo sem = (Semaforo) mod.getRow(filaSeleccionada);
+        if(hashMapProblemasDelSemaforo.containsValue(sem.getnumeroSerie()))
+            hashMapProblemasDelSemaforo.get(sem.getnumeroSerie());
+
+}//GEN-LAST:event_agregarProblemaActionPerformed
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
         // TODO add your handling code here:
@@ -275,8 +312,15 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_validarCallesActionPerformed
 
+
+
+
+
+
     private void buscarInteseccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarInteseccionActionPerformed
-        controladorARPD.buscarInterseccion((Calle)comboCalle1.getSelectedItem(), (Calle)comboCalle2.getSelectedItem());
+
+        controladorARPD.buscarSemaforo((Calle)comboCalle1.getSelectedItem(), (Calle)comboCalle2.getSelectedItem());
+
     }//GEN-LAST:event_buscarInteseccionActionPerformed
 
     /**
@@ -291,6 +335,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     }
 */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarProblema;
     private javax.swing.JLabel apellido;
     private javax.swing.JButton buscarDNI;
     private javax.swing.JButton buscarInteseccion;
@@ -302,8 +347,6 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     private javax.swing.JTextField domicilio;
     private javax.swing.JTextField email;
     private javax.swing.ButtonGroup grupoInterseccionCalle;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -324,13 +367,56 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel nombre;
+    private javax.swing.JSpinner problemasDeCadaSemaforo;
+    private javax.swing.JButton quitarProblema;
+    private javax.swing.JTable tablaDeSemafor;
     private javax.swing.JTextField telefono;
+    private javax.swing.JSpinner todosLosProblemas;
     private javax.swing.JButton validarCalles;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the tablaDeSemafor
+     */
+    public javax.swing.JTable getTablaDeSemafor() {
+        return tablaDeSemafor;
+    }
+
+    /**
+     * @param tablaDeSemafor the tablaDeSemafor to set
+     */
+    public void setTablaDeSemafor(javax.swing.JTable tablaDeSemafor) {
+        this.tablaDeSemafor = tablaDeSemafor;
+    }
+
+    /**
+     * @return the problemasDeCadaSemaforo
+     */
+    public javax.swing.JSpinner getProblemasDeCadaSemaforo() {
+        return problemasDeCadaSemaforo;
+    }
+
+    /**
+     * @param problemasDeCadaSemaforo the problemasDeCadaSemaforo to set
+     */
+    public void setProblemasDeCadaSemaforo(javax.swing.JSpinner problemasDeCadaSemaforo) {
+        this.problemasDeCadaSemaforo = problemasDeCadaSemaforo;
+    }
+
+    /**
+     * @return the todosLosProblemas
+     */
+    public javax.swing.JSpinner getTodosLosProblemas() {
+        return todosLosProblemas;
+    }
+
+    /**
+     * @param todosLosProblemas the todosLosProblemas to set
+     */
+    public void setTodosLosProblemas(javax.swing.JSpinner todosLosProblemas) {
+        this.todosLosProblemas = todosLosProblemas;
+    }
 
 }
