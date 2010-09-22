@@ -11,15 +11,20 @@
 
 package InterfacesGraficas;
 
+import Persistencia.Entidades.Calle;
+import Persistencia.Entidades.Denunciante;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author diego
  */
 public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
-
+    ControladorAtenderReclamoPorDesperfecto controladorARPD;
 
     /** Creates new form PantallaAtenderReclamoPorDesperfecto */
-    public PantallaAtenderReclamoPorDesperfecto() {
+    public PantallaAtenderReclamoPorDesperfecto(ControladorAtenderReclamoPorDesperfecto controladorARPD) {
+        this.controladorARPD = controladorARPD;
         initComponents();
 
     }
@@ -35,29 +40,32 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
 
         grupoInterseccionCalle = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        dni = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        buscarDNI = new javax.swing.JButton();
+        nombre = new javax.swing.JLabel();
+        apellido = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        domicilio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        telefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        calle2 = new javax.swing.JTextField();
+        calle1 = new javax.swing.JTextField();
+        buscarInteseccion = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jTextField9 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        validarCalles = new javax.swing.JButton();
+        comboCalle1 = new javax.swing.JComboBox();
+        comboCalle2 = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -75,51 +83,67 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Denunciante"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 184, -1));
+
+        dni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dniActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 184, -1));
 
         jLabel1.setText("DNI");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 96, -1));
+        buscarDNI.setText("Buscar");
+        buscarDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarDNIActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 96, -1));
 
-        jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
+        nombre.setText("Nombre");
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
 
-        jLabel3.setText("Apellido");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        apellido.setText("Apellido");
+        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         jLabel4.setText("Domicilio");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 80, 14));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, -1));
+        jPanel1.add(domicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, -1));
 
         jLabel5.setText("Teléfono");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 180, -1));
+        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 180, -1));
 
         jLabel6.setText("E-mail:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 180, -1));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 180, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 340, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ubicación"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setText("calle 1");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel9.setText("calle 2");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 42, -1));
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 196, -1));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 196, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 42, -1));
+        jPanel2.add(calle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 150, -1));
+        jPanel2.add(calle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 150, -1));
 
-        jButton2.setText("Buscar");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 140, 80, -1));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 420, 20));
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 80, -1));
+        buscarInteseccion.setText("Buscar");
+        buscarInteseccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarInteseccionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buscarInteseccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 80, -1));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 420, 20));
+        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 70, -1));
 
         jLabel10.setText("Altura");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
 
         grupoInterseccionCalle.add(jRadioButton1);
         jRadioButton1.setText("Intersección");
@@ -127,7 +151,21 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
 
         grupoInterseccionCalle.add(jRadioButton2);
         jRadioButton2.setText("Calle Simple");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+
+        validarCalles.setText("Buscar coincidencia");
+        validarCalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validarCallesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(validarCalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+
+        comboCalle1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboCalle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 130, -1));
+
+        comboCalle2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(comboCalle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 130, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Semáforos"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -195,7 +233,7 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -215,9 +253,35 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dniActionPerformed
+
+    private void buscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDNIActionPerformed
+        Denunciante denunciante = controladorARPD.buscarDenunciante(dni.getText());
+        apellido.setText(denunciante.getPersonaPadron().getapellido());
+        nombre.setText(denunciante.getPersonaPadron().getnombre());
+        domicilio.setText(denunciante.getdomicilio());
+        telefono.setText(denunciante.gettelefonofijo());
+        email.setText(denunciante.getemail());
+
+    }//GEN-LAST:event_buscarDNIActionPerformed
+
+    private void validarCallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarCallesActionPerformed
+
+        comboCalle1.setModel(new DefaultComboBoxModel(controladorARPD.buscarCalle(calle1.getText())));
+        comboCalle2.setModel(new DefaultComboBoxModel(controladorARPD.buscarCalle(calle2.getText())));
+
+
+    }//GEN-LAST:event_validarCallesActionPerformed
+
+    private void buscarInteseccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarInteseccionActionPerformed
+        controladorARPD.buscarInterseccion((Calle)comboCalle1.getSelectedItem(), (Calle)comboCalle2.getSelectedItem());
+    }//GEN-LAST:event_buscarInteseccionActionPerformed
+
     /**
     * @param args the command line arguments
-    */
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -225,11 +289,19 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
             }
         });
     }
-
+*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel apellido;
+    private javax.swing.JButton buscarDNI;
+    private javax.swing.JButton buscarInteseccion;
+    private javax.swing.JTextField calle1;
+    private javax.swing.JTextField calle2;
+    private javax.swing.JComboBox comboCalle1;
+    private javax.swing.JComboBox comboCalle2;
+    private javax.swing.JTextField dni;
+    private javax.swing.JTextField domicilio;
+    private javax.swing.JTextField email;
     private javax.swing.ButtonGroup grupoInterseccionCalle;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -238,8 +310,6 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -257,13 +327,10 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel nombre;
+    private javax.swing.JTextField telefono;
+    private javax.swing.JButton validarCalles;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -24,14 +24,18 @@ import java.util.List;
 public class ControladorAtenderReclamoPorDesperfecto {
 
     ExpertoAntenderReclamoPorDesperfecto earpd;
+    PantallaAtenderReclamoPorDesperfecto pantallaARPD;
 
+    public ControladorAtenderReclamoPorDesperfecto(){
+         earpd = (ExpertoAntenderReclamoPorDesperfecto)FabricaExpertos.getInstance().getExperto("AtenderReclamoPorDesperfecto");
+         pantallaARPD = new PantallaAtenderReclamoPorDesperfecto(this);
+    }
+
+    public void iniciar(){
+        pantallaARPD.setVisible(true);
+    }
 
     public Denunciante buscarDenunciante(String dni){
-
-
-
-         earpd = (ExpertoAntenderReclamoPorDesperfecto)FabricaExpertos.getInstance().getExperto("AtenderReclamoPorDesperfecto");
-
         
         return earpd.buscarDenunciante(dni);
     }
