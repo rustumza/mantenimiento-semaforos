@@ -18,6 +18,7 @@ import java.util.List;
 public class ReservaAgente extends ObjetoPersistente implements Reserva {
 
     private ReservaImplementacion implementacion;
+    private String oidOrdenTrabajo;
     //variable para saber si el objeto relacionado ha sido buscado en la BD
     private boolean reservaElementoTrabajoBuscado;
 
@@ -79,5 +80,19 @@ public class ReservaAgente extends ObjetoPersistente implements Reserva {
      */
     public void setReservaElementoTrabajoBuscado(boolean reservaElementoTrabajoBuscado) {
         this.reservaElementoTrabajoBuscado = reservaElementoTrabajoBuscado;
+    }
+
+    /**
+     * @return the oidOrdenTrabajo
+     */
+    public String getOidOrdenTrabajo() {
+        return oidOrdenTrabajo;
+    }
+
+    /**
+     * @param oidOrdenTrabajo the oidOrdenTrabajo to set
+     */
+    public void setOidOrdenTrabajo(String oidOrdenTrabajo) {
+        this.oidOrdenTrabajo = oidOrdenTrabajo;
     }
 }

@@ -12,9 +12,9 @@ public interface ElementoTrabajo extends SuperDruperInterfaz {
 
     public int getcodigosistemaexterno();
 
-    public int gettipoelemento();
+    public String gettipoelemento();
 
     public void setcodigosistemaexterno(int newVal);
 
-    public void settipoelemento(int newVal);
+    public void settipoelemento(String newVal);
 }

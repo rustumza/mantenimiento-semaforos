@@ -33,6 +33,9 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
         }else{
             consulta = armarUpdate(obj);
         }
+
+        //Imprime por pantalla la consulta
+        System.out.println(consulta);
         
         Conexion.getInstance().insert(consulta);
 
@@ -51,6 +54,10 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
         ResultSet rs = Conexion.getInstance().select(consulta);
 
         objetosEncontrados = convertirRegistrosAObjetos(rs);
+
+        for (ObjetoPersistente objPer : objetosEncontrados) {
+            setearDatosPadre(objPer);
+        }
 
         for (ObjetoPersistente objPer : objetosEncontrados) {
             buscarObjRelacionados(objPer);
@@ -82,6 +89,8 @@ public abstract class IntermediarioRelacional extends IntermediarioPersistencia{
 
     public abstract void guardarObjetosRelacionados(ObjetoPersistente obj);
     public abstract void buscarObjRelacionados(ObjetoPersistente obj);
+
+    public abstract  void setearDatosPadre(ObjetoPersistente objPer);
 
    
 

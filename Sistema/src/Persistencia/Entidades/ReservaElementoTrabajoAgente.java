@@ -14,6 +14,7 @@ public class ReservaElementoTrabajoAgente extends ObjetoPersistente implements R
 
     private ReservaElementoTrabajoImplementacion implementacion;
     private String oidElementoTrabajo;
+    private String oidReserva;
     //variable para saber si el objeto relacionado ha sido buscado en la BD
     private boolean elementoTrabajoBuscado;
 
@@ -76,5 +77,19 @@ public class ReservaElementoTrabajoAgente extends ObjetoPersistente implements R
      */
     public void setOidElementoTrabajo(String oidElementoTrabajo) {
         this.oidElementoTrabajo = oidElementoTrabajo;
+    }
+
+    /**
+     * @return the oidReserva
+     */
+    public String getOidReserva() {
+        return oidReserva;
+    }
+
+    /**
+     * @param oidReserva the oidReserva to set
+     */
+    public void setOidReserva(String oidReserva) {
+        this.oidReserva = oidReserva;
     }
 }

@@ -4,23 +4,22 @@
  */
 package Persistencia.intermediarios;
 
-import Persistencia.Entidades.OrdenTrabajoAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.Entidades.OrdenDeMantenimientoAgente;
+import Persistencia.Entidades.OrdenTrabajoAgente;
+import Persistencia.ExpertosPersistencia.FachadaInterna;
 import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaOrdenDeMantenimiento extends IntermediarioPersistenciaOrdenDeTrabajo {
+public class IntermediarioPersistenciaOrdenDeMantenimiento extends IntermediarioRelacional {
 
     @Override
     public String armarInsert(ObjetoPersistente obj) {
@@ -28,11 +27,8 @@ public class IntermediarioPersistenciaOrdenDeMantenimiento extends Intermediario
 
         OrdenDeMantenimientoAgente ordenMant = (OrdenDeMantenimientoAgente) obj;
 
-        String insertPadre = super.armarInsert(obj);
-
         insert = "INSERT INTO ordendemantenimiento (OIDOrdenDeTrabajo, OIDSemaforo, CodigoOrdenMantenimiento, OIDFichaMantenimiento) "
                 + "VALUES ('"+ordenMant.getOid()+"', '"+ordenMant.getOidSemaforo()+"', "+ordenMant.getcodigoordenmantenimiento()+", '"+ordenMant.getOidFichaMantenimiento()+"')";
-        insert = insertPadre + insert;
 
         return insert;
     }
@@ -82,10 +78,6 @@ public class IntermediarioPersistenciaOrdenDeMantenimiento extends Intermediario
                 + "CodigoOrdenMantenimiento = "+ordenMant.getcodigoordenmantenimiento()+ ", "
                 + "OIDFichaMantenimiento = '"+ordenMant.getOidFichaMantenimiento()+"'";
 
-        String updatePadre = super.armarUpdate(obj);
-
-        update = updatePadre + update;
-
         return update;
 
     }
@@ -122,7 +114,32 @@ public class IntermediarioPersistenciaOrdenDeMantenimiento extends Intermediario
     }
 
     @Override
+    /*
+     * para armar la relacion N a N
+     */
     public void buscarObjRelacionados(ObjetoPersistente obj){
-        super.buscarObjRelacionados(obj);
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        //busca el padre
+        OrdenTrabajoAgente padre = (OrdenTrabajoAgente) FachadaInterna.getInstancia().buscar("OrdenTrabajo", objPer.getOid());
+
+        //setea los datos del padre a la entidad
+        ((OrdenTrabajoAgente)objPer).setOidEquipoDeTrabajo(padre.getOidEquipoDeTrabajo());
+        ((OrdenTrabajoAgente)objPer).setfechainiciotrabajo(padre.getfechainiciotrabajo());
+        ((OrdenTrabajoAgente)objPer).setfechafintrabajo(padre.getfechafintrabajo());
+        ((OrdenTrabajoAgente)objPer).setfechainicioplanificada(padre.getfechainicioplanificada());
+        ((OrdenTrabajoAgente)objPer).setduracionprevistatrabajo(padre.getduracionprevistatrabajo());
+        ((OrdenTrabajoAgente)objPer).settipoordentrabajo(padre.gettipoordentrabajo());
+        ((OrdenTrabajoAgente)objPer).setEquipoDeTrabajoBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setOrdenTrabajoEstadosBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setReservaBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setTrabajoBuscado(false);
+        ((OrdenTrabajoAgente)objPer).setTrabajos(padre.getTrabajos());
     }
 }

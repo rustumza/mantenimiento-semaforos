@@ -20,15 +20,19 @@ import java.util.List;
 public class IntermediarioPersistenciaReservaElementoTrabajo extends IntermediarioRelacional{
 
     public String armarInsert(ObjetoPersistente obj) {
+        ReservaElementoTrabajoAgente elementoTrabajo = (ReservaElementoTrabajoAgente) obj;
         String insert;
 
-        return insert = "insert into reservaelementotrabajo (OIDReservaElementoTrabajo, OIDElementoTrabajo, OIDReserva, CantidadReservada) values (OIDReservaElementoTrabajo, OIDElementoTrabajo, OIDReserva, CantidadReservada)";
+        insert = "INSERT INTO reservaelementotrabajo (OIDReservaElementoTrabajo, OIDElementoTrabajo, OIDReserva, CantidadReservada) "
+                + "VALUES ('"+elementoTrabajo.getOid()+"', '"+elementoTrabajo.getOidElementoTrabajo()+"', '"+elementoTrabajo.getOidReserva()+"', "+Integer.valueOf(elementoTrabajo.getcantidadreservada())+")";
+
+        return insert;
     }
 
     public String armarSelect(List<Criterio> criterios) {
         String select;
 
-        select = "select * from reservaelementotrabajo";
+        select = "SELECT * FROM reservaelementotrabajo";
         
         if (!criterios.isEmpty()) {
             select = select + " WHERE ";
@@ -49,14 +53,22 @@ public class IntermediarioPersistenciaReservaElementoTrabajo extends Intermediar
 
         String selectOid;
 
-        return selectOid = "select * from reservaelementotrabajo where OIDReservaElementoTrabajo = " + oid;
+        selectOid = "SELECT * FROM reservaelementotrabajo WHERE OIDReservaElementoTrabajo = '" +oid+"'";
+
+        return selectOid;
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
-
+ReservaElementoTrabajoAgente elementoTrabajo = (ReservaElementoTrabajoAgente) obj;
         String update;
 
-        return update = "update reservaelementotrabajo set OIDReservaElementoTrabajo =" + ",OIDElementoTrabajo = " + "OIDReserva = " + "CantidadReservada =";
+        update = "UPDATE reservaelementotrabajo "
+                + "SET OIDReservaElementoTrabajo = '"+elementoTrabajo.getOid()+"', "
+                + "OIDElementoTrabajo = '"+elementoTrabajo.getOidElementoTrabajo()+ "', "
+                + "OIDReserva = '"+elementoTrabajo.getOidReserva()+"', "
+                + "CantidadReservada = "+Integer.valueOf(elementoTrabajo.getcantidadreservada());
+
+        return update;
 
     }
 
@@ -86,6 +98,18 @@ public class IntermediarioPersistenciaReservaElementoTrabajo extends Intermediar
         }
 
         return nuevosObjetos;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
     }
 }
 
