@@ -98,14 +98,10 @@ public class IntermediarioPersistenciaOrdenDeMantenimiento extends Intermediario
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
         List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
-        List<ObjetoPersistente> listaPadres = super.convertirRegistrosAObjetos(rs);
 
-        int i = 0;
         try {
             while (rs.next()) {
                 OrdenDeMantenimientoAgente nuevaOrdenDeMantenimiento = (OrdenDeMantenimientoAgente) FabricaEntidades.getInstancia().crearEntidad("OrdenDeMantenimiento");
-
-                nuevaOrdenDeMantenimiento.setPadre((OrdenTrabajoAgente) listaPadres.get(i));
 
                 nuevaOrdenDeMantenimiento.setIsNuevo(false);
                 nuevaOrdenDeMantenimiento.setOid(rs.getString("OIDOrdenDeTrabajo"));
@@ -116,7 +112,6 @@ public class IntermediarioPersistenciaOrdenDeMantenimiento extends Intermediario
                 nuevaOrdenDeMantenimiento.setFichaMantenimientoBuscado(false);
                 
                 nuevosObjetos.add(nuevaOrdenDeMantenimiento);
-                i++;
 
             }
         } catch (SQLException ex) {
