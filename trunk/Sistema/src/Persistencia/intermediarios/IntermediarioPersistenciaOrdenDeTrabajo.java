@@ -40,7 +40,7 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
 
         String select;
 
-        select = "SELECT * FROM ordendetrabajo" ;//criterios
+        select = "SELECT * FROM ordendetrabajo" ;
         
         if (!criterios.isEmpty()) {
             select = select + " WHERE ";
