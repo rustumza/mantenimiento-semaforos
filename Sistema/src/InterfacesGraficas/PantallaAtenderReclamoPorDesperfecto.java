@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import javax.swing.SpinnerListModel;
 
 
 /**
@@ -53,9 +54,17 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
       {
          int fila = tablaDeSemafor.rowAtPoint(e.getPoint());
          int columna = tablaDeSemafor.columnAtPoint(e.getPoint());
-         if ((fila > -1) && (columna > -1))
+         if ((fila > -1) && (columna > -1)){
             filaSeleccionada = fila;
-      }
+            ModeloTablaSemaforos mod = (ModeloTablaSemaforos)tablaDeSemafor.getModel();
+            Semaforo sem = (Semaforo) mod.getRow(filaSeleccionada);
+            if(hashMapProblemasDelSemaforo.containsValue(sem.getnumeroSerie()))
+                problemasDeCadaSemaforo.setModel(new SpinnerListModel((hashMapProblemasDelSemaforo.get(sem.getnumeroSerie())).getListaDeProblemas()));
+            else
+                problemasDeCadaSemaforo.setModel(new SpinnerListModel());
+      
+            }
+        }
    });
 
     }
@@ -229,6 +238,11 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         jPanel3.add(agregarProblema, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
         quitarProblema.setText("<<Quitar");
+        quitarProblema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitarProblemaActionPerformed(evt);
+            }
+        });
         jPanel3.add(quitarProblema, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 80, -1));
         jPanel3.add(problemasDeCadaSemaforo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 142, 102));
 
@@ -285,15 +299,17 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
 
         ModeloTablaSemaforos mod = (ModeloTablaSemaforos)tablaDeSemafor.getModel();
         Semaforo sem = (Semaforo) mod.getRow(filaSeleccionada);
-        if(hashMapProblemasDelSemaforo.containsValue(sem.getnumeroSerie()))
+        if(hashMapProblemasDelSemaforo.containsValue(sem.getnumeroSerie())){
             hashMapProblemasDelSemaforo.get(sem.getnumeroSerie()).getListaDeProblemas().add((Problema) todosLosProblemas.getValue());
+        }
         else{
             DTOProblemasDelSemaforo dtoprobDSem = new DTOProblemasDelSemaforo();
             dtoprobDSem.setSemaforo(sem);
-            dtoprobDSem.setListaDeProblemas(new)
-            hashMapProblemasDelSemaforo.add
-
+            dtoprobDSem.setListaDeProblemas(new ArrayList<Problema>());
+            hashMapProblemasDelSemaforo.put(sem.getnumeroSerie(),dtoprobDSem);
+            hashMapProblemasDelSemaforo.get(sem.getnumeroSerie()).getListaDeProblemas().add((Problema) todosLosProblemas.getValue());
         }
+        problemasDeCadaSemaforo.setModel(new SpinnerListModel((hashMapProblemasDelSemaforo.get(sem.getnumeroSerie())).getListaDeProblemas()));
 }//GEN-LAST:event_agregarProblemaActionPerformed
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
@@ -328,6 +344,18 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         controladorARPD.buscarSemaforo((Calle)comboCalle1.getSelectedItem(), (Calle)comboCalle2.getSelectedItem());
 
     }//GEN-LAST:event_buscarInteseccionActionPerformed
+
+    private void quitarProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarProblemaActionPerformed
+        ModeloTablaSemaforos mod = (ModeloTablaSemaforos)tablaDeSemafor.getModel();
+        Semaforo sem = (Semaforo) mod.getRow(filaSeleccionada);
+        Problema prob = (Problema) problemasDeCadaSemaforo.getValue();
+        DTOProblemasDelSemaforo dtoProbDeSem = hashMapProblemasDelSemaforo.get(sem.getnumeroSerie());
+        for(int i=0; i<dtoProbDeSem.getListaDeProblemas().size();i++){
+            if(dtoProbDeSem.getListaDeProblemas().get(i).getcodigoProblema()==prob.getcodigoProblema());
+                dtoProbDeSem.getListaDeProblemas().remove(i);
+        }
+        problemasDeCadaSemaforo.setModel(new SpinnerListModel((hashMapProblemasDelSemaforo.get(sem.getnumeroSerie())).getListaDeProblemas()));
+    }//GEN-LAST:event_quitarProblemaActionPerformed
 
     /**
     * @param args the command line arguments
