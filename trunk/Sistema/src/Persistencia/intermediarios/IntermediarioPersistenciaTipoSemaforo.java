@@ -6,8 +6,14 @@ package Persistencia.intermediarios;
 
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Entidades.TipoSemaforoAgente;
+import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,38 +21,57 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaTipoSemaforo extends IntermediarioRelacional{
 
-private String oid;
-
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
+        TipoSemaforoAgente tipoSemaforo = (TipoSemaforoAgente)obj;
+         insert = "INSERT INTO tiposemaforo (OIDTipoSemaforo, CodigoTipoSemaforo, DescripcionTipoSemaforo) "
+                 + "VALUES '" + tipoSemaforo.getOid() + "', '" + tipoSemaforo.getcodigoTipoSemaforo() + "', '" + tipoSemaforo.getdescripciontiposemaforo() + "'";
 
-        return insert = "insert into tiposemaforo (OIDTipoSemaforo, CodigoTipoSemaforo, DescripcionTipoSemaforo) values (OIDTipoSemaforo, CodigoTipoSemaforo, DescripcionTipoSemaforo)";
+    return insert;
     }
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
+        boolean addjoin = false;//se activa cuando es necesario hacer join para la busqueda N a N
 
-        return select = "select * from tiposemaforo where " ;//criterios
+         select = "SELECT * FROM tiposemaforo" ;
+         String condicion = "";
 
+         while (!criterios.isEmpty()) {
+             condicion = condicion + " WHERE ";
+             for(int i = 0; i > criterios.size(); i++){
+                 if(i>0){
+                     condicion = condicion + " AND ";
+                 }
+                 condicion = condicion + "tiposemaforo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+
+             }
+
+             select = select + condicion;
+        }
+
+         return select;
     }
 
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
-
-        return selectOid = "select * from tiposemaforo where OIDTipoSemaforo = " + oid;
+        
+        return selectOid = "SELECT * FROM tiposemaforo WHERE OIDTipoSemaforo = '" + oid + "'";
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
         String update;
+        TipoSemaforoAgente tipoSemaforo = (TipoSemaforoAgente)obj;
 
-        return update = "update tiposemaforo set OIDTipoSemaforo =" + ",CodigoTipoSemaforo = " + "DescripcionTipoSemaforo = " ;
+         update = "UPDATE tiposemaforo SET"
+                 + "OIDTipoSemaforo ='" + tipoSemaforo.getOid() + "',"
+                 + "CodigoTipoSemaforo = '" + tipoSemaforo.getcodigoTipoSemaforo() + "' ,"
+                 + "DescripcionTipoSemaforo = '" + tipoSemaforo.getdescripciontiposemaforo() + "'";
 
+         return update;
     }
 
     public void guardarObjetoCompuesto(ObjetoPersistente obj) {
@@ -54,8 +79,37 @@ private String oid;
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
+        List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
+        try {
+            while (rs.next()) {
+                TipoSemaforoAgente nuevoTipoSemaforo = (TipoSemaforoAgente) FabricaEntidades.getInstancia().crearEntidad("TipoSemaforo");
+                nuevoTipoSemaforo.setIsNuevo(false);
+                try {
+                    nuevoTipoSemaforo.setOid(rs.getString("OIDTipoSemaforo"));
+                    nuevoTipoSemaforo.setcodigoTipoSemaforo(Integer.valueOf(rs.getString("CodigoTipoSemaforo")));
+                    nuevoTipoSemaforo.setdescripciontiposemaforo(rs.getString("DescripcionTipoSemaforo"));
 
-        return null;
+                    nuevosObjetos.add(nuevoTipoSemaforo);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(IntermediarioPersistenciaTipoSemaforo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IntermediarioPersistenciaTipoSemaforo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return nuevosObjetos;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 

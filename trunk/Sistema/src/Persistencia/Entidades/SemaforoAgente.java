@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author diego
  */
-public class SemaforoAgente implements Semaforo{
+public class SemaforoAgente extends ObjetoPersistente implements Semaforo{
 
     private SemaforoImplementacion implementacion;
     private String oidOrientacion;
