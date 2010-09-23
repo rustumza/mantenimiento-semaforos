@@ -5,11 +5,11 @@ package Persistencia.Entidades;
  * @version 1.0
  * @created 14-Sep-2010 06:52:19 p.m.
  */
-public class UbicacionImplementacion {
+public class UbicacionImplementacion implements Ubicacion{
 
     private int codigoubicacion;
     private int prioridad;
-    private int tipoubicacion;
+    private String tipoubicacion;
     private Operador operador;
 
     public UbicacionImplementacion() {
@@ -23,7 +23,7 @@ public class UbicacionImplementacion {
         return prioridad;
     }
 
-    public int gettipoubicacion() {
+    public String gettipoubicacion() {
         return tipoubicacion;
     }
 
@@ -43,7 +43,7 @@ public class UbicacionImplementacion {
      *
      * @param newVal
      */
-    public void settipoubicacion(int newVal) {
+    public void settipoubicacion(String newVal) {
         tipoubicacion = newVal;
     }
 

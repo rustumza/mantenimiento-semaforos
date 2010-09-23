@@ -10,7 +10,7 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class DenuncianteAgente implements Denunciante {
+public class DenuncianteAgente extends ObjetoPersistente implements Denunciante {
 
     private DenuncianteImplementacion implementacion;
     private String oidPersonaPadron;
@@ -100,5 +100,13 @@ public class DenuncianteAgente implements Denunciante {
      */
     public void setPersonaPadronBuscado(boolean personaPadronBuscado) {
         this.personaPadronBuscado = personaPadronBuscado;
+    }
+
+    public boolean isEstadoBaja() {
+        return implementacion.isEstadoBaja();
+    }
+
+    public void setEstadoBaja(boolean estadoBaja) {
+        implementacion.setEstadoBaja(estadoBaja);
     }
 }

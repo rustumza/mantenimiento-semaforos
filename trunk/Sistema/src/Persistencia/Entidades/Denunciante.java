@@ -29,4 +29,8 @@ public interface Denunciante extends SuperDruperInterfaz {
     public PersonaPadron getPersonaPadron();
 
     public void setPersonaPadron(PersonaPadron personaPadron);
+
+    public boolean isEstadoBaja();
+
+    public void setEstadoBaja(boolean estadoBaja);
 }

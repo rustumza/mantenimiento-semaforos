@@ -8,7 +8,6 @@ package Persistencia.Entidades;
 public class UbicacionSimpleImplementacion extends UbicacionImplementacion implements UbicacionSimple{
 
 	private int altura;
-	private int codigoUbicacionSimple;
 	private Calle calle;
 
 	public UbicacionSimpleImplementacion(){
@@ -20,9 +19,6 @@ public class UbicacionSimpleImplementacion extends UbicacionImplementacion imple
         return altura;
     }
 
-    public int getcodigoUbicacionSimple() {
-        return codigoUbicacionSimple;
-    }
 
     /**
      *
@@ -32,13 +28,6 @@ public class UbicacionSimpleImplementacion extends UbicacionImplementacion imple
         altura = newVal;
     }
 
-    /**
-     *
-     * @param newVal
-     */
-    public void setcodigoUbicacionSimple(int newVal) {
-        codigoUbicacionSimple = newVal;
-    }
 
     /**
      * @return the calle

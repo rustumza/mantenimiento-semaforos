@@ -4,13 +4,15 @@
  */
 package Persistencia.Entidades;
 
+import java.util.List;
+
 /**
  *
  * @author RUSTU
  */
 public interface Interseccion extends SuperDruperInterfaz {
 
-    public Calle getCalle();
+    public List<Calle> getCalles();
 
-    public void setCalle(Calle calle);
+    public void setCalles(List<Calle> calle);
 }

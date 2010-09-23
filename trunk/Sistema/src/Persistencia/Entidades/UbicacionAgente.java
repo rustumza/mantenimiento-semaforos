@@ -26,7 +26,7 @@ public class UbicacionAgente extends ObjetoPersistente implements Ubicacion {
         return getImplementacion().getPrioridad();
     }
     @Override
-    public int gettipoubicacion() {
+    public String gettipoubicacion() {
 
         return getImplementacion().gettipoubicacion();
     }
@@ -39,7 +39,7 @@ public class UbicacionAgente extends ObjetoPersistente implements Ubicacion {
         getImplementacion().setPrioridad(newVal);
     }
     @Override
-    public void settipoubicacion(int newVal) {
+    public void settipoubicacion(String newVal) {
         getImplementacion().settipoubicacion(newVal);
     }
     @Override

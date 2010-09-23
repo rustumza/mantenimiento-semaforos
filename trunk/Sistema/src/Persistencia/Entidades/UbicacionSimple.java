@@ -8,7 +8,7 @@ package Persistencia.Entidades;
  *
  * @author diego
  */
-public interface UbicacionSimple extends SuperDruperInterfaz {
+public interface UbicacionSimple extends Ubicacion {
 
     public int getaltura();
 

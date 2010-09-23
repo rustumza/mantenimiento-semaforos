@@ -5,27 +5,34 @@
 package Persistencia.Entidades;
 
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class InterseccionAgente implements Interseccion {
+public class InterseccionAgente extends ObjetoPersistente implements Interseccion {
 
     private InterseccionImplementacion implementacion;
-    private String oidCalle;
+    private List<String> listaOidCalle;
     //variable para saber si el objeto relacionado ya ha sido buscado en la BD
     private boolean calleBuscado;
 
-    public Calle getCalle() {
+    public List<Calle> getCalles() {
         if (isCalleBuscado() == false) {
-            implementacion.setCalle((Calle) FachadaInterna.getInstancia().buscar("Calle", oidCalle));
+            for (String oid : listaOidCalle) {
+                implementacion.addCalle((Calle) FachadaInterna.getInstancia().buscar("Calle", oid));
+            }
         }
-        return implementacion.getCalle();
+        return implementacion.getCalles();
     }
 
-    public void setCalle(Calle calle) {
-        implementacion.setCalle(calle);
+    public void setCalles(List<Calle> calle) {
+        implementacion.setCalles(calle);
+    }
+
+    public void addCalle(Calle nuevaCalle){
+        implementacion.addCalle(nuevaCalle);
     }
 
     /**
@@ -45,15 +52,20 @@ public class InterseccionAgente implements Interseccion {
     /**
      * @return the oidCalle
      */
-    public String getOidCalle() {
-        return oidCalle;
+    public List<String> getOidsCalle() {
+        return listaOidCalle;
     }
 
     /**
      * @param oidCalle the oidCalle to set
      */
-    public void setOidCalle(String oidCalle) {
-        this.oidCalle = oidCalle;
+    public void setOidsCalle(List<String> oidCalle) {
+        this.listaOidCalle = oidCalle;
+    }
+
+
+    public void addOidCalle(String oid){
+        listaOidCalle.add(oid);
     }
 
     /**

@@ -11,43 +11,29 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class UbicacionSimpleAgente implements UbicacionSimple{
+public class UbicacionSimpleAgente extends UbicacionAgente implements UbicacionSimple{
 
-    private UbicacionSimpleImplementacion implementacion;
     private String oidCalle;
     //variable para saber si ya se ha buscado el objeto relacionado en la BD
     private boolean CalleBuscado;
 
     public int getaltura() {
-        return implementacion.getaltura();
+
+        return ((UbicacionSimpleImplementacion)getImplementacion()).getaltura();
     }
 
     public void setaltura(int newVal) {
-        implementacion.setaltura(newVal);
+        ((UbicacionSimpleImplementacion)getImplementacion()).setaltura(newVal);
     }
 
     public Calle getCalle() {
         if(isCalleBuscado()==false)
-            implementacion.setCalle((Calle)FachadaInterna.getInstancia().buscar("Calle", oidCalle));
-        return implementacion.getCalle();
+            ((UbicacionSimpleImplementacion)getImplementacion()).setCalle((Calle)FachadaInterna.getInstancia().buscar("Calle", oidCalle));
+        return ((UbicacionSimpleImplementacion)getImplementacion()).getCalle();
     }
 
     public void setCalle(Calle calle) {
-        implementacion.setCalle(calle);
-    }
-
-    /**
-     * @return the implementacion
-     */
-    public UbicacionSimpleImplementacion getImplementacion() {
-        return implementacion;
-    }
-
-    /**
-     * @param implementacion the implementacion to set
-     */
-    public void setImplementacion(UbicacionSimpleImplementacion implementacion) {
-        this.implementacion = implementacion;
+        ((UbicacionSimpleImplementacion)getImplementacion()).setCalle(calle);
     }
 
     /**
