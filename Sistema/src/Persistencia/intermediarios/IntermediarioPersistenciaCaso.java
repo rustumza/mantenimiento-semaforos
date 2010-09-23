@@ -5,7 +5,6 @@
 package Persistencia.intermediarios;
 
 import Persistencia.Entidades.CasoAgente;
-import Persistencia.Entidades.DenunciaEstado;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.Entidades.SuperDruperInterfaz;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.management.resources.agent;
 
 /**
  *

@@ -1,5 +1,8 @@
 package Persistencia.Entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Bicentenario
  * @version 1.0
@@ -7,7 +10,7 @@ package Persistencia.Entidades;
  */
 public class InterseccionImplementacion extends UbicacionImplementacion implements Interseccion{
 
-	private Calle calle;
+	private List<Calle> calles;
 
 	public InterseccionImplementacion(){
 
@@ -17,15 +20,21 @@ public class InterseccionImplementacion extends UbicacionImplementacion implemen
     /**
      * @return the calle
      */
-    public Calle getCalle() {
-        return calle;
+    public List<Calle> getCalles() {
+        return calles;
     }
 
     /**
      * @param calle the calle to set
      */
-    public void setCalle(Calle calle) {
-        this.calle = calle;
+    public void setCalles(List<Calle> calle) {
+        this.calles = calle;
+    }
+
+    public void addCalle(Calle nuevaCalle){
+        if(calles == null )
+            calles = new ArrayList<Calle>();
+        calles.add(nuevaCalle);
     }
 
 }

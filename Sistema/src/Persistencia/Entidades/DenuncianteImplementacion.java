@@ -12,6 +12,7 @@ public class DenuncianteImplementacion implements Denunciante{
 	private String email;
 	private String telefonofijo;
 	private PersonaPadron personaPadron;
+        private boolean estadoBaja;
 
         
 
@@ -78,6 +79,20 @@ public class DenuncianteImplementacion implements Denunciante{
      */
     public void setPersonaPadron(PersonaPadron personaPadron) {
         this.personaPadron = personaPadron;
+    }
+
+    /**
+     * @return the estadoBaja
+     */
+    public boolean isEstadoBaja() {
+        return estadoBaja;
+    }
+
+    /**
+     * @param estadoBaja the estadoBaja to set
+     */
+    public void setEstadoBaja(boolean estadoBaja) {
+        this.estadoBaja = estadoBaja;
     }
 
 }

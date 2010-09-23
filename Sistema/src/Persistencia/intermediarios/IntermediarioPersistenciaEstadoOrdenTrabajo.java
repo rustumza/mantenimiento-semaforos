@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaEstadoOrdenTrabajo extends IntermediarioRelacional{
 
-private String oid;
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
@@ -25,9 +24,7 @@ private String oid;
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
 
         return select = "select * from estadoordentrabajo where " ;//criterios
 
@@ -36,7 +33,6 @@ private String oid;
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
         return selectOid = "select * from estadoordentrabajo where OIDEstadoOrdenTrabajo = " + oid;
     }
@@ -56,5 +52,20 @@ private String oid;
 
 
         return null;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
