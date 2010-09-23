@@ -38,7 +38,7 @@ public class IntermediarioPersistenciaEsquina extends IntermediarioRelacional{
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
+        
 
         return selectOid = "select * from esquina where OIDEsquina = " + oid;
     }
