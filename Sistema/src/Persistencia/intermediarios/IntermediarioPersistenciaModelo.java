@@ -7,8 +7,13 @@ package Persistencia.intermediarios;
 import Persistencia.Entidades.ModeloAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
+import Persistencia.Fabricas.FabricaEntidades;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,28 +33,47 @@ public class IntermediarioPersistenciaModelo extends IntermediarioRelacional{
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
         String select;
-        listaCriterios = criterios;
+        select = "SELECT * FROM modelo" ;
+        String condicion = "";
 
-        return select = "select * from modelo where " ;//criterios
+        while (!criterios.isEmpty()) {
+            condicion = condicion + " WHERE ";
 
+            for(int i = 0; i> criterios.size(); i++){
+                if(i>0){
+                    condicion = condicion + " AND ";
+                    }
+                condicion = condicion + "modelo." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+            }
+
+        select = select + condicion;
+        }
+
+    return select;
     }
 
     public String armarSelectOid(String oid) {
 
         String selectOid;
-        this.oid =oid;
 
-        return selectOid = "select * from modelo where OIDModelo = " + oid;
+
+        return selectOid = "SELECT * FROM modelo WHERE OIDModelo = '" + oid + "'";
     }
 
     public String armarUpdate(ObjetoPersistente obj) {
 
         String update;
+        ModeloAgente modelo = (ModeloAgente)obj;
 
-        return update = "update modelo set OIDModelo =" + ",OIDMarca = " + "CodigoModelo = " + "NombreModelo =";
+         update = "UPDATE modelo SET"
+                 + "OIDModelo ='" + modelo.getOid() + "', '"
+                 + "OIDMarca = '" + modelo.getOidMarca() + "', '"
+                 + "CodigoModelo = " + modelo.getcodigomodelo() + ", '"
+                 + "NombreModelo ='" + modelo.getnombremodelo() + "'";
 
+
+         return update;
     }
 
     public void guardarObjetoCompuesto(ObjetoPersistente obj) {
@@ -57,8 +81,25 @@ public class IntermediarioPersistenciaModelo extends IntermediarioRelacional{
 
     public List<ObjetoPersistente> convertirRegistrosAObjetos(ResultSet rs) {
 
-
-        return null;
+    List<ObjetoPersistente> nuevosObjetos = new ArrayList<ObjetoPersistente>();
+        try {
+            while (rs.next()) {
+                ModeloAgente nuevoModelo = (ModeloAgente) FabricaEntidades.getInstancia().crearEntidad("Modelo");
+                nuevoModelo.setIsNuevo(false);
+                nuevoModelo.setOid(rs.getString("OIDModelo"));
+                nuevoModelo.setOidMarca(rs.getString("OIDMarca"));
+                nuevoModelo.setMarcaBuscado(false);
+                nuevoModelo.setcodigomodelo(Integer.valueOf(rs.getString("CodigoModelo")));
+                nuevoModelo.setnombremodelo(rs.getString("NombreModelo"));
+            
+                nuevosObjetos.add(nuevoModelo);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IntermediarioPersistenciaModelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    return nuevosObjetos;
     }
 
     @Override
