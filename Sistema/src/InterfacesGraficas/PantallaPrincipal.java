@@ -49,10 +49,25 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         botonConsultarAvanceReclamo.setText("CU Consultar avance de reclamo");
+        botonConsultarAvanceReclamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConsultarAvanceReclamoActionPerformed(evt);
+            }
+        });
 
         botonConsultarOrdenesPendientes.setText("CU Consultar ordenes pendientes");
+        botonConsultarOrdenesPendientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConsultarOrdenesPendientesActionPerformed(evt);
+            }
+        });
 
         botonEjecutarOrdenesTrabajo.setText("CU Ejecutar ordenes de trabajo");
+        botonEjecutarOrdenesTrabajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEjecutarOrdenesTrabajoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +103,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         chuck.iniciarCUAtenderReclamoPorDesperfecto();
     }//GEN-LAST:event_botonAtenderReclamoActionPerformed
+
+    private void botonConsultarAvanceReclamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarAvanceReclamoActionPerformed
+        chuck.iniciarCUConsultarAvanceDeReclamo();  
+    }//GEN-LAST:event_botonConsultarAvanceReclamoActionPerformed
+
+    private void botonConsultarOrdenesPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarOrdenesPendientesActionPerformed
+        chuck.iniciarCUConsultarOrdenesPendientes();
+    }//GEN-LAST:event_botonConsultarOrdenesPendientesActionPerformed
+
+    private void botonEjecutarOrdenesTrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarOrdenesTrabajoActionPerformed
+        chuck.iniciarCUEjecutarOrdenesPendientes();
+    }//GEN-LAST:event_botonEjecutarOrdenesTrabajoActionPerformed
 
     /**
     * @param args the command line arguments

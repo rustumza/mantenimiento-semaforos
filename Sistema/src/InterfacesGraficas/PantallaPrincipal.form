@@ -63,16 +63,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CU Consultar avance de reclamo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonConsultarAvanceReclamoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonConsultarOrdenesPendientes">
       <Properties>
         <Property name="text" type="java.lang.String" value="CU Consultar ordenes pendientes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonConsultarOrdenesPendientesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonEjecutarOrdenesTrabajo">
       <Properties>
         <Property name="text" type="java.lang.String" value="CU Ejecutar ordenes de trabajo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEjecutarOrdenesTrabajoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
