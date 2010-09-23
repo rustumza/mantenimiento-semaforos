@@ -4,6 +4,8 @@
  */
 package Persistencia.Entidades;
 
+import java.util.List;
+
 /**
  *
  * @author diego
@@ -30,7 +32,7 @@ public interface PersonaPadron extends SuperDruperInterfaz {
 
     public void setNroDocumento(String nroDocumento);
 
-    public PersonaPadronEstado getPersonaPadronEstado();
+    public List<PersonaPadronEstado> getPersonaPadronEstado();
 
-    public void setPersonaPadronEstado(PersonaPadronEstado personaPadronEstado);
+    public void setPersonaPadronEstado(List<PersonaPadronEstado> personaPadronEstado);
 }

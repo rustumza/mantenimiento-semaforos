@@ -4,7 +4,6 @@
  */
 package Persistencia.intermediarios;
 
-import Persistencia.Entidades.DenunciaAgente;
 import Persistencia.Entidades.DenuncianteAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;

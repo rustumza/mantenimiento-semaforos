@@ -1,5 +1,8 @@
 package Persistencia.Entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Bicentenario
  * @version 1.0
@@ -12,7 +15,7 @@ public class PersonaPadronImplementacion implements PersonaPadron{
     private String nombre;
     private String nroDocumento;
     private String tipoDocumento;
-    private PersonaPadronEstado personaPadronEstado;
+    private List<PersonaPadronEstado> listaPersonaPadronEstado;
 
     public PersonaPadronImplementacion() {
     }
@@ -82,14 +85,22 @@ public class PersonaPadronImplementacion implements PersonaPadron{
     /**
      * @return the personaPadronEstado
      */
-    public PersonaPadronEstado getPersonaPadronEstado() {
-        return personaPadronEstado;
+    public List<PersonaPadronEstado> getPersonaPadronEstado() {
+        return listaPersonaPadronEstado;
     }
 
     /**
      * @param personaPadronEstado the personaPadronEstado to set
      */
-    public void setPersonaPadronEstado(PersonaPadronEstado personaPadronEstado) {
-        this.personaPadronEstado = personaPadronEstado;
+    public void setPersonaPadronEstado(List<PersonaPadronEstado> personaPadronEstado) {
+        this.listaPersonaPadronEstado = personaPadronEstado;
+    }
+
+    public void addPersonaPadronEstado (PersonaPadronEstado nuevaPersonaPadron){
+        if (listaPersonaPadronEstado == null){
+            listaPersonaPadronEstado = new ArrayList<PersonaPadronEstado>();
+        }
+
+        listaPersonaPadronEstado.add(nuevaPersonaPadron);
     }
 }
