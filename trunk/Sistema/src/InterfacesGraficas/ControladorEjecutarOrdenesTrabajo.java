@@ -6,8 +6,10 @@ package InterfacesGraficas;
 
 import Expertos.ExpertoEjecutarOrdenesTrabajo;
 import Fabricas.FabricaExpertos;
+import Persistencia.Entidades.OrdenDeMantenimiento;
 import Persistencia.Entidades.OrdenDeReparacion;
 import Persistencia.Entidades.OrdenTrabajo;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,17 +34,32 @@ public class ControladorEjecutarOrdenesTrabajo {
     public List<OrdenTrabajo> consultarOrdenesPendientes(Date fecha, String tipo) {
         if(tipo.equals("Trabajo"))
             return experto.consultarOrdenesTrabajoPendientes(fecha);
-        else if(tipo.equals("Reparacion"))
-            return experto.consultarOrdenesReparacionPendientes(fecha);
-        else if(tipo.equals("Mantenimiento"))
-            return experto.consultarOrdenesMantenimientoPendientes(fecha);
-        else 
-            return null;
+        else if(tipo.equals("Reparacion")){
+            List<OrdenDeReparacion> listaOrdenesRep = experto.consultarOrdenesReparacionPendientes(fecha);
+            List<OrdenTrabajo> listaOrdenTrabajo = new ArrayList<OrdenTrabajo>();
+            for( OrdenDeReparacion aux : listaOrdenesRep ){
+                listaOrdenTrabajo.add((OrdenTrabajo)aux );
+
+                 return listaOrdenTrabajo;
+           }
+
+        }        
+            else if(tipo.equals("Mantenimiento")){
+            List<OrdenDeMantenimiento> listaOrdenesMant = experto.consultarOrdenesMantenimientoPendientes(fecha);
+            List<OrdenTrabajo> listaOrdenTrabajo = new ArrayList<OrdenTrabajo>();
+            for (OrdenDeMantenimiento aux : listaOrdenesMant){
+                listaOrdenTrabajo.add((OrdenTrabajo) aux);
+            
+            return listaOrdenTrabajo;
+            } 
+     
+       }return null;
     }
 
-//    public void confirmarOrden(OrdenDeReparacion ordenes) {
-//
-//        experto.guardarOrdenTrabajo((OrdenTrabajo)ordenes);
-//
-//    }
-}
+
+
+ public void confirmarOrden(OrdenTrabajo listaOrdenTrabajo){
+
+        experto.guardarOrdenTrabajo((List<OrdenTrabajo>) listaOrdenTrabajo);
+     }
+ }
