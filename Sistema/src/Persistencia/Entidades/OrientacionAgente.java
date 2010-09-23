@@ -8,7 +8,7 @@ package Persistencia.Entidades;
  *
  * @author diego
  */
-public class OrientacionAgente implements Orientacion {
+public class OrientacionAgente extends ObjetoPersistente implements Orientacion {
 
     private OrientacionImplementacion implementacion;
 

@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaTipoSemaforo extends IntermediarioRelacional{
+    public class IntermediarioPersistenciaTipoSemaforo extends IntermediarioRelacional{
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
@@ -109,6 +109,11 @@ public class IntermediarioPersistenciaTipoSemaforo extends IntermediarioRelacion
 
     @Override
     public void buscarObjRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
