@@ -7,6 +7,7 @@ package InterfacesGraficas;
 import DTO.DTOEstadoDenuncia;
 import Expertos.ExpertoConsultarAvanceDeReclamo;
 import Fabricas.FabricaExpertos;
+import InterfacesGraficas.ModelosTablas.ModeloTablaConsultarAvanceReclamo;
 import java.util.List;
 
 /**
@@ -15,13 +16,30 @@ import java.util.List;
  */
 public class ControladorConsultarAvanceDeReclamo {
 
-   ExpertoConsultarAvanceDeReclamo ecadr;
+   ExpertoConsultarAvanceDeReclamo experto;
+   PantallaConsultarAvanceDeReclamo pantalla;
+   ModeloTablaConsultarAvanceReclamo modelo;
 
-    public List<DTOEstadoDenuncia> ConsultarEstadoCaso(String numcaso) {
+public ControladorConsultarAvanceDeReclamo(){
+    experto = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
+    pantalla = new PantallaConsultarAvanceDeReclamo(this);
+    modelo = new ModeloTablaConsultarAvanceReclamo();
+    pantalla.getTablaConsultarAvanceReclamo().setModel(modelo);
+}
 
-     ecadr = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
+public void iniciar(){
+    pantalla.setVisible(true);
+}
+
+public static void main(String[] args){
+    (new ControladorConsultarAvanceDeReclamo()).iniciar();
+}
+    public void ConsultarEstadoCaso(String numcaso) {
+
+     experto = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
         
         
-        return ecadr.ConsultarEstadoCaso(numcaso);
+        modelo.addAllRow(experto.ConsultarEstadoCaso(numcaso));
+        pantalla.getTablaConsultarAvanceReclamo().setModel(modelo);
     }
 }
