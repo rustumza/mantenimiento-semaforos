@@ -9,7 +9,7 @@ package Persistencia.Entidades;
  *
  * @author diego
  */
-public class MarcaAgente implements Marca{
+public class MarcaAgente extends ObjetoPersistente implements Marca{
 
     private MarcaImplementacion implementacion;
 

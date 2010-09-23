@@ -76,7 +76,7 @@ public class IntermediarioPersistenciaReserva extends IntermediarioRelacional {
                 + "SET OIDReserva = '" + reserva.getOid() + "' ,"
                 + "OIDOrdenDeTrabajo = '" + reserva.getOidOrdenTrabajo() + "', "
                 + "FechaReserva = '" + reserva.getfecha().toString() + "' ,"
-                + "CodigoReserva = " + Integer.valueOf(reserva.getcodigoreserva());
+                + "CodigoReserva = " + String.valueOf(reserva.getcodigoreserva());
 
         return update;
 
