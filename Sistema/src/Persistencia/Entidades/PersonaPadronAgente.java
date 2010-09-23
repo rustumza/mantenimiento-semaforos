@@ -2,19 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Persistencia.Entidades;
 
+import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
+import Persistencia.Fabricas.FabricaCriterios;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
-public class PersonaPadronAgente implements PersonaPadron{
+public class PersonaPadronAgente extends ObjetoPersistente implements PersonaPadron {
 
     private PersonaPadronImplementacion implementacion;
-    private String oidPersonaPadronEstado;
     //variable para saber si el objeto realacionado ya ha sido buscado en la BD
     private boolean personaPadronEstadoBuscado;
 
@@ -58,14 +60,16 @@ public class PersonaPadronAgente implements PersonaPadron{
         implementacion.setNroDocumento(nroDocumento);
     }
 
-    public PersonaPadronEstado getPersonaPadronEstado() {
-        if(isPersonaPadronEstadoBuscado()==false)
-            implementacion.setPersonaPadronEstado((PersonaPadronEstado)FachadaInterna.getInstancia().buscar("PersonaPadronEstado", oidPersonaPadronEstado));
+    public List<PersonaPadronEstado> getPersonaPadronEstado() {
+        if (isPersonaPadronEstadoBuscado() == false) {
+            List<Criterio> listaCriterios = new ArrayList<Criterio>();
+            listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("OIDPersonaPadron", "OIDPersonaPadron", getOid()));
+            
+            for (SuperDruperInterfaz personaPadron : FachadaInterna.getInstancia().buscar("PersonaPadronEstado", listaCriterios)) {
+                implementacion.addPersonaPadronEstado((PersonaPadronEstado) personaPadron);
+            }
+        }
         return implementacion.getPersonaPadronEstado();
-    }
-
-    public void setPersonaPadronEstado(PersonaPadronEstado personaPadronEstado) {
-        implementacion.setPersonaPadronEstado(personaPadronEstado);
     }
 
     /**
@@ -82,21 +86,7 @@ public class PersonaPadronAgente implements PersonaPadron{
         this.implementacion = implementacion;
     }
 
-    /**
-     * @return the oidPersonaPadronEstado
-     */
-    public String getOidPersonaPadronEstado() {
-        return oidPersonaPadronEstado;
-    }
-
-    /**
-     * @param oidPersonaPadronEstado the oidPersonaPadronEstado to set
-     */
-    public void setOidPersonaPadronEstado(String oidPersonaPadronEstado) {
-        this.oidPersonaPadronEstado = oidPersonaPadronEstado;
-    }
-
-    /**
+        /**
      * @return the personaPadronEstadoBuscado
      */
     public boolean isPersonaPadronEstadoBuscado() {
@@ -110,4 +100,7 @@ public class PersonaPadronAgente implements PersonaPadron{
         this.personaPadronEstadoBuscado = personaPadronEstadoBuscado;
     }
 
+    public void setPersonaPadronEstado(List<PersonaPadronEstado> personaPadronEstado) {
+        implementacion.setPersonaPadronEstado(personaPadronEstado);
+    }
 }

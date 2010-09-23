@@ -1,6 +1,5 @@
 package Persistencia.Fabricas;
 
-import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.intermediarios.IntermediarioPersistencia;
 import Persistencia.intermediarios.IntermediarioPersistenciaCalle;
 import Persistencia.intermediarios.IntermediarioPersistenciaCaso;
