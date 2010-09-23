@@ -38,7 +38,7 @@ public class AdaptadorSistemaStockCronos implements AdaptadorSistemaStock {
     final String pass="invitado";
 
     public boolean confirmarStock(int codigoReserva, int[] codigosBienes) {
-        
+        /*
             // Dirección del servicio de Apache SOAP
             URL url=null;
             try {
@@ -82,7 +82,7 @@ public class AdaptadorSistemaStockCronos implements AdaptadorSistemaStock {
                 System.err.println(
                         "SOAPException= " + e.getFaultCode() + ", " + e.getMessage());
             }
-
+*/
         return false;
     }
 }
