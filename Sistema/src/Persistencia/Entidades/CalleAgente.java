@@ -8,7 +8,7 @@ package Persistencia.Entidades;
  *
  * @author Bicentenario
  */
-public class CalleAgente implements Calle {
+public class CalleAgente extends ObjetoPersistente implements Calle{
 
     private CalleImplementacion implementacion;
 
