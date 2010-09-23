@@ -4,6 +4,7 @@
  */
 package Persistencia.intermediarios;
 
+import Persistencia.Entidades.MarcaAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 import java.sql.ResultSet;
@@ -15,11 +16,9 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaMarca extends IntermediarioRelacional{
 
- private String oid;
-
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
-
+        MarcaAgente Marca =
         return insert = "insert into marca (OIDMarca, CodigoMarca, NombreMarca) values (OIDMarca, CodigoMarca, NombreMarca)";
     }
 
