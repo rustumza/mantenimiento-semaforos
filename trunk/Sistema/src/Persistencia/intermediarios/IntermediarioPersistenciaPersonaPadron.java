@@ -25,11 +25,20 @@ private String oid;
 
     public String armarSelect(List<Criterio> criterios) {
 
-        List<Criterio> listaCriterios;
+       
         String select;
-        listaCriterios = criterios;
+       select = "select * from personapadron" ;//criterios
+        if (!criterios.isEmpty()) {
+            select = select + " WHERE ";
+            for (int i = 0; i < criterios.size(); i++) {
+                if (i > 0) {
+                    select = select + " AND ";
+                }
 
-        return select = "select * from personapadron where " ;//criterios
+                select = select + "personapadron." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+            }
+        }
+        return select;
 
     }
 
@@ -60,17 +69,16 @@ private String oid;
 
     @Override
     public void guardarObjetosRelacionados(ObjetoPersistente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     @Override
     public void buscarObjRelacionados(ObjetoPersistente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setearDatosPadre(ObjetoPersistente objPer) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 }
 
