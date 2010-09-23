@@ -9,7 +9,7 @@ package Persistencia.Entidades;
  *
  * @author diego
  */
-public class EsquinaAgente implements Esquina{
+public class EsquinaAgente extends ObjetoPersistente implements Esquina{
 
     private EsquinaImplementacion implementacion;
 
