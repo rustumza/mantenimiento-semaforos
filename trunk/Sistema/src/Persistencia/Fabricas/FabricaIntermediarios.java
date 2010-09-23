@@ -86,237 +86,238 @@ public class FabricaIntermediarios {
         IntermediarioPersistencia intermediario = null;
 
         if(nombre.equals("Calle")){
-        intermediario = (new IntermediarioPersistenciaCalle());
+            
+            intermediario = (IntermediarioPersistencia) (new IntermediarioPersistenciaCalle());
         }
 
 
         if (nombre.equals("Caso")) {
-            intermediario = (new IntermediarioPersistenciaCaso());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaCaso());
         }
 
         if (nombre.equals("CasoSemaforo")) {
-            intermediario = (new IntermediarioPersistenciaCasoSemaforo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaCasoSemaforo());
         }
         if (nombre.equals("CronogramaMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaCronogramaMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaCronogramaMantenimiento());
         }
 
         if (nombre.equals("Denuncia")) {
-            intermediario = (new IntermediarioPersistenciaDenuncia());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaDenuncia());
         }
 
         if (nombre.equals("DenunciaEstado")) {
-            intermediario = (new IntermediarioPersistenciaDenunciaEstado());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaDenunciaEstado());
         }
         if (nombre.equals("Denunciante")) {
-            intermediario = (new IntermediarioPersistenciaDenunciante());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaDenunciante());
         }
 
         if (nombre.equals("DetalleInformeMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaDetalleInformeMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaDetalleInformeMantenimiento());
         }
 
         if (nombre.equals("DetalleInformeReparacion")) {
-            intermediario = (new IntermediarioPersistenciaDetalleInformeReparacion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaDetalleInformeReparacion());
         }
         if (nombre.equals("ElementoTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaElementoTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaElementoTrabajo());
         }
 
         if (nombre.equals("ElementoTrabajoMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaElementoTrabajoMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaElementoTrabajoMantenimiento());
         }
 
         if (nombre.equals("ElementoTrabajoReparacion")) {
-            intermediario = (new IntermediarioPersistenciaElementoTrabajoReparacion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaElementoTrabajoReparacion());
         }
         if (nombre.equals("Equipamiento")) {
-            intermediario = (new IntermediarioPersistenciaEquipamiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEquipamiento());
         }
 
         if (nombre.equals("EquipoDeTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaEquipoDeTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEquipoDeTrabajo());
         }
 
         if (nombre.equals("Esquina")) {
-            intermediario = (new IntermediarioPersistenciaEsquina());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEsquina());
         }
         if (nombre.equals("EstadoDenuncia")) {
-            intermediario = (new IntermediarioPersistenciaEstadoDenuncia());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEstadoDenuncia());
         }
 
         if (nombre.equals("EstadoElementoTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaEstadoElementoTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEstadoElementoTrabajo());
         }
 
         if (nombre.equals("EstadoFallaTecnica")) {
-            intermediario = (new IntermediarioPersistenciaEstadoFallaTecnica());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEstadoFallaTecnica());
         }
         if (nombre.equals("EstadoOrdenTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaEstadoOrdenTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEstadoOrdenTrabajo());
         }
 
         if (nombre.equals("EstadoPadronPersona")) {
-            intermediario = (new IntermediarioPersistenciaEstadoPadronPersona());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaEstadoPadronPersona());
         }
 
         if (nombre.equals("FallaTecnica")) {
-            intermediario = (new IntermediarioPersistenciaFallaTecnica());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaFallaTecnica());
         }
         if (nombre.equals("FallaTecnicaDenuncia")) {
-            intermediario = (new IntermediarioPersistenciaFallaTecnicaDenuncia());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaFallaTecnicaDenuncia());
         }
 
         if (nombre.equals("FichaMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaFichaMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaFichaMantenimiento());
         }
 
         if (nombre.equals("InformeMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaInformeMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaInformeMantenimiento());
         }
 
         if (nombre.equals("InformeReparacion")) {
-            intermediario = (new IntermediarioPersistenciaInformeReparacion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaInformeReparacion());
         }
         
         if (nombre.equals("Interseccion")) {
-            intermediario = (new IntermediarioPersistenciaInterseccion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaInterseccion());
         }
 
         if (nombre.equals("InterseccionCalle")) {
-            intermediario = (new IntermediarioPersistenciaInterseccionCalle());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaInterseccionCalle());
         }
         if (nombre.equals("Marca")) {
-            intermediario = (new IntermediarioPersistenciaMarca());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaMarca());
         }
 
         if (nombre.equals("Modelo")) {
-            intermediario = (new IntermediarioPersistenciaModelo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaModelo());
         }
 
         if (nombre.equals("Numerador")) {
-            intermediario = (new IntermediarioPersistenciaNumerador());
+            intermediario = (IntermediarioPersistencia)v(new IntermediarioPersistenciaNumerador());
         }
 
         if (nombre.equals("Operador")) {
-            intermediario = (new IntermediarioPersistenciaOperador());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaOperador());
         }
 
         if (nombre.equals("OrdenDeMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaOrdenDeMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaOrdenDeMantenimiento());
         }
 
         if (nombre.equals("OrdenDeTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaOrdenDeTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaOrdenDeTrabajo());
         }
 
         if (nombre.equals("OrdenReparacion")) {
-            intermediario = (new IntermediarioPersistenciaOrdenReparacion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaOrdenReparacion());
         }
 
         if (nombre.equals("OrdenTrabajoEstado")) {
-            intermediario = (new IntermediarioPersistenciaOrdenTrabajoEstado());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaOrdenTrabajoEstado());
         }
 
         if (nombre.equals("Orientacion")) {
-            intermediario = (new IntermediarioPersistenciaOrientacion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaOrientacion());
         }
         if (nombre.equals("Periodicidad")) {
-            intermediario = (new IntermediarioPersistenciaPeriodicidad());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaPeriodicidad());
         }
 
         if (nombre.equals("PersonaPadron")) {
-            intermediario = (new IntermediarioPersistenciaPersonaPadron());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaPersonaPadron());
         }
 
         if (nombre.equals("PersonaPadronEstado")) {
-            intermediario = (new IntermediarioPersistenciaPersonaPadronEstado());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaPersonaPadronEstado());
         }
 
         if (nombre.equals("PesoDeReclamo")) {
-            intermediario = (new IntermediarioPersistenciaPesoDeReclamo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaPesoDeReclamo());
         }
 
         if (nombre.equals("Problema")) {
-            intermediario = (new IntermediarioPersistenciaProblema());
+            intermediario = (IntermediarioPersistencia) (new IntermediarioPersistenciaProblema());
         }
 
         if (nombre.equals("ProblemaCaso")) {
-            intermediario = (new IntermediarioPersistenciaProblemaCaso());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaProblemaCaso());
         }
 
         if (nombre.equals("RangoAnios")) {
-            intermediario = (new IntermediarioPersistenciaRangoAnios());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaRangoAnios());
         }
 
         if (nombre.equals("Reclamo")) {
-            intermediario = (new IntermediarioPersistenciaReclamo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaReclamo());
         }
 
         if (nombre.equals("ReparacionTareaRealizada")) {
-            intermediario = (new IntermediarioPersistenciaReparacionTareaRealizada());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaReparacionTareaRealizada());
         }
 
         if (nombre.equals("Repuesto")) {
-            intermediario = (new IntermediarioPersistenciaRepuesto());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaRepuesto());
         }
 
         if (nombre.equals("Reserva")) {
-            intermediario = (new IntermediarioPersistenciaReserva());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaReserva());
         }
         if (nombre.equals("ReservaElementoTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaReservaElementoTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaReservaElementoTrabajo());
         }
 
         if (nombre.equals("Rol")) {
-            intermediario = (new IntermediarioPersistenciaRol());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaRol());
         }
 
         if (nombre.equals("Semaforo")) {
-            intermediario = (new IntermediarioPersistenciaSemaforo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaSemaforo());
         }
 
         if (nombre.equals("Tarea")) {
-            intermediario = (new IntermediarioPersistenciaTarea());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTarea());
         }
 
         if (nombre.equals("TareaFichaMantenimiento")) {
-            intermediario = (new IntermediarioPersistenciaTareaFichaMantenimiento());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTareaFichaMantenimiento());
         }
 
         if (nombre.equals("TipoSemaforo")) {
-            intermediario = (new IntermediarioPersistenciaTipoSemaforo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTipoSemaforo());
         }
 
         if (nombre.equals("Trabajador")) {
-            intermediario = (new IntermediarioPersistenciaTrabajador());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTrabajador());
         }
 
         if (nombre.equals("TrabajadorRol")) {
-            intermediario = (new IntermediarioPersistenciaTrabajadorRol());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTrabajadorRol());
         }
 
         if (nombre.equals("TrabajadorTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaTrabajadorTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTrabajadorTrabajo());
         }
 
         if (nombre.equals("Trabajo")) {
-            intermediario = (new IntermediarioPersistenciaTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTrabajo());
         }
 
         if (nombre.equals("TrabajoElementoNecesario")) {
-            intermediario = (new IntermediarioPersistenciaTrabajoElementoNecesario());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTrabajoElementoNecesario());
         }
 
         if (nombre.equals("TrabajoOrdenDeTrabajo")) {
-            intermediario = (new IntermediarioPersistenciaTrabajoOrdenDeTrabajo());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaTrabajoOrdenDeTrabajo());
         }
         if (nombre.equals("Ubicacion")) {
-            intermediario = (new IntermediarioPersistenciaUbicacion());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaUbicacion());
         }
 
         if (nombre.equals("UbicacionSimple")) {
-            intermediario = (new IntermediarioPersistenciaUbicacionSimple());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaUbicacionSimple());
         }
 
         return intermediario;
