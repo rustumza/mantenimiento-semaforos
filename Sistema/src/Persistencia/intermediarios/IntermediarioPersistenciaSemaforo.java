@@ -136,5 +136,10 @@ public class IntermediarioPersistenciaSemaforo extends IntermediarioRelacional{
     public void buscarObjRelacionados(ObjetoPersistente obj) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
 
