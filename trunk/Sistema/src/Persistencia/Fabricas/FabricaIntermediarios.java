@@ -1,5 +1,6 @@
 package Persistencia.Fabricas;
 
+import Persistencia.Entidades.ObjetoPersistente;
 import Persistencia.intermediarios.IntermediarioPersistencia;
 import Persistencia.intermediarios.IntermediarioPersistenciaCalle;
 import Persistencia.intermediarios.IntermediarioPersistenciaCaso;
@@ -10,6 +11,7 @@ import Persistencia.intermediarios.IntermediarioPersistenciaDenunciaEstado;
 import Persistencia.intermediarios.IntermediarioPersistenciaDenunciante;
 import Persistencia.intermediarios.IntermediarioPersistenciaDetalleInformeMantenimiento;
 import Persistencia.intermediarios.IntermediarioPersistenciaDetalleInformeReparacion;
+import Persistencia.intermediarios.IntermediarioPersistenciaElementoTrabajo;
 import Persistencia.intermediarios.IntermediarioPersistenciaElementoTrabajoMantenimiento;
 import Persistencia.intermediarios.IntermediarioPersistenciaElementoTrabajoReparacion;
 import Persistencia.intermediarios.IntermediarioPersistenciaEquipamiento;
@@ -56,8 +58,10 @@ import Persistencia.intermediarios.IntermediarioPersistenciaTipoSemaforo;
 import Persistencia.intermediarios.IntermediarioPersistenciaTrabajador;
 import Persistencia.intermediarios.IntermediarioPersistenciaTrabajadorRol;
 import Persistencia.intermediarios.IntermediarioPersistenciaTrabajadorTrabajo;
+import Persistencia.intermediarios.IntermediarioPersistenciaTrabajo;
 import Persistencia.intermediarios.IntermediarioPersistenciaTrabajoElementoNecesario;
 import Persistencia.intermediarios.IntermediarioPersistenciaTrabajoOrdenDeTrabajo;
+import Persistencia.intermediarios.IntermediarioPersistenciaUbicacion;
 import Persistencia.intermediarios.IntermediarioPersistenciaUbicacionSimple;
 
 /*
@@ -197,7 +201,7 @@ public class FabricaIntermediarios {
         }
 
         if (nombre.equals("Numerador")) {
-            intermediario = (IntermediarioPersistencia)v(new IntermediarioPersistenciaNumerador());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaNumerador());
         }
 
         if (nombre.equals("Operador")) {

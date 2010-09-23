@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class IntermediarioPersistenciaInformeReparacion {
+public class IntermediarioPersistenciaInformeReparacion extends IntermediarioRelacional{
 
 private String oid;
 
@@ -56,6 +56,21 @@ private String oid;
 
 
         return null;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        
     }
 }
 

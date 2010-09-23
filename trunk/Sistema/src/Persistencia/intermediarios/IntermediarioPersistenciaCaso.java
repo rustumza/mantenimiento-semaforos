@@ -157,4 +157,13 @@ public abstract class IntermediarioPersistenciaCaso extends IntermediarioRelacio
             ((CasoAgente)obj).addOidSemaforo(((ObjetoPersistente)semaforo).getOid());
         }
     }
+
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        
+    }
 }
+
+
+
