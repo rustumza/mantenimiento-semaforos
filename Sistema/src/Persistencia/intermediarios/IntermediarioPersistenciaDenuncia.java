@@ -108,7 +108,7 @@ public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
 
     @Override
     public void guardarObjetosRelacionados(ObjetoPersistente obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
@@ -120,5 +120,10 @@ public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
             ((DenunciaAgente)obj).addOidFallaTecnica(((ObjetoPersistente)fallaTecnica).getOid());
         }
 
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        
     }
 }
