@@ -40,7 +40,7 @@ public class IntermediarioPersistenciaModelo extends IntermediarioRelacional{
         while (!criterios.isEmpty()) {
             condicion = condicion + " WHERE ";
 
-            for(int i = 0; i> criterios.size(); i++){
+            for(int i = 0; i< criterios.size(); i++){
                 if(i>0){
                     condicion = condicion + " AND ";
                     }
@@ -67,9 +67,9 @@ public class IntermediarioPersistenciaModelo extends IntermediarioRelacional{
         ModeloAgente modelo = (ModeloAgente)obj;
 
          update = "UPDATE modelo SET"
-                 + "OIDModelo ='" + modelo.getOid() + "', '"
-                 + "OIDMarca = '" + modelo.getOidMarca() + "', '"
-                 + "CodigoModelo = " + modelo.getcodigomodelo() + ", '"
+                 + "OIDModelo ='" + modelo.getOid() + "', "
+                 + "OIDMarca = '" + modelo.getOidMarca() + "', "
+                 + "CodigoModelo = " + modelo.getcodigomodelo() + ", "
                  + "NombreModelo ='" + modelo.getnombremodelo() + "'";
 
 
