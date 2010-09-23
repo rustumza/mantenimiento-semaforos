@@ -16,7 +16,7 @@ public class FormateadorFechas {
     private static FormateadorFechas instancia;
     private SimpleDateFormat format_dd_MM_yyyy = new SimpleDateFormat("dd/MM/yyyy");
     private SimpleDateFormat format_yyyy_MM_dd = new SimpleDateFormat("yyyy/MM/dd");
-    private SimpleDateFormat StringAFecha = new SimpleDateFormat();
+    private SimpleDateFormat StringAFecha = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public static FormateadorFechas getInstancia(){
@@ -37,8 +37,14 @@ public class FormateadorFechas {
         return format_yyyy_MM_dd;
     }
 
-    public Date StringAFecha(String fecha) throws ParseException{
-        return StringAFecha.parse(fecha);
+    public Date StringAFecha(String pdatestr){
+
+        Date date = new Date();
+        date.setDate(Integer.valueOf(pdatestr.split("-")[2]));
+        date.setMonth(Integer.valueOf(pdatestr.split("-")[1]));
+        date.setYear(Integer.valueOf(pdatestr.split("-")[0]));
+        
+        return date;
     }
 
 

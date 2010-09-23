@@ -15,6 +15,7 @@ import Utilidades.FormateadorFechas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -119,11 +120,9 @@ public abstract class IntermediarioPersistenciaCaso extends IntermediarioRelacio
                 nuevoCaso.setDenuncianteBuscado(false);
                 nuevoCaso.setOidOperador(rs.getString("OIDOperador"));
                 nuevoCaso.setOperadorBuscado(false);
-                try {
-                    nuevoCaso.setfechacaso(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaCaso")));
-                } catch (ParseException ex) {
-                    Logger.getLogger(IntermediarioPersistenciaCaso.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
+                nuevoCaso.setfechacaso(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaCaso")));
+
                 nuevoCaso.settipocaso(Integer.valueOf(rs.getString("TipoCaso")));
 
                 nuevosObjetos.add(nuevoCaso);
@@ -140,7 +139,7 @@ public abstract class IntermediarioPersistenciaCaso extends IntermediarioRelacio
     public void guardarObjetosRelacionados(ObjetoPersistente obj) {
 
         CasoAgente caso = (CasoAgente) obj;
-        
+
         FachadaInterna.getInstancia().guardar("Denunciante", (ObjetoPersistente) caso.getDenunciante());
 
     }
@@ -154,16 +153,11 @@ public abstract class IntermediarioPersistenciaCaso extends IntermediarioRelacio
         listaCriterios.add(FabricaCriterios.getInstancia().crearCriterio("Caso", "=", obj.getOid()));
 
         for (SuperDruperInterfaz semaforo : FachadaInterna.getInstancia().buscar("Semaforo", listaCriterios)) {
-            ((CasoAgente)obj).addOidSemaforo(((ObjetoPersistente)semaforo).getOid());
+            ((CasoAgente) obj).addOidSemaforo(((ObjetoPersistente) semaforo).getOid());
         }
     }
 
-
     @Override
     public void setearDatosPadre(ObjetoPersistente objPer) {
-        
     }
 }
-
-
-

@@ -35,13 +35,13 @@ public class FabricaExpertos {
         Experto retorno = null;
 
         if (tipo.equals("AtenderReclamoPorDesperfecto")) {
-            retorno = new ExpertoAntenderReclamoPorDesperfecto();
+            retorno = (Experto) new ExpertoAntenderReclamoPorDesperfecto();
         } else if (tipo.equals("ConsultarAvanceDeReclamo")) {
-            retorno = new ExpertoConsultarAvanceDeReclamo();
+            retorno =(Experto) new ExpertoConsultarAvanceDeReclamo();
         } else if (tipo.equals("ConsultarOrdenesPendientes")) {
-            retorno = new ExpertoConsultarOrdenesPendientes();
+            retorno = (Experto) new ExpertoConsultarOrdenesPendientes();
         } else if (tipo.equals("EjecutarOrdenesTrabajo")) {
-            retorno = new ExpertoEjecutarOrdenesTrabajo();
+            retorno = (Experto) new ExpertoEjecutarOrdenesTrabajo();
         }
 
         return retorno;

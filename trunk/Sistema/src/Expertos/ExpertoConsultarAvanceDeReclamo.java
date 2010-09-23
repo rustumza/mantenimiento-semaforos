@@ -28,12 +28,12 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
         Criterio criterio = FachadaExterna.getInstancia().crearCriterio("CodigoDenuncia", "=", numcaso);
         List<Criterio> listaDeCriterio = new ArrayList<Criterio>();
         listaDeCriterio.add(criterio);
-        List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("Caso", listaDeCriterio);
+        List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denuncia", listaDeCriterio);
 
         Caso casoEncontrado = (Caso) listaDeInterfaces.get(0);
         List<DTOEstadoDenuncia> dtoDetAvance = new ArrayList<DTOEstadoDenuncia>();
 
-        if (casoEncontrado.gettipocaso() == 1) {//si 1 es denuncia
+        //if (casoEncontrado.gettipocaso() == 1) {//si 1 es denuncia
 
             for (DenunciaEstado aux : ((Denuncia) casoEncontrado).getDenunciaEstado()) {
                 DTOEstadoDenuncia estDenuncia = new DTOEstadoDenuncia();
@@ -41,6 +41,7 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
                 estDenuncia.setNombreEstadoDenuncia(aux.getEstadoDenuncia().getnombreestado());
                 dtoDetAvance.add(estDenuncia);
             }
+       /*
         }else{
             listaDeCriterio.clear();
             listaDeCriterio.add(FabricaCriterios.getInstancia().crearCriterio("Reclamo", "=", (ObjetoPersistente)casoEncontrado));
@@ -53,7 +54,7 @@ public class ExpertoConsultarAvanceDeReclamo implements Experto {
             }
         }
 
-
+*/
         return dtoDetAvance;
 
 
