@@ -17,7 +17,13 @@ import java.util.List;
  * @author informatica
  */
 public class ControladorConsultarOrdenesPendientes {
-ExpertoConsultarOrdenesPendientes ecop;
+    ExpertoConsultarOrdenesPendientes ecop;
+    //PantallaEjecutarOrdenTrabajo pantalla;
+
+    public ControladorConsultarOrdenesPendientes(){
+        //pantalla = new PantallaEjecutarOrdenTrabajo(this);
+        ecop = (ExpertoConsultarOrdenesPendientes) FabricaExpertos.getInstance().getExperto("ConsultarOrdenesPendientes");
+    }
 
 public List<OrdenTrabajo> buscarOrdenes(String fechaString){
 
@@ -28,6 +34,10 @@ public List<OrdenTrabajo> buscarOrdenes(String fechaString){
     
 return ecop.buscarOrdenes(fechaDate);
 }
+
+    void iniciar() {
+        //pantalla.setVisible(true);
+    }
 
 
 

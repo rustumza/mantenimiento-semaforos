@@ -29,9 +29,9 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
     ModeloTablaOrdenesTrabajo modeloTablaOrdenTrabajo = new ModeloTablaOrdenesTrabajo();
 
     /** Creates new form PantallaEjecutarOrdenTrabajo */
-    public PantallaEjecutarOrdenTrabajo() {
+    public PantallaEjecutarOrdenTrabajo(ControladorEjecutarOrdenesTrabajo contr) {
         initComponents();
-
+        controlador = contr;
         OrdenDeMantenimiento orden = new OrdenDeMantenimientoImplementacion();
         orden.setcodigoordenmantenimiento(12930129);
         orden.settipoordentrabajo("verga");
@@ -59,11 +59,7 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
 
     }
 
-    public PantallaEjecutarOrdenTrabajo(ControladorEjecutarOrdenesTrabajo control) {
-        controlador = control;
-        initComponents();
-
-    }
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -290,14 +286,14 @@ public class PantallaEjecutarOrdenTrabajo extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
                 new PantallaEjecutarOrdenTrabajo().setVisible(true);
             }
         });
-    }
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupoSeleccion;
     private javax.swing.JButton jButton1;
