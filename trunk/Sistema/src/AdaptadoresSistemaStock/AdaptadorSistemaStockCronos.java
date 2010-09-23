@@ -4,6 +4,8 @@
  */
 package AdaptadoresSistemaStock;
 
+
+
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.xml.internal.ws.wsdl.writer.document.Fault;
 import java.net.*;
@@ -19,6 +21,13 @@ import org.apache.soap.*;
 import org.apache.soap.rpc.*;
 import org.omg.Dynamic.Parameter;
 
+import java.net.*;
+import java.util.*;
+
+// Clases que guardan relación con el mensaje
+import org.apache.soap.*;
+// Clases que guardan relación con las llamadas
+import org.apache.soap.rpc.*;
 /**
  *
  * @author rustu
