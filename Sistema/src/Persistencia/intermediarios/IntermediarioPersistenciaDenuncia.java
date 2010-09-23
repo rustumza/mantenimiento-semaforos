@@ -91,7 +91,7 @@ public class IntermediarioPersistenciaDenuncia extends IntermediarioRelacional {
                 DenunciaAgente nuevaDenuncia = (DenunciaAgente) FabricaEntidades.getInstancia().crearEntidad("Denuncia");
 
                 nuevaDenuncia.setIsNuevo(false);
-                nuevaDenuncia.setOid(rs.getString("OIDDenuncia"));
+                nuevaDenuncia.setOid(rs.getString("OIDCaso"));
                 nuevaDenuncia.setcodigoDenuncia(Integer.valueOf(rs.getString("CodigoDenuncia")));
                 nuevaDenuncia.setprioridad(Float.valueOf(rs.getString("Prioridad")));
 
