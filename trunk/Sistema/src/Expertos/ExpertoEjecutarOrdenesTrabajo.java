@@ -6,6 +6,7 @@
 package Expertos;
 
 import DTO.DTOOrdenesTrabajo;
+import Fabricas.FabricaAdaptadoresSistemaStock;
 import Fabricas.FabricaExpertos;
 import Persistencia.Entidades.EstadoOrdenTrabajo;
 import Persistencia.Entidades.OrdenDeMantenimiento;
@@ -92,19 +93,19 @@ public class ExpertoEjecutarOrdenesTrabajo implements Experto{
         //LLAMAR WEB SERVICE
         for(OrdenTrabajo orden: ordenesEncontradas){
             for(Reserva res : orden.getRervas()){
-                String user = "INVITADO";   //user
-                String pass = "INVITADO";   //pass
                 res.getcodigoreserva();     //resnro
-                int[] arregloDeInt = new int[res.getReservaElementoTrabajo().size()]; //arreglo codigos de bienes
+                int[] codigosExternos = new int[res.getReservaElementoTrabajo().size()]; //arreglo codigos de bienes
                 int cont = 0;
                 for(ReservaElementoTrabajo resElemTrab : res.getReservaElementoTrabajo()){
-                    arregloDeInt[cont] = resElemTrab.getElementoTrabajo().getcodigosistemaexterno();
+                    codigosExternos[cont] = resElemTrab.getElementoTrabajo().getcodigosistemaexterno();
+                }
+                if(!FabricaAdaptadoresSistemaStock.getInstance().crearAdaptador().confirmarStock(res.getcodigoreserva(), codigosExternos)){
+                    //tirar excepcion poruqe no se pudo reservar
                 }
             }
             //con estos datos confirmo una reserva
-
-            Client client = new Client();
-            client.confirmarReserva();
+            
+           
         }
     }
 
