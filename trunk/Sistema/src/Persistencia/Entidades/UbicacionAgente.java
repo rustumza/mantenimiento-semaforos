@@ -17,39 +17,39 @@ public class UbicacionAgente extends ObjetoPersistente implements Ubicacion {
 
     /*variables para saber si los atributos han sido buscado en la BD*/
     private boolean operadorBuscado;
-
+    @Override
     public int getcodigoubicacion() {
         return getImplementacion().getcodigoubicacion();
     }
-
-    public int getprioridad() {
+    @Override
+      public int getPrioridad() {
         return getImplementacion().getPrioridad();
     }
-
+    @Override
     public int gettipoubicacion() {
 
         return getImplementacion().gettipoubicacion();
     }
-
+    @Override
     public void setcodigoubicacion(int newVal) {
         getImplementacion().setcodigoubicacion(newVal);
     }
-
-    public void setprioridad(int newVal) {
+    @Override
+    public void setPrioridad(int newVal){
         getImplementacion().setPrioridad(newVal);
     }
-
+    @Override
     public void settipoubicacion(int newVal) {
         getImplementacion().settipoubicacion(newVal);
     }
-
+    @Override
     public Operador getOperador() {
         if (isOperadorBuscado() == false) {
             getImplementacion().setOperador((Operador) FachadaInterna.getInstancia().buscar("Operador", oidOperador));
         }
         return getImplementacion().getOperador();
     }
-
+    @Override
     public void setOperador(Operador operador) {
         getImplementacion().setOperador(operador);
     }
@@ -61,6 +61,7 @@ public class UbicacionAgente extends ObjetoPersistente implements Ubicacion {
     /**
      * @param oidOperador the oidOperador to set
      */
+
     public void setOidOperador(String oidOperador) {
         this.oidOperador = oidOperador;
     }
@@ -72,6 +73,7 @@ public class UbicacionAgente extends ObjetoPersistente implements Ubicacion {
     /**
      * @param operadorBuscado the operadorBuscado to set
      */
+    
     public void setOperadorBuscado(boolean operadorBuscado) {
         this.operadorBuscado = operadorBuscado;
     }
