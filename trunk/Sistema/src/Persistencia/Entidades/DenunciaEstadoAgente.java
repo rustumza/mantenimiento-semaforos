@@ -10,16 +10,21 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class DenunciaEstadoAgente implements DenunciaEstado {
+public class DenunciaEstadoAgente extends ObjetoPersistente implements DenunciaEstado {
 
     private DenunciaEstadoImplementacion implementacion;
     private String oidEstadoDenuncia;
     
     private boolean estadoDenunciaBuscadoscado;
+    public String getOidEstadoDenuncia;
+    public String getIndicadoresEstadoActual;
+    private boolean denunciabuscada;
 
     public int getfechacambioestado() {
         return implementacion.getfechacambioestado();
     }
+
+
 
     public boolean isindicadorestadoactual() {
         return implementacion.isindicadorestadoactual();
@@ -71,4 +76,30 @@ public class DenunciaEstadoAgente implements DenunciaEstado {
     public void setEstadoDenunciaBuscadoscado(boolean estadoDenunciaBuscadoscado) {
         this.estadoDenunciaBuscadoscado = estadoDenunciaBuscadoscado;
     }
+
+    public String getOidDenuncia() {
+        return implementacion.getOidDenuncia();
+    }
+
+    public String getOidEstadoDenuncia() {
+        return implementacion.getOidEstadoDenuncia();
+    }
+
+    public Boolean getIndicadoresEstadoActual() {
+        return implementacion.getIndicadoresEstadoActual();
+    }
+
+    public void setOidDenuncia(String OidDenuncia) {
+         implementacion.setOidDenuncia(OidDenuncia);
+    }
+
+    public void setDenunciaBuscado(boolean denunciabuscada) {
+        this.denunciabuscada = denunciabuscada;
+    }
+
+    public void setOidEstadoDenuncia(String OidEstadoDenuncia) {
+        implementacion.setOidEstadoDenuncia(OidEstadoDenuncia);
+    }
+
+    
 }

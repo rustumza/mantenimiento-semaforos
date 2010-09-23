@@ -40,7 +40,7 @@ public class IntermediarioPersistenciaOrientacion extends IntermediarioRelaciona
 
             while (!criterios.isEmpty()) {
             condicion = condicion + " WHERE ";
-            for (int i = 0; i > criterios.size();i++){
+            for (int i = 0; i < criterios.size();i++){
             if(i>0){
             condicion = condicion + " AND ";
            }

@@ -97,7 +97,7 @@ public class FabricaIntermediarios {
 
 
         if (nombre.equals("Caso")) {
-            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaCaso());
+            intermediario = (IntermediarioPersistencia)(new IntermediarioPersistenciaCaso() {});
         }
 
         if (nombre.equals("CasoSemaforo")) {
