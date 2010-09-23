@@ -5,7 +5,7 @@
 package AdaptadoresSistemaStock;
 
 
-
+/*
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.xml.internal.ws.wsdl.writer.document.Fault;
 import java.net.*;

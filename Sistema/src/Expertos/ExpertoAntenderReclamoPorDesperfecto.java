@@ -15,6 +15,7 @@ import Persistencia.Entidades.Denunciante;
 import Persistencia.Entidades.EstadoDenuncia;
 import Persistencia.Entidades.Interseccion;
 import Persistencia.Entidades.Numerador;
+import Persistencia.Entidades.PersonaPadron;
 import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Reclamo;
 import Persistencia.Entidades.Semaforo;
@@ -31,10 +32,15 @@ import java.util.List;
 public class ExpertoAntenderReclamoPorDesperfecto implements Experto{
 
     public Denunciante buscarDenunciante(String dni){
-        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("DNI", "=", dni);
+        Criterio criterio = FachadaExterna.getInstancia().crearCriterio("NroDocumento", "=", dni);
         List<Criterio> listaDeCriterios = new ArrayList<Criterio>();
         listaDeCriterios.add(criterio);
-        List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denunciante", listaDeCriterios);
+        List<SuperDruperInterfaz> listaDeInterfaces = FachadaExterna.getInstancia().buscar("PersonaPadron", listaDeCriterios);
+        PersonaPadron perspad = (PersonaPadron)listaDeInterfaces.get(0);
+        criterio = FachadaExterna.getInstancia().crearCriterio("Denunciante", "=", perspad);
+        listaDeCriterios = new ArrayList<Criterio>();
+        listaDeCriterios.add(criterio);
+        listaDeInterfaces = FachadaExterna.getInstancia().buscar("Denunciante", listaDeCriterios);
         List<Denunciante> listaDenunciantes = new ArrayList<Denunciante>() ;
         for(SuperDruperInterfaz aux : listaDeInterfaces ){
             listaDenunciantes.add((Denunciante) aux);

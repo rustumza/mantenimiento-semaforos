@@ -34,16 +34,20 @@ public class IntermediarioPersistenciaDenunciante extends IntermediarioRelaciona
 
         String select;
 
-        select = "SELECT * FROM denunciante";
+        select = "SELECT * FROM denunciante ";
 
         if (!criterios.isEmpty()) {
             select = select + " WHERE ";
+
+            if(criterios.get(0).getAtributo().equals("PersonaPadron")){
+                select = select+"OIDDenunciante"+ criterios.get(0).getOperador()+"'"+criterios.get(0).getValor()+"'";
+            }
             for (int i = 0; i < criterios.size(); i++) {
                 if (i > 0) {
                     select = select + " AND ";
                 }
 
-                select = select + "denunciante." + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
+                select = select + criterios.get(i).getAtributo() + " " + criterios.get(i).getOperador() + " '" + criterios.get(i).getValor() + "'";
             }
         }
 

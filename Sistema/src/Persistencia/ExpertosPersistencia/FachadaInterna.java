@@ -64,7 +64,7 @@ public class FachadaInterna {
 
     public Criterio crearCriterio(String atributo, String operador, String valor){
 
-        return FabricaCriterios.getInstancia().crearCriterio(atributo, operador, valor);
+         return FabricaCriterios.getInstancia().crearCriterio(atributo, operador, valor);
 
     }
 
