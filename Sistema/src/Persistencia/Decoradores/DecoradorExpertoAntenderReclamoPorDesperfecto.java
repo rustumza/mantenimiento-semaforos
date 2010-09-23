@@ -6,6 +6,7 @@
 package Persistencia.Decoradores;
 
 import DTO.DTOOrdenesTrabajo;
+import DTO.DTOinfoParaCrearDenuncia;
 import Expertos.ExpertoAntenderReclamoPorDesperfecto;
 import Persistencia.Entidades.Denunciante;
 import Persistencia.ExpertosPersistencia.FachadaInterna;
@@ -20,8 +21,13 @@ public class DecoradorExpertoAntenderReclamoPorDesperfecto extends ExpertoAntend
     public Denunciante buscarDenunciante(String dni){
         inicarTX();
         Denunciante aux = super.buscarDenunciante(dni);
-        confirmarTx();
         return aux;
+    }
+
+    @Override
+    public void guardarDenuncia(DTOinfoParaCrearDenuncia dtoInfoParaCrearDenuncia){
+        super.guardarDenuncia(dtoInfoParaCrearDenuncia);
+        confirmarTx();
     }
 
     private void inicarTX(){
