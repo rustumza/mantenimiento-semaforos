@@ -76,6 +76,7 @@ public class ControladorAtenderReclamoPorDesperfecto {
 
     }
 
+    /*
     public static void main(String[] Args){
 
         ControladorAtenderReclamoPorDesperfecto cont = new ControladorAtenderReclamoPorDesperfecto();
@@ -86,5 +87,5 @@ public class ControladorAtenderReclamoPorDesperfecto {
 
 
     }
-
+*/
 }

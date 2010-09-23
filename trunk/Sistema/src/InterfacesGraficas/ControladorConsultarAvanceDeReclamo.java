@@ -31,9 +31,7 @@ public void iniciar(){
     pantalla.setVisible(true);
 }
 
-public static void main(String[] args){
-    (new ControladorConsultarAvanceDeReclamo()).iniciar();
-}
+
     public void ConsultarEstadoCaso(String numcaso) {
 
      experto = (ExpertoConsultarAvanceDeReclamo) FabricaExpertos.getInstance().getExperto("ConsultarAvanceDeReclamo");
@@ -42,4 +40,13 @@ public static void main(String[] args){
         modelo.addAllRow(experto.ConsultarEstadoCaso(numcaso));
         pantalla.getTablaConsultarAvanceReclamo().setModel(modelo);
     }
+
+
+/*
+ public static void main(String[] args){
+    (new ControladorConsultarAvanceDeReclamo()).iniciar();
+}
+*/
+
+
 }
