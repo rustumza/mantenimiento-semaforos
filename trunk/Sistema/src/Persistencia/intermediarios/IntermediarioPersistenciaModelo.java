@@ -4,6 +4,7 @@
  */
 package Persistencia.intermediarios;
 
+import Persistencia.Entidades.ModeloAgente;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.Entidades.ObjetoPersistente;
 import java.sql.ResultSet;
@@ -15,12 +16,14 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaModelo extends IntermediarioRelacional{
 
- private String oid;
+ 
 
     public String armarInsert(ObjetoPersistente obj) {
         String insert;
+        ModeloAgente modelo = (ModeloAgente)obj;
 
-        return insert = "insert into modelo (OIDModelo, OIDMarca, CodigoModelo, NombreModelo) values (OIDModelo, OIDMarca, CodigoModelo, NombreModelo)";
+        return insert = "INSERT INTO modelo (OIDModelo, OIDMarca, CodigoModelo, NombreModelo)"
+                + "VALUES '" + modelo.getOid() + "','" + modelo.getOidMarca() + "', '" + modelo.getcodigomodelo() + "', '" + modelo.getnombremodelo()+"'";
     }
 
     public String armarSelect(List<Criterio> criterios) {
@@ -56,6 +59,21 @@ public class IntermediarioPersistenciaModelo extends IntermediarioRelacional{
 
 
         return null;
+    }
+
+    @Override
+    public void guardarObjetosRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void buscarObjRelacionados(ObjetoPersistente obj) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setearDatosPadre(ObjetoPersistente objPer) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 

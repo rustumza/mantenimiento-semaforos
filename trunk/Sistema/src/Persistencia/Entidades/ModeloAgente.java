@@ -11,7 +11,7 @@ import Persistencia.ExpertosPersistencia.FachadaInterna;
  *
  * @author diego
  */
-public class ModeloAgente implements Modelo{
+public class ModeloAgente extends ObjetoPersistente implements Modelo{
 
     private ModeloImplementacion implementacion;
     private String oidMarca;
