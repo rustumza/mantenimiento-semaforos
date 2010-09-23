@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//4287227 pizzeria
 package Expertos;
 
 import DTO.DTOOrdenesTrabajo;
@@ -12,6 +12,8 @@ import Persistencia.Entidades.OrdenDeMantenimiento;
 import Persistencia.Entidades.OrdenDeReparacion;
 import Persistencia.Entidades.OrdenTrabajo;
 import Persistencia.Entidades.OrdenTrabajoEstado;
+import Persistencia.Entidades.Reserva;
+import Persistencia.Entidades.ReservaElementoTrabajo;
 import Persistencia.ExpertosPersistencia.Criterio;
 import Persistencia.ExpertosPersistencia.FachadaExterna;
 import Persistencia.Fabricas.FabricaCriterios;
@@ -65,14 +67,45 @@ public class ExpertoEjecutarOrdenesTrabajo implements Experto{
             ordentrabajoestado.setEstadoOrdenTrabajo(estado);
             ordentrabajoestado.setfechacambioestado(new Date());
             ordentrabajoestado.setindicadorestadoactual(true);
-
+            for(OrdenTrabajoEstado ordenTrabEst : orden.getListaEstadosOrdenTrabajo()){
+                if(ordenTrabEst.isindicadorestadoactual())
+                    ordenTrabEst.setindicadorestadoactual(false);
+            }
             orden.addEstado(ordentrabajoestado);
+            
+            llamarWebServiceConfirmarReservas(ordenesEncontradas);
+
+            imprimirOrdenes(ordenesEncontradas);
 
             FachadaExterna.getInstancia().guardar("OrdenTrabajo", orden);
             
         }
 
 
+    }
+
+    private void imprimirOrdenes(List<OrdenTrabajo> ordenesEncontradas) {
+        //MANDAR A IMPRIMIR LAS ORDENES
+    }
+
+    private void llamarWebServiceConfirmarReservas(List<OrdenTrabajo> ordenesEncontradas) {
+        //LLAMAR WEB SERVICE
+        for(OrdenTrabajo orden: ordenesEncontradas){
+            for(Reserva res : orden.getRervas()){
+                String user = "INVITADO";   //user
+                String pass = "INVITADO";   //pass
+                res.getcodigoreserva();     //resnro
+                int[] arregloDeInt = new int[res.getReservaElementoTrabajo().size()]; //arreglo codigos de bienes
+                int cont = 0;
+                for(ReservaElementoTrabajo resElemTrab : res.getReservaElementoTrabajo()){
+                    arregloDeInt[cont] = resElemTrab.getElementoTrabajo().getcodigosistemaexterno();
+                }
+            }
+            //con estos datos confirmo una reserva
+
+            Client client = new Client();
+            client.confirmarReserva();
+        }
     }
 
 
