@@ -28,6 +28,7 @@ public class ChuckNorrisControlador {
         pantPrinc.setVisible(false);
         contAtendRecl=new ControladorAtenderReclamoPorDesperfecto();
         contAtendRecl.iniciar();
+        contAtendRecl.getcerrar();
 
 
     }
@@ -57,4 +58,9 @@ public class ChuckNorrisControlador {
         contEjecOrdTrab.iniciar();
 
     }
+
+    public boolean getcerrar() {
+        return contAtendRecl.getcerrar();
+    }
+
 }

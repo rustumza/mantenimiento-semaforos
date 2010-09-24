@@ -16,7 +16,6 @@ import DTO.DTOinfoParaCrearDenuncia;
 import InterfacesGraficas.ModelosTablas.ModeloTablaSemaforos;
 import Persistencia.Entidades.Calle;
 import Persistencia.Entidades.Denunciante;
-import Persistencia.Entidades.Operador;
 import Persistencia.Entidades.OperadorImplementacion;
 import Persistencia.Entidades.Problema;
 import Persistencia.Entidades.Semaforo;
@@ -24,9 +23,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JPanel;
 import javax.swing.SpinnerListModel;
 
 
@@ -40,7 +37,8 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     DTOinfoParaCrearDenuncia dTOinfoParaCrearDenuncia;
     HashMap<String, DTOProblemasDelSemaforo> hashMapProblemasDelSemaforo;
     Denunciante denunciante;
-
+    private boolean cerrar;
+    
 
     /** Creates new form PantallaAtenderReclamoPorDesperfecto */
     public PantallaAtenderReclamoPorDesperfecto(ControladorAtenderReclamoPorDesperfecto controladorARPD) {
@@ -394,8 +392,10 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarInfoDenuncianteActionPerformed
 
     private void cancelarCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCasoActionPerformed
-        this.dispose();
-        System.exit(0);
+  
+       cerrar = true;
+       this.dispose();
+       //System.exit(0);
     }//GEN-LAST:event_cancelarCasoActionPerformed
 
     /**
@@ -495,4 +495,9 @@ public class PantallaAtenderReclamoPorDesperfecto extends javax.swing.JFrame {
         this.todosLosProblemas = todosLosProblemas;
     }
 
+    public boolean getcerrar(){
+
+        return cerrar;
+
+    }
 }

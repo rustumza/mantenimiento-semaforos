@@ -111,11 +111,9 @@ public class IntermediarioPersistenciaSemaforo extends IntermediarioRelacional{
                 nuevoSemaforo.setTipoSemaforoBuscado(false);
                 nuevoSemaforo.setOidUbicacion(rs.getString("OIDUbicacion"));
                 nuevoSemaforo.setUbicacionBuscado(false);
-                try {
+                
                     nuevoSemaforo.setfechaInstalacion(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaInstalacion")));
-                } catch (ParseException ex) {
-                    Logger.getLogger(IntermediarioPersistenciaSemaforo.class.getName()).log(Level.SEVERE, null, ex);
-                }
+               
                 nuevoSemaforo.setnumeroSerie(rs.getString("NumeroSerie"));
 
                 nuevosObjetos.add(nuevoSemaforo);
