@@ -31,10 +31,14 @@ public class ControladorAtenderReclamoPorDesperfecto {
     public ControladorAtenderReclamoPorDesperfecto(){
          earpd = (ExpertoAntenderReclamoPorDesperfecto)FabricaExpertos.getInstance().getExperto("AtenderReclamoPorDesperfecto");
          pantallaARPD = new PantallaAtenderReclamoPorDesperfecto(this);
+
     }
 
     public void iniciar(){
         pantallaARPD.setVisible(true);
+        pantallaARPD.getcerrar();
+
+
     }
 
     public Denunciante buscarDenunciante(String dni){
@@ -74,6 +78,10 @@ public class ControladorAtenderReclamoPorDesperfecto {
         earpd.guardarDenuncia(infoParaCrearDenuncia);
 
 
+    }
+
+    public boolean getcerrar() {
+        return pantallaARPD.getcerrar();
     }
 
     /*

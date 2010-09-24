@@ -95,13 +95,11 @@ public class IntermediarioPersistenciaOrdenDeTrabajo extends IntermediarioRelaci
                 nuevaOrdenTrabajo.setIsNuevo(false);
                 nuevaOrdenTrabajo.setOid(rs.getString("OIDOrdenDeTrabajo"));
                 nuevaOrdenTrabajo.setOidEquipoDeTrabajo(rs.getString("OIDEquipoDeTrabajo"));
-                try {
+               
                     nuevaOrdenTrabajo.setfechainiciotrabajo(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaInicioTrabajo")));
                     nuevaOrdenTrabajo.setfechafintrabajo(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaFinTrabajo")));
                     nuevaOrdenTrabajo.setfechainicioplanificada(FormateadorFechas.getInstancia().StringAFecha(rs.getString("FechaInicioPlanificada")));
-                } catch (ParseException ex) {
-                    Logger.getLogger(IntermediarioPersistenciaOrdenDeTrabajo.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
                 nuevaOrdenTrabajo.setduracionprevistatrabajo(Integer.valueOf(rs.getString("DuracionPrevistaTrabajo")));
                 nuevaOrdenTrabajo.settipoordentrabajo(rs.getString("Tipo"));
                 nuevaOrdenTrabajo.setEquipoDeTrabajoBuscado(false);
